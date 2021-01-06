@@ -1,0 +1,21 @@
+.gridContainer {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 38% 62%;
+  grid-template-rows: minmax(50px, 8%) 92%;
+  grid-template-areas:
+    "header header"
+    "left right"; 
+}
+
+.gridHeader {
+  grid-area: header;
+}
+
+.gridOrder {
+  grid-area: left;
+}
+
+.gridMenu {
+  grid-area: right;
+}

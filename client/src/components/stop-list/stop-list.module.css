@@ -1,0 +1,29 @@
+.stopListContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+}
+
+.localisationFilter {
+  display: inline-block;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.localisationFilter:last-child {
+  margin-right: 0;
+}
+
+.stopListTable {
+  border-collapse: collapse;
+}
+
+.stopListTable th,
+.stopListTable td {
+  padding: 10px 30px;
+}
+
+.activeFilter {
+  font-weight: bold;
+}

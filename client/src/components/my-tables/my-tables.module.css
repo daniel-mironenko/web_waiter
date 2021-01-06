@@ -1,0 +1,28 @@
+.myTablesContainer {
+  position: relative;
+}
+
+.myTabelsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  margin-bottom: 50px;
+}
+
+.myTableCount strong{
+  margin-left: 10px;
+  font-size: 21px;
+}
+
+.myTableBoard {
+  width: 100%;
+  padding-left: 5%;
+  padding-right: 15%;
+}
+
+.tablesList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}

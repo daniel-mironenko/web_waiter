@@ -1,0 +1,83 @@
+.menuContainer {
+  padding: 10px 15px;
+  height: 100%;
+  background-color: #D8DBE6;
+}
+
+.menuHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0;
+}
+
+.menuHeaderTitle {
+  color: #666666;
+  font-size: 18px;
+}
+
+.searchBtn {
+  width: 60px;
+  height: 35px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  background: #ffffff url("../../assets/img/search.svg") no-repeat center center;
+  background-size: 20px 20px;
+  cursor: pointer;
+}
+
+.menuNav {
+  height: 85%;
+  overflow: auto;
+}
+
+.menuNav::-webkit-scrollbar {
+  width: 7px;
+}
+
+.menuNav::-webkit-scrollbar-track {
+  background: #ffffff;
+  border-radius: 5px;
+}
+
+.menuNav::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+.menuNavList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.menuNavItem {
+  width: calc(100% / 4 - 20px);
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.itemImgContainer {
+  height: 120px;
+  background-color: teal;
+}
+
+.itemInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  background-color: #ffffff;
+}
+
+.itemInfo p {
+  padding: 0 5px;
+  margin: 3px 0;
+}
+
+.ItemInfoPrice {
+  font-size: 12px;
+  color: #B0B0B0;
+}

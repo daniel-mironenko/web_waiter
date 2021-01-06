@@ -1,0 +1,84 @@
+.newTablePopup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  min-height: 100vh;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 3000;
+}
+
+.newTableContainer {
+  width: 300px;
+  background-color: lemonchiffon;
+  padding: 30px;
+  text-align: center;
+  border-radius: 15px;
+  background-color: #264653;
+  color: #fff;
+}
+
+.newTableForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.newTableAlert {
+  color: red;
+  font-size: 12px;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none; 
+}
+
+input[type='number'],
+input[type="number"]:hover,
+input[type="number"]:focus {
+    appearance: none;
+    -moz-appearance: textfield;
+}
+
+.bottonContainer {
+  display: flex;
+  justify-content: space-around;
+}
+
+.newTableInput {
+  text-align: center;
+  min-width: 40px;
+  border: none;
+  outline: none;
+  padding: 15px 20px;
+  border-radius: 15px;
+  width: 150px;
+  height: 30px;
+}
+
+.newTableBtn {
+  border: none;
+  outline: none;
+  padding: 15px 20px;
+  border-radius: 15px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: bold;
+}
+
+.createNewTable {
+  background-color: chartreuse;
+}
+
+.createNewTable:disabled {
+  opacity: 0.5;
+}
+
+.cancelNewTable {
+  background-color: #F94144;
+}

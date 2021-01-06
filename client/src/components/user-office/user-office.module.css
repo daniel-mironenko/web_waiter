@@ -1,0 +1,62 @@
+.userOffice {
+  min-width: 360px;
+  padding: 30px 15px;
+  background-color: #264653;
+  color: #fff;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 60px;
+}
+
+.userInfoAvatar {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background-color: beige;
+  margin-right: 15px;
+  overflow: hidden;
+  border: 2px solid #fff;
+}
+
+.userInfoName {
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.userInfoStatus {
+  display: inline-block;
+  padding: 5px;
+  background-color: chartreuse;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.userInfoTitle {
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.userOfficeNavigationList {
+  padding-left: 10px;
+}
+
+.userOfficeNavigationItem {
+  margin-bottom: 10px;
+}
+
+.userOfficeNavigationItem {
+  color: #fff;
+  cursor: pointer;
+}
+
+.userOfficeNavigationItem:hover {
+  opacity: 0.8;
+}
+
+.userOfficeNavigationItemActive {
+  opacity: 0.5;
+}

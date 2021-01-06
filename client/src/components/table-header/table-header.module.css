@@ -1,0 +1,74 @@
+.tableHeader {
+  background-color: #373D46;
+  color: #ffffff;
+  font-size: 14px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  min-height: 50px;
+  height: 100%
+}
+
+.headerButtons {
+  display: flex;
+  align-items: center;
+}
+
+.goBackBtn {
+  color: #ffffff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 14px;
+  padding-left: 45px;
+  padding-right: 15px;
+  height: 100%;
+  background: transparent url("../../assets/img/left-arrow.svg") no-repeat 20px center;
+  background-size: 20px 20px;
+}
+
+.goBackBtn:focus {
+  background-color: #262B33;
+}
+
+.headerInfo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 15px;
+}
+
+.numberOfTable {
+  margin: 0;
+}
+
+.numberOfGuests {
+  color: #8E8E8E;
+  margin: 0;
+  font-size: 14px;
+}
+
+.additionalInformation {
+  display: flex;
+  justify-content:flex-end;
+  align-items: center;
+  margin: 0 30px 0 0;
+}
+
+.additionalInformation li {
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  border-left: 1px solid #2E333B;
+  height: 100%;
+}
+
+.additionalInformation li:last-child {
+  border-right: 1px solid #2E333B;
+}
+
+
+.owner {
+  font-size: 16px;
+}
