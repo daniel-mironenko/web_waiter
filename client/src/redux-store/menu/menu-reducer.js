@@ -1,8 +1,7 @@
-import {mainMenuGraph, additiveMenuGraph} from "../../mock/menu-mock";
+import { menu } from "../../mock/menu-mock";
 
 const initialState = {
-  mainMenu: mainMenuGraph,
-  additiveMenu: additiveMenuGraph,
+  menu: menu,
 };
 
 const ActionType = {
@@ -24,8 +23,8 @@ export function reducer(state = initialState, action) {
       return Object.assign(state, {
         menu: action.payload
       });
-      
-    default: 
+
+    default:
       return state
   }
 }
