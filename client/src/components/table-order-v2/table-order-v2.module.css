@@ -1,12 +1,15 @@
 .tableOrderContainer {
   background-color: #ffffff;
-  min-height: 400px;
+  display: flex;
+  flex-direction: column;
   height: 100%;
+  width: 38%;
 }
 
 .spreadsheetContainer {
-  height: calc(100% - 170px);
+  flex-grow: 1;
   overflow: auto;
+  padding-top: 10px;
 }
 
 .spreadsheetContainer::-webkit-scrollbar {
@@ -103,7 +106,7 @@
   padding: 10px 15px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   border-top: 1px solid #eeeeee;
 }
 

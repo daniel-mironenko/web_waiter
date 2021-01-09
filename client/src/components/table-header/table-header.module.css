@@ -6,7 +6,6 @@
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr;
   min-height: 50px;
-  height: 100%
 }
 
 .headerButtons {
@@ -25,11 +24,55 @@
   height: 100%;
   background: transparent url("../../assets/img/left-arrow.svg") no-repeat 20px center;
   background-size: 20px 20px;
+  margin-right: 30px;
+  min-width: 150px;
 }
 
 .goBackBtn:focus {
   background-color: #262B33;
 }
+
+.navBtn {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  font-size: 14px;
+  background-color: #556275;
+  width: 100px;
+  height: 80%;
+  align-self: flex-end;
+  margin-right: 5px;
+  color: #ffffff;
+}
+
+.navBtn:hover {
+  background-color: #475264;
+}
+
+.navBtnActive {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.navBtnActive:hover {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* .newOrderBtn {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  font-size: 14px;
+  background-color: #ffffff;
+  width: 100px;
+  height: 80%;
+  align-self: flex-end;
+} */
 
 .headerInfo {
   display: flex;

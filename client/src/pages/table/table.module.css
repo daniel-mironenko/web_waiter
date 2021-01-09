@@ -1,21 +1,12 @@
-.gridContainer {
+.container {
   height: 100vh;
-  display: grid;
-  grid-template-columns: 38% 62%;
-  grid-template-rows: minmax(50px, 8%) 92%;
-  grid-template-areas:
-    "header header"
-    "left right"; 
+  display: flex;
+  flex-direction: column;
 }
 
-.gridHeader {
-  grid-area: header;
+.gridContainer {
+  display: flex;
+  flex-grow: 1;
+  overflow: hidden;
 }
 
-.gridOrder {
-  grid-area: left;
-}
-
-.gridMenu {
-  grid-area: right;
-}

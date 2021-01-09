@@ -1,4 +1,5 @@
 .menuContainer {
+  width: 62%;
   padding: 10px 15px;
   height: 100%;
   background-color: #D8DBE6;
@@ -11,21 +12,30 @@
   grid-template-areas: "back title search";
 }
 
-.goBackContainer {
+.goToContainer {
   grid-area: back;
   display: flex;
   align-items: center;
 }
 
-.goBackBtn {
+.goToBtn {
   color: #666666;
   font-size: 16px;
   outline: none;
   padding-left: 25px;
   border: none;
+  cursor: pointer;
+}
+
+.goBackBtn {
   background: transparent url("../../assets/img/left-arrow-black.svg") no-repeat left center;
   background-size: 17px 17px;
-  cursor: pointer;
+  margin-right: 20px;
+}
+
+.goHomeBtn {
+  background: transparent url("../../assets/img/menu.svg") no-repeat left center;
+  background-size: 17px 17px;
 }
 
 .headerTitleContainer {
@@ -56,7 +66,7 @@
 }
 
 .menuNav {
-  height: 85%;
+  height: 90%;
   overflow: auto;
 }
 
@@ -89,9 +99,6 @@
 
 .itemImgContainer {
   height: 120px;
-  background-color: teal;
-  /* position: relative;
-  padding-top: 56.25%; */
 }
 
 .itemImgContainer img {

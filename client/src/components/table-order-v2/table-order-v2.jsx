@@ -2,6 +2,7 @@ import React from "react";
 import style from "./table-order-v2.module.css";
 
 export default function TableOrderV2() {
+
   return (
     <section className={style.tableOrderContainer}>
       <div className={style.spreadsheetContainer}>
@@ -197,7 +198,7 @@ export default function TableOrderV2() {
           <b>Всего</b>
           <strong>$1250.35</strong>
         </div>
-        <footer className={style.footerOperationContainer}>
+        {/* <footer className={style.footerOperationContainer}>
           <button
             className={`${style.footerOperationBtn} ${style.additionalOptionsBtn}`}
           ></button>
@@ -209,7 +210,7 @@ export default function TableOrderV2() {
           >
             Закрыть стол
           </button>
-        </footer>
+        </footer> */}
       </div>
     </section>
   );

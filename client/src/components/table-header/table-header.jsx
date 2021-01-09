@@ -23,6 +23,9 @@ export default function TableHeader({ table }) {
         >
           Мои столы
         </button>
+        <button className={`${style.navBtn} ${style.navBtnActive}`}>Новый заказ</button>
+        <button className={style.navBtn}>История</button>
+        <button className={style.navBtn}>Заказ</button>
       </div>
       <div className={style.headerInfo}>
         <p className={style.numberOfTable}>Стол №{numberOfTable}</p>
