@@ -3,11 +3,33 @@ import style from "./table-menu.module.css";
 import { useSelector } from "react-redux";
 import { getMenu } from "../../redux-store/menu/selector";
 
-export default function TableMenu() {
+export default function TableMenu({ newOrder, setNewOrder }) {
   const menu = useSelector(getMenu);
   const [currentCatalog, setCurrentCatalog] = useState("menu");
   const catalog = menu.nodes[currentCatalog];
   const navRef = useRef();
+
+  function updateNewOrder(product) {
+    setNewOrder((prev) => {
+      const clonePrev = [...prev];
+      const index = clonePrev.findIndex(
+        (it) => it.name === product.name
+      );
+      if (index !== -1) {
+        clonePrev[index].count = clonePrev[index].count + 1;
+        return clonePrev;
+      } else {
+        return [
+          ...prev,
+          {
+            name: product.name,
+            count: 1,
+            price: product.price,
+          },
+        ];
+      }
+    });
+  }
 
   return (
     <section className={style.menuContainer}>
@@ -50,29 +72,31 @@ export default function TableMenu() {
           {menu.graph[currentCatalog].map((it) => {
             const node = menu.nodes[it];
             return (
-              <Fragment>
-                <li
-                  key={node.name}
-                  className={style.menuNavItem}
-                  onClick={() => {
-                    navRef.current.scroll(0, 0);
-                    setCurrentCatalog(node.type);
-                  }}
+              <li
+                key={node.name}
+                className={style.menuNavItem}
+                onClick={() => {
+                  if (node.type === "product") {
+                    updateNewOrder(node);
+                    return;
+                  }
+                  navRef.current.scroll(0, 0);
+                  setCurrentCatalog(node.type);
+                }}
+              >
+                <div
+                  style={{ backgroundColor: node.color }}
+                  className={style.itemImgContainer}
                 >
-                  <div
-                    style={{ backgroundColor: node.color }}
-                    className={style.itemImgContainer}
-                  >
-                    {node.photo && <img src={node.photo} alt={node.name} />}
-                  </div>
-                  <div className={style.itemInfo}>
-                    <p className={style.ItemInfoTitle}>{node.name}</p>
-                    <p className={style.ItemInfoPrice}>
-                      {node.type === "product" ? `$${node.price}` : ``}
-                    </p>
-                  </div>
-                </li>
-              </Fragment>
+                  {node.photo && <img src={node.photo} alt={node.name} />}
+                </div>
+                <div className={style.itemInfo}>
+                  <p className={style.ItemInfoTitle}>{node.name}</p>
+                  <p className={style.ItemInfoPrice}>
+                    {node.type === "product" ? `$${node.price}` : ``}
+                  </p>
+                </div>
+              </li>
             );
           })}
         </ul>

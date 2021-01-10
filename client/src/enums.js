@@ -19,3 +19,9 @@ export const menuNavigationMode = {
   "MAIN": "main",
   "ADDITIVE":"additive"
 };
+
+export const orderTabs = {
+  NEW_ORDER: "Новый заказ",
+  HISTORY: "История",
+  ORDER: "Заказ"
+};
