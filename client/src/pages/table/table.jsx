@@ -19,15 +19,15 @@ export default function Table() {
   );
 
   return (
-    <div class={style.container}>
+    <div className={style.container}>
       <TableHeader
         table={table}
         activeOrderTab={activeOrderTab}
         setActiveOrderTab={setActiveOrderTab}
       />
       <div className={style.gridContainer}>
-        <TableOrderV2 activeOrderTab={activeOrderTab} newOrder={newOrder}/>
-        <TableMenu newOrder={newOrder} setNewOrder={setNewOrder}/>
+        <TableOrderV2 activeOrderTab={activeOrderTab} table={table} newOrder={newOrder} setNewOrder={setNewOrder}/>
+        <TableMenu newOrder={newOrder} setNewOrder={setNewOrder} />
       </div>
     </div>
   );

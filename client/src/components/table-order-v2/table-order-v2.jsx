@@ -4,7 +4,28 @@ import OrderOperations from "../order-operations/order-operations";
 import TableOrderProduct from "../table-order-product/table-order-product";
 import style from "./table-order-v2.module.css";
 
-export default function TableOrderV2({ activeOrderTab, newOrder }) {
+export default function TableOrderV2({
+  activeOrderTab,
+  table,
+  newOrder,
+  setNewOrder,
+}) {
+  const orderList = (function () {
+    switch (activeOrderTab) {
+      case orderTabs.NEW_ORDER:
+        return newOrder;
+
+      case orderTabs.HISTORY:
+        return table.historyOrder;
+
+      case orderTabs.ORDER:
+        return table.order;
+
+      default:
+        return [];
+    }
+  })();
+
   return (
     <section className={style.tableOrderContainer}>
       <div className={style.spreadsheetContainer}>
@@ -16,14 +37,23 @@ export default function TableOrderV2({ activeOrderTab, newOrder }) {
               <th>Цена</th>
               <th>Итого</th>
             </tr>
-            {activeOrderTab === orderTabs.NEW_ORDER &&
-              newOrder.map((it) => (
-                <TableOrderProduct product={it}/>
-              ))}
+            {orderList.map((it) => (
+              <TableOrderProduct
+                key={it.name}
+                product={it}
+                setNewOrder={setNewOrder}
+                activeOrderTab={activeOrderTab}
+              />
+            ))}
           </tbody>
         </table>
       </div>
-      <OrderOperations activeOrderTab={activeOrderTab} newOrder={newOrder}/>
+      <OrderOperations
+        activeOrderTab={activeOrderTab}
+        table={table}
+        orderList={orderList}
+        setNewOrder={setNewOrder}
+      />
     </section>
   );
-}
+};

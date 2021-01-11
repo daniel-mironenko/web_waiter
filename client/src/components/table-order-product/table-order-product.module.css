@@ -43,3 +43,7 @@
   background: #edf0f8 url("../../assets/img/plus.svg") no-repeat center center;
   background-size: 11px 11px;
 }
+
+.countBtn:disabled {
+  
+}

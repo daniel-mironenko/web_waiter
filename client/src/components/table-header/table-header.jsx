@@ -30,6 +30,7 @@ export default function TableHeader({
         {Object.values(orderTabs).map((it) => {
           return (
             <button
+              key={it}
               className={`${style.navBtn} ${
                 activeOrderTab === it && style.navBtnActive
               }`}
