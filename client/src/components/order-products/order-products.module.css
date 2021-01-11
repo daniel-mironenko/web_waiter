@@ -1,0 +1,49 @@
+.countTableDate {
+  position: relative;
+}
+
+.countBtn {
+  display: none;
+  position: absolute;
+  top: 8px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: 1px solid #eeeeee;
+  z-index: 200;
+  cursor: pointer;
+}
+
+.countTableDate:hover .countBtn {
+  display: block;
+}
+
+.countBtn:active,
+.countBtn:focus {
+  outline: none;
+}
+
+.countBtn:active {
+  background-color: #dde1ec;
+}
+
+.countBtn:hover {
+  transform: scale(1.2);
+}
+
+.minusBtn {
+  left: -8px;
+  background: #edf0f8 url("../../assets/img/minus-sign.svg") no-repeat center
+    center;
+  background-size: 10px 10px;
+}
+
+.plusBtn {
+  right: -8px;
+  background: #edf0f8 url("../../assets/img/plus.svg") no-repeat center center;
+  background-size: 11px 11px;
+}
+
+.countBtn:disabled {
+  
+}

@@ -1,0 +1,101 @@
+.operationContainer {
+  padding: 15px 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-top: 1px solid #eeeeee;
+  gap: 20px;
+}
+
+.operationBtn {
+  height: 35px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #ffffff;
+  vertical-align: middle;
+  font-size: 16px;
+}
+
+.sendOrderContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.sendOrderBtn {
+  width: 79%;
+  background-color: #4085d4;
+  border-radius: 4px;
+}
+
+.sendOrderBtn:hover {
+  background-color: #438de2;
+}
+
+.clenOrderBtn {
+  width: 20%;
+  border-radius: 4px;
+  background-color: rgb(250, 100, 102);
+}
+
+.clenOrderBtn:hover {
+  background-color: rgb(250, 112, 115);
+}
+
+.totalPriceContainer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+}
+
+.footerOperationContainer {
+  justify-self: flex-end;
+  display: flex;
+  padding: 10px 0;
+}
+
+.footerOperationBtn {
+  height: 40px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  vertical-align: middle;
+  border-radius: 4px;
+}
+
+.additionalOptionsBtn {
+  background: #ffffff url("../../assets/img/moreblack.svg") no-repeat center
+    center;
+  background-size: 20px 20px;
+  width: 90px;
+  border: 1px solid #94bdeb;
+  margin-right: 10px;
+}
+
+.printBtn {
+  width: 90px;
+  border: 1px solid #94bdeb;
+  background: #ffffff url("../../assets/img/printer.svg") no-repeat center
+    center;
+  background-size: 20px 20px;
+}
+
+.additionalOptionsBtn:hover,
+.printBtn:hover {
+  background-color: #eeeeee;
+}
+
+.closeTableBtn {
+  margin-left: auto;
+  border: none;
+  color: #ffffff;
+  background-color: #32b851;
+  font-size: 16px;
+  font-weight: bold;
+  width: 200px;
+}
+
+.closeTableBtn:hover {
+  background-color: #45d667;
+}

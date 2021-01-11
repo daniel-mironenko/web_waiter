@@ -1,6 +1,5 @@
 import React from "react";
 import { getTime } from "../../utils/date-helper";
-import SpreadsheetOrder from "../spreadsheet-order/spreadsheet-order";
 import style from "./closed-table-popup.module.css";
 
 export default function ClosedTablePopup({ table, setActiveTable }) {
@@ -30,11 +29,7 @@ export default function ClosedTablePopup({ table, setActiveTable }) {
         </button>
       </header>
 
-      <SpreadsheetOrder
-        orderList={order}
-        width={`70%`}
-        orderPrice={orderPrice}
-      />
+      
     </div>
   );
 }

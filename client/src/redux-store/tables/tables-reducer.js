@@ -1,6 +1,6 @@
 import { closedTableMock } from "../../mock/closed-table-mock";
 import { tablesMock } from "../../mock/tableMock";
-import { addToClosedTable, updateTable } from "../../utils/reducer-helper";
+import { addToClosedTable, updateOrderInOpenTables } from "../../utils/reducer-helper";
 
 const initialState = {
   openTables: tablesMock,
@@ -61,7 +61,7 @@ export function reducer(state = initialState, action) {
       });
 
     case ActionType.UPDATE_OPEN_TABLE:
-      return { ...state, openTables: updateTable(state.openTables, action.payload) }
+      return { ...state, openTables: updateOrderInOpenTables(state.openTables, action.payload) }
 
     case ActionType.REMOVE_OPEN_TABLE:
       return { ...state, openTables: state.openTables.filter(it => it.numberOfTable !== action.payload) }

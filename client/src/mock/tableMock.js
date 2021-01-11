@@ -18,6 +18,7 @@ function getTableMock(id) {
     numberOfTable: getRandomNumber(1, 30),
     numberOfGuests: getRandomNumber(1, 6),
     startTime: getRandomDate(),
+    historyOrder: [],
     order: []
   }
 }
