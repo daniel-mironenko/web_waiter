@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useRouteMatch } from "react-router-dom";
 import TableHeader from "../../components/table-header/table-header";
 import TableMenu from "../../components/table-menu/table-menu";
-import TableOrderV2 from "../../components/table-order-v2/table-order-v2";
+import TableOrder from "../../components/table-order/table-order";
 import { orderTabs } from "../../enums";
 import { getTables } from "../../redux-store/tables/selector";
 import style from "./table.module.css";
@@ -26,8 +26,8 @@ export default function Table() {
         setActiveOrderTab={setActiveOrderTab}
       />
       <div className={style.gridContainer}>
-        <TableOrderV2 activeOrderTab={activeOrderTab} table={table} newOrder={newOrder} setNewOrder={setNewOrder}/>
-        <TableMenu newOrder={newOrder} setNewOrder={setNewOrder} />
+        <TableOrder activeOrderTab={activeOrderTab} table={table} newOrder={newOrder} setNewOrder={setNewOrder}/>
+        <TableMenu setNewOrder={setNewOrder} />
       </div>
     </div>
   );

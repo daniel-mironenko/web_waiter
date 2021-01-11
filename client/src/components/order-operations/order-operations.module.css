@@ -1,5 +1,5 @@
 .operationContainer {
-  padding: 10px 15px;
+  padding: 15px 15px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -9,7 +9,6 @@
 
 .operationBtn {
   height: 35px;
-  background-color: #4085d4;
   border: none;
   outline: none;
   cursor: pointer;
@@ -18,27 +17,30 @@
   font-size: 16px;
 }
 
-.operationBtn:hover {
-  background-color: #438de2;
-}
-
 .sendOrderContainer {
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 10px;
 }
 
 .sendOrderBtn {
-  width: 80%;
-  border-right: 1px solid #2981c9;
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
+  width: 79%;
+  background-color: #4085d4;
+  border-radius: 4px;
 }
 
-.sendOrderModificationBtn {
+.sendOrderBtn:hover {
+  background-color: #438de2;
+}
+
+.clenOrderBtn {
   width: 20%;
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-  background: #4085d4 url("../../assets/img/dots.svg") no-repeat center center;
-  background-size: 30px 30px;
+  border-radius: 4px;
+  background-color: rgb(250, 100, 102);
+}
+
+.clenOrderBtn:hover {
+  background-color: rgb(250, 112, 115);
 }
 
 .totalPriceContainer {

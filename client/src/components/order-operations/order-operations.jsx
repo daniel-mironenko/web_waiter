@@ -4,7 +4,12 @@ import { orderTabs } from "../../enums";
 import style from "./order-operations.module.css";
 import { ActionCreator } from "../../redux-store/tables/tables-reducer";
 
-export default function OrderOperations({ activeOrderTab, table, orderList, setNewOrder }) {
+export default function OrderOperations({
+  activeOrderTab,
+  table,
+  orderList,
+  setNewOrder,
+}) {
   const { id } = table;
   const dispatch = useDispatch();
 
@@ -24,15 +29,20 @@ export default function OrderOperations({ activeOrderTab, table, orderList, setN
           <button
             className={`${style.operationBtn} ${style.sendOrderBtn}`}
             onClick={() => {
-              dispatch(ActionCreator.updateOpenTable({id, orderList}));
+              dispatch(ActionCreator.updateOpenTable({ id, orderList }));
               setNewOrder([]);
             }}
           >
             Отправить заказ
           </button>
           <button
-            className={`${style.operationBtn} ${style.sendOrderModificationBtn}`}
-          ></button>
+            className={`${style.operationBtn} ${style.clenOrderBtn}`}
+            onClick={() => {
+              setNewOrder([]);
+            }}
+          >
+            Очистить
+          </button>
         </div>
       )}
       <div className={style.totalPriceContainer}>
@@ -56,4 +66,4 @@ export default function OrderOperations({ activeOrderTab, table, orderList, setN
       )}
     </div>
   );
-};
+}

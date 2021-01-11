@@ -29,7 +29,6 @@ export const ActionCreator = {
     }
   },
   updateOpenTable(updatedData) {
-    console.log(updatedData)
     return {
       type: ActionType.UPDATE_OPEN_TABLE,
       payload: updatedData
