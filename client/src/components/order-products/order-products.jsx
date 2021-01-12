@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { TableContext } from "../../contexts/table-provider";
 import { orderTabs } from "../../enums";
 import style from "./order-products.module.css";
 
@@ -6,11 +7,11 @@ export default function OrderProducts({
   product,
   index,
   setNewOrder,
-  activeOrderTab,
   activeProduct,
   setActiveProduct
 }) {
   const { name, count, price } = product;
+  const {activeOrderTab} = useContext(TableContext);
 
   function changeCounter(bool, name) {
     setNewOrder((prev) => {
@@ -19,8 +20,7 @@ export default function OrderProducts({
       element.count = bool ? element.count + 1 : element.count - 1;
       return clonePrev;
     });
-  }
-
+  };
 
   return (
     <tr

@@ -1,22 +1,22 @@
-import React, { useRef } from "react";
+import React, { useContext, useMemo, useRef } from "react";
 import { orderTabs } from "../../enums";
 import OrderOperations from "../order-operations/order-operations";
 import OrderSpreadsheet from "../order-spreadsheet/order-spreadsheet";
 import OrderHistory from "../order-history/order-history";
 import style from "./table-order.module.css";
+import { TableContext } from "../../contexts/table-provider";
 
 export default function TableOrder({
-  activeOrderTab,
   table,
   newOrder,
   setNewOrder,
   activeProduct,
-  setActiveProduct
+  setActiveProduct,
 }) {
-  
   const deleteBtnRef = useRef();
+  const {activeOrderTab} = useContext(TableContext);
 
-  const orderList = (function () {
+  const orderListByActiveTab = (function getOrderListByActiveTab() {
     switch (activeOrderTab) {
       case orderTabs.NEW_ORDER:
         return newOrder;
@@ -32,26 +32,27 @@ export default function TableOrder({
     }
   })();
 
+  console.log(orderListByActiveTab)
+
   return (
     <section className={style.tableOrderContainer}>
       <div className={style.spreadsheetContainer}>
         {activeOrderTab !== orderTabs.HISTORY ? (
           <OrderSpreadsheet
-            orderList={orderList}
+            orderList={orderListByActiveTab}
             setNewOrder={setNewOrder}
-            activeOrderTab={activeOrderTab}
             activeProduct={activeProduct}
             setActiveProduct={setActiveProduct}
             deleteBtnRef={deleteBtnRef}
           />
         ) : (
-          <OrderHistory historyOrder={orderList} />
+          <OrderHistory historyOrder={orderListByActiveTab} />
         )}
       </div>
       <OrderOperations
         activeOrderTab={activeOrderTab}
         table={table}
-        orderList={orderList}
+        orderList={orderListByActiveTab}
         setNewOrder={setNewOrder}
         activeProduct={activeProduct}
         setActiveProduct={setActiveProduct}

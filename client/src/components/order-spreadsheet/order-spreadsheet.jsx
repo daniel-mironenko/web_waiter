@@ -1,4 +1,5 @@
-import React, { useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
+import { TableContext } from "../../contexts/table-provider";
 import { orderTabs } from "../../enums";
 import OrderProducts from "../order-products/order-products";
 import style from "./order-spreadsheet.module.css";
@@ -6,12 +7,12 @@ import style from "./order-spreadsheet.module.css";
 export default function OrderSpreadsheet({
   orderList,
   setNewOrder,
-  activeOrderTab,
   activeProduct,
   setActiveProduct,
   deleteBtnRef,
 }) {
   const spreadsheetRef = useRef();
+  const { activeOrderTab } = useContext(TableContext);
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -25,7 +26,7 @@ export default function OrderSpreadsheet({
           setActiveProduct(null);
         }
       }
-    };
+    }
 
     document.addEventListener("click", handleClickOutside);
     return () => {
@@ -50,7 +51,6 @@ export default function OrderSpreadsheet({
                 product={product}
                 index={index}
                 setNewOrder={setNewOrder}
-                activeOrderTab={activeOrderTab}
                 activeProduct={activeProduct}
                 setActiveProduct={setActiveProduct}
               />

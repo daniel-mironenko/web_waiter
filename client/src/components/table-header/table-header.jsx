@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { TableContext } from "../../contexts/table-provider";
 import { appRoute, orderTabs } from "../../enums";
 import { getUserData } from "../../redux-store/user/selector";
 import { getTime } from "../../utils/date-helper";
@@ -8,14 +9,14 @@ import style from "./table-header.module.css";
 
 export default function TableHeader({
   table,
-  activeOrderTab,
-  setActiveOrderTab,
   setActiveProduct
 }) {
   const userData = useSelector(getUserData);
   const history = useHistory();
   const { numberOfTable, numberOfGuests, startTime } = table;
   const { name, surname } = userData;
+
+  const {activeOrderTab, setActiveOrderTab} = useContext(TableContext);
 
   return (
     <header className={style.tableHeader}>
