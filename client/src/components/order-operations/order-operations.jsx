@@ -1,20 +1,21 @@
-import React, { useMemo } from "react";
+import React, { useContext, useMemo } from "react";
 import { useDispatch } from "react-redux";
 import { orderTabs } from "../../enums";
 import style from "./order-operations.module.css";
 import { ActionCreator } from "../../redux-store/tables/tables-reducer";
+import { TableContext } from "../../contexts/table-provider";
 
 export default function OrderOperations({
   activeOrderTab,
   table,
   orderList,
-  setNewOrder,
   activeProduct,
   setActiveProduct,
-  deleteBtnRef
+  deleteBtnRef,
 }) {
   const { id } = table;
   const dispatch = useDispatch();
+  const { setNewOrder } = useContext(TableContext);
 
   function calculateSum(arr) {
     if (arr.length) {
@@ -34,7 +35,7 @@ export default function OrderOperations({
             onClick={() => {
               dispatch(ActionCreator.updateOpenTable({ id, orderList }));
               setNewOrder([]);
-              setActiveProduct(null)
+              setActiveProduct(null);
             }}
           >
             Отправить заказ
@@ -44,18 +45,18 @@ export default function OrderOperations({
             className={`${style.operationBtn} ${style.clenOrderBtn}`}
             onClick={() => {
               if (activeProduct !== null) {
-                setNewOrder(prev => {
+                setNewOrder((prev) => {
                   const prevClone = [...prev];
                   prevClone.splice(activeProduct, 1);
                   return prevClone;
-                })
+                });
                 setActiveProduct(null);
                 return;
               }
               setNewOrder([]);
             }}
           >
-           {activeProduct !== null ? `Удалить` : `Очистить`}
+            {activeProduct !== null ? `Удалить` : `Очистить`}
           </button>
         </div>
       )}

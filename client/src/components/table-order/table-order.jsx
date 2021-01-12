@@ -8,13 +8,11 @@ import { TableContext } from "../../contexts/table-provider";
 
 export default function TableOrder({
   table,
-  newOrder,
-  setNewOrder,
   activeProduct,
   setActiveProduct,
 }) {
   const deleteBtnRef = useRef();
-  const {activeOrderTab} = useContext(TableContext);
+  const {activeOrderTab, newOrder} = useContext(TableContext);
 
   const orderListByActiveTab = (function getOrderListByActiveTab() {
     switch (activeOrderTab) {
@@ -32,15 +30,12 @@ export default function TableOrder({
     }
   })();
 
-  console.log(orderListByActiveTab)
-
   return (
     <section className={style.tableOrderContainer}>
       <div className={style.spreadsheetContainer}>
         {activeOrderTab !== orderTabs.HISTORY ? (
           <OrderSpreadsheet
             orderList={orderListByActiveTab}
-            setNewOrder={setNewOrder}
             activeProduct={activeProduct}
             setActiveProduct={setActiveProduct}
             deleteBtnRef={deleteBtnRef}
@@ -53,7 +48,6 @@ export default function TableOrder({
         activeOrderTab={activeOrderTab}
         table={table}
         orderList={orderListByActiveTab}
-        setNewOrder={setNewOrder}
         activeProduct={activeProduct}
         setActiveProduct={setActiveProduct}
         deleteBtnRef={deleteBtnRef}

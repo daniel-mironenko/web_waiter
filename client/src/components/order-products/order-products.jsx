@@ -6,12 +6,11 @@ import style from "./order-products.module.css";
 export default function OrderProducts({
   product,
   index,
-  setNewOrder,
   activeProduct,
-  setActiveProduct
+  setActiveProduct,
 }) {
   const { name, count, price } = product;
-  const {activeOrderTab} = useContext(TableContext);
+  const { activeOrderTab, setNewOrder } = useContext(TableContext);
 
   function changeCounter(bool, name) {
     setNewOrder((prev) => {
@@ -20,7 +19,7 @@ export default function OrderProducts({
       element.count = bool ? element.count + 1 : element.count - 1;
       return clonePrev;
     });
-  };
+  }
 
   return (
     <tr

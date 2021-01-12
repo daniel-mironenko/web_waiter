@@ -21,19 +21,14 @@ export default function Table() {
   return (
     <TableProvider>
       <div className={style.container}>
-        <TableHeader
-          table={table}
-          setActiveProduct={setActiveProduct}
-        />
+        <TableHeader table={table} setActiveProduct={setActiveProduct} />
         <div className={style.gridContainer}>
           <TableOrder
             table={table}
-            newOrder={newOrder}
-            setNewOrder={setNewOrder}
             activeProduct={activeProduct}
             setActiveProduct={setActiveProduct}
           />
-          <TableMenu setNewOrder={setNewOrder} />
+          <TableMenu />
         </div>
       </div>
     </TableProvider>

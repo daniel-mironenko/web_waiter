@@ -6,7 +6,6 @@ import style from "./order-spreadsheet.module.css";
 
 export default function OrderSpreadsheet({
   orderList,
-  setNewOrder,
   activeProduct,
   setActiveProduct,
   deleteBtnRef,
@@ -50,7 +49,6 @@ export default function OrderSpreadsheet({
                 key={product.name}
                 product={product}
                 index={index}
-                setNewOrder={setNewOrder}
                 activeProduct={activeProduct}
                 setActiveProduct={setActiveProduct}
               />
