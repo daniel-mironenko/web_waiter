@@ -3,14 +3,14 @@ import { TableContext } from "../../contexts/table-provider";
 import { orderTabs } from "../../enums";
 import style from "./order-products.module.css";
 
-export default function OrderProducts({
-  product,
-  index,
-  activeProduct,
-  setActiveProduct,
-}) {
+export default function OrderProducts({ product, index }) {
   const { name, count, price } = product;
-  const { activeOrderTab, setNewOrder } = useContext(TableContext);
+  const {
+    activeOrderTab,
+    setNewOrder,
+    activeProduct,
+    setActiveProduct,
+  } = useContext(TableContext);
 
   function changeCounter(bool, name) {
     setNewOrder((prev) => {

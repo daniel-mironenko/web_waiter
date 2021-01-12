@@ -7,13 +7,16 @@ import { getUserData } from "../../redux-store/user/selector";
 import { getTime } from "../../utils/date-helper";
 import style from "./table-header.module.css";
 
-export default function TableHeader({
-  setActiveProduct
-}) {
+export default function TableHeader() {
   const userData = useSelector(getUserData);
   const history = useHistory();
   const { name, surname } = userData;
-  const {activeOrderTab, setActiveOrderTab, table} = useContext(TableContext);
+  const {
+    activeOrderTab,
+    setActiveOrderTab,
+    table,
+    setActiveProduct,
+  } = useContext(TableContext);
   const { numberOfTable, numberOfGuests, startTime } = table;
 
   return (
@@ -35,7 +38,7 @@ export default function TableHeader({
                 activeOrderTab === it && style.navBtnActive
               }`}
               onClick={() => {
-                setActiveProduct(null)
+                setActiveProduct(null);
                 setActiveOrderTab(it);
               }}
             >

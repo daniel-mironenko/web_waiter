@@ -6,12 +6,9 @@ import OrderHistory from "../order-history/order-history";
 import style from "./table-order.module.css";
 import { TableContext } from "../../contexts/table-provider";
 
-export default function TableOrder({
-  activeProduct,
-  setActiveProduct,
-}) {
+export default function TableOrder({}) {
   const deleteBtnRef = useRef();
-  const {activeOrderTab, newOrder, table} = useContext(TableContext);
+  const { activeOrderTab, newOrder, table } = useContext(TableContext);
 
   const orderListByActiveTab = (function getOrderListByActiveTab() {
     switch (activeOrderTab) {
@@ -35,8 +32,6 @@ export default function TableOrder({
         {activeOrderTab !== orderTabs.HISTORY ? (
           <OrderSpreadsheet
             orderList={orderListByActiveTab}
-            activeProduct={activeProduct}
-            setActiveProduct={setActiveProduct}
             deleteBtnRef={deleteBtnRef}
           />
         ) : (
@@ -44,10 +39,7 @@ export default function TableOrder({
         )}
       </div>
       <OrderOperations
-        activeOrderTab={activeOrderTab}
         orderList={orderListByActiveTab}
-        activeProduct={activeProduct}
-        setActiveProduct={setActiveProduct}
         deleteBtnRef={deleteBtnRef}
       />
     </section>

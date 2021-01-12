@@ -11,6 +11,7 @@ export default function TableProvider({ children }) {
 
   const [activeOrderTab, setActiveOrderTab] = useState(orderTabs.NEW_ORDER);
   const [newOrder, setNewOrder] = useState([]);
+  const [activeProduct, setActiveProduct] = useState(null);
 
   const match = useRouteMatch();
   const table = tables.find(
@@ -19,7 +20,7 @@ export default function TableProvider({ children }) {
 
 
   return (
-    <TableContext.Provider value={{ activeOrderTab, setActiveOrderTab, newOrder, setNewOrder, table }}>
+    <TableContext.Provider value={{ activeOrderTab, setActiveOrderTab, newOrder, setNewOrder, table, activeProduct, setActiveProduct }}>
       {children}
     </TableContext.Provider>
   );

@@ -4,14 +4,11 @@ import { orderTabs } from "../../enums";
 import OrderProducts from "../order-products/order-products";
 import style from "./order-spreadsheet.module.css";
 
-export default function OrderSpreadsheet({
-  orderList,
-  activeProduct,
-  setActiveProduct,
-  deleteBtnRef,
-}) {
+export default function OrderSpreadsheet({ orderList, deleteBtnRef }) {
   const spreadsheetRef = useRef();
-  const { activeOrderTab } = useContext(TableContext);
+  const { activeOrderTab, setActiveProduct } = useContext(
+    TableContext
+  );
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -49,8 +46,6 @@ export default function OrderSpreadsheet({
                 key={product.name}
                 product={product}
                 index={index}
-                activeProduct={activeProduct}
-                setActiveProduct={setActiveProduct}
               />
             );
           })}

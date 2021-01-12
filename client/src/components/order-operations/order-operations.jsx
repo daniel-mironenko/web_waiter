@@ -5,17 +5,16 @@ import style from "./order-operations.module.css";
 import { ActionCreator } from "../../redux-store/tables/tables-reducer";
 import { TableContext } from "../../contexts/table-provider";
 
-export default function OrderOperations({
-  activeOrderTab,
-  orderList,
-  activeProduct,
-  setActiveProduct,
-  deleteBtnRef,
-}) {
+export default function OrderOperations({ orderList, deleteBtnRef }) {
   const dispatch = useDispatch();
-  const { setNewOrder, table } = useContext(TableContext);
+  const {
+    setNewOrder,
+    table,
+    activeOrderTab,
+    activeProduct,
+    setActiveProduct,
+  } = useContext(TableContext);
   const { id } = table;
-
 
   function calculateSum(arr) {
     if (arr.length) {
