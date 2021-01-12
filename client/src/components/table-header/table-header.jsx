@@ -10,6 +10,7 @@ export default function TableHeader({
   table,
   activeOrderTab,
   setActiveOrderTab,
+  setActiveProduct
 }) {
   const userData = useSelector(getUserData);
   const history = useHistory();
@@ -35,6 +36,7 @@ export default function TableHeader({
                 activeOrderTab === it && style.navBtnActive
               }`}
               onClick={() => {
+                setActiveProduct(null)
                 setActiveOrderTab(it);
               }}
             >

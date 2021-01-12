@@ -9,7 +9,7 @@ export default function OrderHistory({ historyOrder }) {
       {historyOrder.map((it, index) => {
         const {timeOrder, order, price} = it;
         return (
-          <div className={style.orderContainer}>
+          <div key={timeOrder + index} className={style.orderContainer}>
             <header className={style.orderHeader}>
               <div className={style.orderTitle}>Заказ №{index + 1}</div>
               <div className={style.timeOrder}>{getTime(timeOrder)}</div>

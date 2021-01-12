@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { orderTabs } from "../../enums";
 import OrderOperations from "../order-operations/order-operations";
 import OrderSpreadsheet from "../order-spreadsheet/order-spreadsheet";
@@ -10,7 +10,12 @@ export default function TableOrder({
   table,
   newOrder,
   setNewOrder,
+  activeProduct,
+  setActiveProduct
 }) {
+  
+  const deleteBtnRef = useRef();
+
   const orderList = (function () {
     switch (activeOrderTab) {
       case orderTabs.NEW_ORDER:
@@ -31,7 +36,14 @@ export default function TableOrder({
     <section className={style.tableOrderContainer}>
       <div className={style.spreadsheetContainer}>
         {activeOrderTab !== orderTabs.HISTORY ? (
-          <OrderSpreadsheet orderList={orderList} setNewOrder={setNewOrder} activeOrderTab={activeOrderTab}/>
+          <OrderSpreadsheet
+            orderList={orderList}
+            setNewOrder={setNewOrder}
+            activeOrderTab={activeOrderTab}
+            activeProduct={activeProduct}
+            setActiveProduct={setActiveProduct}
+            deleteBtnRef={deleteBtnRef}
+          />
         ) : (
           <OrderHistory historyOrder={orderList} />
         )}
@@ -41,6 +53,9 @@ export default function TableOrder({
         table={table}
         orderList={orderList}
         setNewOrder={setNewOrder}
+        activeProduct={activeProduct}
+        setActiveProduct={setActiveProduct}
+        deleteBtnRef={deleteBtnRef}
       />
     </section>
   );

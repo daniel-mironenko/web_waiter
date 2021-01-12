@@ -9,6 +9,9 @@ export default function OrderOperations({
   table,
   orderList,
   setNewOrder,
+  activeProduct,
+  setActiveProduct,
+  deleteBtnRef
 }) {
   const { id } = table;
   const dispatch = useDispatch();
@@ -31,17 +34,28 @@ export default function OrderOperations({
             onClick={() => {
               dispatch(ActionCreator.updateOpenTable({ id, orderList }));
               setNewOrder([]);
+              setActiveProduct(null)
             }}
           >
             Отправить заказ
           </button>
           <button
+            ref={deleteBtnRef}
             className={`${style.operationBtn} ${style.clenOrderBtn}`}
             onClick={() => {
+              if (activeProduct !== null) {
+                setNewOrder(prev => {
+                  const prevClone = [...prev];
+                  prevClone.splice(activeProduct, 1);
+                  return prevClone;
+                })
+                setActiveProduct(null);
+                return;
+              }
               setNewOrder([]);
             }}
           >
-            Очистить
+           {activeProduct !== null ? `Удалить` : `Очистить`}
           </button>
         </div>
       )}

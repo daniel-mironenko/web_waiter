@@ -12,6 +12,7 @@ export default function Table() {
   const tables = useSelector(getTables);
   const [activeOrderTab, setActiveOrderTab] = useState(orderTabs.NEW_ORDER);
   const [newOrder, setNewOrder] = useState([]);
+  const [activeProduct, setActiveProduct] = useState(null);
 
   const match = useRouteMatch();
   const table = tables.find(
@@ -24,9 +25,10 @@ export default function Table() {
         table={table}
         activeOrderTab={activeOrderTab}
         setActiveOrderTab={setActiveOrderTab}
+        setActiveProduct={setActiveProduct}
       />
       <div className={style.gridContainer}>
-        <TableOrder activeOrderTab={activeOrderTab} table={table} newOrder={newOrder} setNewOrder={setNewOrder}/>
+        <TableOrder activeOrderTab={activeOrderTab} table={table} newOrder={newOrder} setNewOrder={setNewOrder} activeProduct={activeProduct} setActiveProduct={setActiveProduct}/>
         <TableMenu setNewOrder={setNewOrder} />
       </div>
     </div>

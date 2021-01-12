@@ -1,3 +1,7 @@
+.activeProduct {
+  background-color: #eee4e1;
+}
+
 .countTableDate {
   position: relative;
 }
@@ -9,8 +13,9 @@
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  border: 1px solid #eeeeee;
   z-index: 200;
+  border: none;
+  outline: none;
   cursor: pointer;
 }
 
@@ -23,8 +28,8 @@
   outline: none;
 }
 
-.countBtn:active {
-  background-color: #dde1ec;
+.countBtn:active:enabled {
+  background-color: #e9ecef;
 }
 
 .countBtn:hover {
@@ -32,18 +37,20 @@
 }
 
 .minusBtn {
-  left: -8px;
-  background: #edf0f8 url("../../assets/img/minus-sign.svg") no-repeat center
+  left: -7px;
+  background: #dee2e6 url("../../assets/img/minus-sign.svg") no-repeat center
     center;
   background-size: 10px 10px;
 }
 
 .plusBtn {
-  right: -8px;
-  background: #edf0f8 url("../../assets/img/plus.svg") no-repeat center center;
+  right: -7px;
+  background: #dee2e6 url("../../assets/img/plus.svg") no-repeat center center;
   background-size: 11px 11px;
 }
 
 .countBtn:disabled {
-  
+  opacity: .7;
 }
+
+
