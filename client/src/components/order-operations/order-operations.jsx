@@ -7,15 +7,15 @@ import { TableContext } from "../../contexts/table-provider";
 
 export default function OrderOperations({
   activeOrderTab,
-  table,
   orderList,
   activeProduct,
   setActiveProduct,
   deleteBtnRef,
 }) {
-  const { id } = table;
   const dispatch = useDispatch();
-  const { setNewOrder } = useContext(TableContext);
+  const { setNewOrder, table } = useContext(TableContext);
+  const { id } = table;
+
 
   function calculateSum(arr) {
     if (arr.length) {

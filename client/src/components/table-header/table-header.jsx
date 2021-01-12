@@ -8,15 +8,13 @@ import { getTime } from "../../utils/date-helper";
 import style from "./table-header.module.css";
 
 export default function TableHeader({
-  table,
   setActiveProduct
 }) {
   const userData = useSelector(getUserData);
   const history = useHistory();
-  const { numberOfTable, numberOfGuests, startTime } = table;
   const { name, surname } = userData;
-
-  const {activeOrderTab, setActiveOrderTab} = useContext(TableContext);
+  const {activeOrderTab, setActiveOrderTab, table} = useContext(TableContext);
+  const { numberOfTable, numberOfGuests, startTime } = table;
 
   return (
     <header className={style.tableHeader}>

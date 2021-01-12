@@ -1,4 +1,4 @@
-import React, { useContext, useMemo, useRef } from "react";
+import React, { useContext, useRef } from "react";
 import { orderTabs } from "../../enums";
 import OrderOperations from "../order-operations/order-operations";
 import OrderSpreadsheet from "../order-spreadsheet/order-spreadsheet";
@@ -7,12 +7,11 @@ import style from "./table-order.module.css";
 import { TableContext } from "../../contexts/table-provider";
 
 export default function TableOrder({
-  table,
   activeProduct,
   setActiveProduct,
 }) {
   const deleteBtnRef = useRef();
-  const {activeOrderTab, newOrder} = useContext(TableContext);
+  const {activeOrderTab, newOrder, table} = useContext(TableContext);
 
   const orderListByActiveTab = (function getOrderListByActiveTab() {
     switch (activeOrderTab) {
@@ -46,7 +45,6 @@ export default function TableOrder({
       </div>
       <OrderOperations
         activeOrderTab={activeOrderTab}
-        table={table}
         orderList={orderListByActiveTab}
         activeProduct={activeProduct}
         setActiveProduct={setActiveProduct}
