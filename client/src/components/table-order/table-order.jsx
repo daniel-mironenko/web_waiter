@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext } from "react";
 import { orderTabs } from "../../enums";
 import OrderOperations from "../order-operations/order-operations";
 import OrderSpreadsheet from "../order-spreadsheet/order-spreadsheet";
@@ -6,8 +6,7 @@ import OrderHistory from "../order-history/order-history";
 import style from "./table-order.module.css";
 import { TableContext } from "../../contexts/table-provider";
 
-export default function TableOrder({}) {
-  const deleteBtnRef = useRef();
+export default function TableOrder() {
   const { activeOrderTab, newOrder, table } = useContext(TableContext);
 
   const orderListByActiveTab = (function getOrderListByActiveTab() {
@@ -30,18 +29,12 @@ export default function TableOrder({}) {
     <section className={style.tableOrderContainer}>
       <div className={style.spreadsheetContainer}>
         {activeOrderTab !== orderTabs.HISTORY ? (
-          <OrderSpreadsheet
-            orderList={orderListByActiveTab}
-            deleteBtnRef={deleteBtnRef}
-          />
+          <OrderSpreadsheet orderList={orderListByActiveTab} />
         ) : (
           <OrderHistory historyOrder={orderListByActiveTab} />
         )}
       </div>
-      <OrderOperations
-        orderList={orderListByActiveTab}
-        deleteBtnRef={deleteBtnRef}
-      />
+      <OrderOperations orderList={orderListByActiveTab} />
     </section>
   );
-}
+};

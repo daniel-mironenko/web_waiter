@@ -29,7 +29,7 @@ export default function TableMenu() {
         ];
       }
     });
-  }
+  };
 
   return (
     <section className={style.menuContainer}>
@@ -103,4 +103,4 @@ export default function TableMenu() {
       </nav>
     </section>
   );
-}
+};

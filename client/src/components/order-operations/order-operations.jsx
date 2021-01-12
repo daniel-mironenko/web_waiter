@@ -5,7 +5,7 @@ import style from "./order-operations.module.css";
 import { ActionCreator } from "../../redux-store/tables/tables-reducer";
 import { TableContext } from "../../contexts/table-provider";
 
-export default function OrderOperations({ orderList, deleteBtnRef }) {
+export default function OrderOperations({ orderList }) {
   const dispatch = useDispatch();
   const {
     setNewOrder,
@@ -13,6 +13,7 @@ export default function OrderOperations({ orderList, deleteBtnRef }) {
     activeOrderTab,
     activeProduct,
     setActiveProduct,
+    deleteBtnRef,
   } = useContext(TableContext);
   const { id } = table;
 
@@ -21,7 +22,7 @@ export default function OrderOperations({ orderList, deleteBtnRef }) {
       return arr.reduce((acc, curr) => acc + curr.price * curr.count, 0);
     }
     return 0;
-  }
+  };
 
   const memoizedPrice = useMemo(() => calculateSum(orderList), [orderList]);
 
@@ -80,4 +81,4 @@ export default function OrderOperations({ orderList, deleteBtnRef }) {
       )}
     </div>
   );
-}
+};

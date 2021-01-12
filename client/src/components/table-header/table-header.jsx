@@ -57,4 +57,4 @@ export default function TableHeader() {
       </ul>
     </header>
   );
-}
+};

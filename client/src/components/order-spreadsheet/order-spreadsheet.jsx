@@ -4,9 +4,9 @@ import { orderTabs } from "../../enums";
 import OrderProducts from "../order-products/order-products";
 import style from "./order-spreadsheet.module.css";
 
-export default function OrderSpreadsheet({ orderList, deleteBtnRef }) {
+export default function OrderSpreadsheet({ orderList }) {
   const spreadsheetRef = useRef();
-  const { activeOrderTab, setActiveProduct } = useContext(
+  const { activeOrderTab, setActiveProduct, deleteBtnRef } = useContext(
     TableContext
   );
 
@@ -53,4 +53,4 @@ export default function OrderSpreadsheet({ orderList, deleteBtnRef }) {
       </table>
     </div>
   );
-}
+};
