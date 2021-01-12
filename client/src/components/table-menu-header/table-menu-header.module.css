@@ -1,0 +1,59 @@
+.menuHeader {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-row: 1fr;
+  grid-template-areas: "back title search";
+}
+
+.goToContainer {
+  grid-area: back;
+  display: flex;
+  align-items: center;
+}
+
+.goToBtn {
+  color: #666666;
+  font-size: 16px;
+  outline: none;
+  padding-left: 25px;
+  border: none;
+  cursor: pointer;
+}
+
+.goBackBtn {
+  background: transparent url("../../assets/img/left-arrow-black.svg") no-repeat left center;
+  background-size: 17px 17px;
+  margin-right: 20px;
+}
+
+.goHomeBtn {
+  background: transparent url("../../assets/img/menu.svg") no-repeat left center;
+  background-size: 17px 17px;
+}
+
+.headerTitleContainer {
+  grid-area: title;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #373D46;
+  font-size: 18px;
+}
+
+.serachContainer {
+  grid-area: search;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.searchBtn {
+  width: 60px;
+  height: 35px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  background: #ffffff url("../../assets/img/search.svg") no-repeat center center;
+  background-size: 20px 20px;
+  cursor: pointer;
+}

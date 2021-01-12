@@ -24,7 +24,7 @@ export default function TableProvider({ children }) {
       newOrder, setNewOrder,
       table, activeProduct,
       setActiveProduct,
-      deleteBtnRef
+      deleteBtnRef,
     }}>
       {children}
     </TableContext.Provider>
