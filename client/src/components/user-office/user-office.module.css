@@ -26,15 +26,6 @@
   margin-right: 10px;
 }
 
-.userInfoStatus {
-  display: inline-block;
-  padding: 5px;
-  background-color: chartreuse;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 12px;
-}
-
 .userInfoTitle {
   font-size: 14px;
   margin-top: 5px;

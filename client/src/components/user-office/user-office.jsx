@@ -18,7 +18,6 @@ export default function UserOffice({
         </div>
         <div>
           <span className={style.userInfoName}>{fullName}</span>
-          <span className={style.userInfoStatus}>Доступен</span>
           <div className={style.userInfoTitle}>Личный кабинет</div>
         </div>
       </header>

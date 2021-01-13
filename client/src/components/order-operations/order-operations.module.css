@@ -81,6 +81,10 @@
   background-size: 20px 20px;
 }
 
+.printBtn:disabled {
+  opacity: 0.5;
+}
+
 .additionalOptionsBtn:hover,
 .printBtn:hover {
   background-color: #eeeeee;

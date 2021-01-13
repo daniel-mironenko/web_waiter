@@ -7,7 +7,6 @@ export const privatOficeNavigation = {
   MY_TABLES: "Мои столы",
   STOP_LIST: "Стоп лист",
   CLOSED_TABLES: "Посмотреть закрытые столы",
-  DATA_PER_SHOFT: "Данные за смену"
 };
 
 export const cardStatus = {

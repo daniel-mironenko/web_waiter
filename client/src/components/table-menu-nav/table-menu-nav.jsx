@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { Children, useContext } from "react";
 import { TableContext } from "../../contexts/table-provider";
 import style from "./table-menu-nav.module.css";
 
@@ -24,6 +24,7 @@ export default function TableMenuNav({
             name: product.name,
             count: 1,
             price: product.price,
+            comment: null,
           },
         ];
       }
@@ -38,9 +39,14 @@ export default function TableMenuNav({
           return (
             <li
               key={node.name}
-              className={style.menuNavItem}
+              className={`${style.menuNavItem} ${
+                node.type === "product" &&
+                !node.isAvailable &&
+                style.notAvailable
+              }`}
               onClick={() => {
                 if (node.type === "product") {
+                  if (!node.isAvailable) return;
                   updateNewOrder(node);
                   return;
                 }
@@ -60,6 +66,9 @@ export default function TableMenuNav({
                   {node.type === "product" ? `$${node.price}` : ``}
                 </p>
               </div>
+              {node.type === "product" && (
+                <div className={style.addWhithComment}></div>
+              )}
             </li>
           );
         })}

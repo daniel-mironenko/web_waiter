@@ -71,6 +71,8 @@ export default function OrderOperations({ orderList }) {
           ></button>
           <button
             className={`${style.footerOperationBtn} ${style.printBtn}`}
+            disabled={true}
+            title={"Принтер не подключен"}
           ></button>
           <button
             className={`${style.footerOperationBtn} ${style.closeTableBtn}`}
