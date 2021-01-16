@@ -1,4 +1,4 @@
-import { createStore } from "redux";
+import { createStore, applyMiddleware  } from "redux";
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 import { appRoute } from "./enums";
@@ -6,8 +6,11 @@ import PrivatOffice from './pages/privat-office/privat-office';
 import Table from './pages/table/table';
 import { rootReducer } from "./redux-store/root-reducer";
 import { Provider } from "react-redux";
+import thunk from 'redux-thunk';
 
-const store = createStore(rootReducer, composeWithDevTools());
+const store = createStore(rootReducer, composeWithDevTools(
+  applyMiddleware(thunk)
+));
 
 function App() {
   return (
