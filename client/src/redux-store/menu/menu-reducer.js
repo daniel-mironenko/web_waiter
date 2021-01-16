@@ -1,7 +1,8 @@
 import { menu } from "../../mock/menu-mock";
+import { convertToHashTable } from "../../utils/menu-helper";
 
 const initialState = {
-  menu: menu,
+  menu: convertToHashTable(menu),
 };
 
 const ActionType = {

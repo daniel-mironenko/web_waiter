@@ -6,27 +6,29 @@ export default function TableMenuHeader({
   menu,
   navRef,
   setCurrentCatalog,
+  rootCatalogID
 }) {
+
   return (
     <header className={style.menuHeader}>
       <div className={style.goToContainer}>
-        {catalog.catalog && (
+        {catalog.parentId && (
           <Fragment>
             <button
               className={`${style.goToBtn} ${style.goBackBtn}`}
               onClick={() => {
                 navRef.current.scroll(0, 0);
-                setCurrentCatalog(catalog.catalog);
+                setCurrentCatalog(catalog.parentId);
               }}
             >
-              {menu.nodes[catalog.catalog].name}
+              {menu[catalog.parentId].name}
             </button>
-            {catalog.catalog !== "menu" && (
+            {catalog.parentId !== rootCatalogID && (
               <button
                 className={`${style.goToBtn} ${style.goHomeBtn}`}
                 onClick={() => {
                   navRef.current.scroll(0, 0);
-                  setCurrentCatalog("menu");
+                  setCurrentCatalog(rootCatalogID);
                 }}
               >
                 Главное меню

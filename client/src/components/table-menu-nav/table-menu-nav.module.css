@@ -33,6 +33,7 @@
 
 .itemImgContainer {
   height: 120px;
+  background-color: teal;
 }
 
 .itemImgContainer img {
