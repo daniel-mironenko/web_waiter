@@ -39,9 +39,14 @@ export default function TableMenuNav({
           return (
             <li
               key={item.name}
-              className={`${style.menuNavItem}`}
+              className={`${style.menuNavItem} ${
+                item.type === "product" &&
+                !item.isAvailable &&
+                style.notAvailable
+              }`}
               onClick={() => {
                 if (item.type === "product") {
+                  if (!item.isAvailable) return;
                   updateNewOrder(item);
                   return;
                 }

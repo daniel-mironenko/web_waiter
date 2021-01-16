@@ -65,25 +65,3 @@
   opacity: 0.5;
   cursor: default;
 }
-
-.addWhithComment {
-  position: absolute;
-  display: none;
-  top: 5px;
-  right: 5px;
-  width: 25px;
-  height: 25px;
-  background: rgba(0,0,0,0.5) url("../../assets/img/keybor.svg") no-repeat center center;
-  background-size: 17px 17px;
-  opacity: 0.7;
-  border-radius: 5px;
-}
-
-.menuNavItem:hover .addWhithComment{
-  display: block;
-}
-
-.addWhithComment:hover {
-  opacity: 1;
-  transform: scale(1.2);
-}
