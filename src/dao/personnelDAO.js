@@ -8,7 +8,7 @@ export default class PersonnelDAO {
       return;
     }
     try {
-      this.personnel = await conn.db(process.env.DINER_IN_THE_SKY_NS).collection("personnel");
+      this.personnel = await conn.db(process.env.DINNER_IN_THE_SKY_NS).collection("personnel");
     } catch (e) {
       console.error(
         `Unable to establish a collection handle in PersonnelDAO: ${e}`,

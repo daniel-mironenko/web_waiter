@@ -1,4 +1,4 @@
-export default class MenuDAO {
+export default class CatalogsDAO {
   constructor() {
     this.collection = null;
   }
@@ -8,7 +8,7 @@ export default class MenuDAO {
       return;
     }
     try {
-      this.collection = conn.db(process.env.DINER_IN_THE_SKY_NS).collection("menu");
+      this.collection = conn.db(process.env.DINNER_IN_THE_SKY_NS).collection("catalogs");
     } catch (e) {
       `Unable to establish a collection handle in CatalogsDAO: ${e}`
     }
@@ -19,7 +19,6 @@ export default class MenuDAO {
       return await this.collection.find({}).toArray();
     } catch (e) {
       console.error(`Something went wrong in getCatalogs: ${e}`);
-      throw e;
     }
   }
 }

@@ -28,7 +28,6 @@ export default function TableMenu() {
       <TableMenuNav
         menu={menu}
         catalog={catalog}
-        currentCatalog={currentCatalog}
         setCurrentCatalog={setCurrentCatalog}
         navRef={navRef}
       />
