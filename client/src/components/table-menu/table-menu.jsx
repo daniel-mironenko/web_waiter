@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { Fragment, useContext, useRef, useState } from "react";
 import style from "./table-menu.module.css";
 import { useSelector } from "react-redux";
 import { getMenu } from "../../redux-store/menu/selector";
@@ -17,7 +17,7 @@ export default function TableMenu() {
   const navRef = useRef();
 
   return (
-    <section className={style.menuContainer}>
+    <Fragment>
       <TableMenuHeader
         catalog={catalog}
         menu={menu}
@@ -36,6 +36,6 @@ export default function TableMenu() {
           activeOrderTab !== orderTabs.NEW_ORDER && style.notAvailable
         }`}
       ></div>
-    </section>
+    </Fragment>
   );
 }
