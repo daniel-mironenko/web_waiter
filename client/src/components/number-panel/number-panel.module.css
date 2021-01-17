@@ -1,0 +1,43 @@
+.numberList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  width: 420px;
+}
+
+.numberList li {
+  width: calc(100% / 3 - 20px);
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #FAFAFA;
+  cursor: pointer;
+  font-size: 28px;
+  border-radius: 5px;
+}
+
+.numberList li:active {
+  transform: scale(.9);
+  background-color: #dee2ff;
+}
+
+.passProgressContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 30px 0; 
+}
+
+.passProgress {
+  width: 28px;
+  height: 28px;
+  background-color: #D8DBE6;
+  border-radius: 50%;
+  border: 1px solid #C5C8D2;
+}
+
+.fillProgress {
+  background-color: #666666;
+}

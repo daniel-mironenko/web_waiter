@@ -1,6 +1,7 @@
 export const appRoute = {
-  "PRIVAT_OFFICE": "/",
-  "TABLE": "/table"
+  PRIVAT_OFFICE: "/",
+  TABLE: "/table",
+  LOGIN: "/login"
 };
 
 export const privatOficeNavigation = {
@@ -15,8 +16,8 @@ export const cardStatus = {
 };
 
 export const menuNavigationMode = {
-  "MAIN": "main",
-  "ADDITIVE":"additive"
+  MAIN: "main",
+  ADDITIVE:"additive"
 };
 
 export const orderTabs = {
