@@ -1,13 +1,10 @@
 import React, { useContext } from "react";
+import { MenuContext } from "../../contexts/menu-provider";
 import { TableContext } from "../../contexts/table-provider";
 import style from "./table-menu-nav.module.css";
 
-export default function TableMenuNav({
-  menu,
-  catalog,
-  setCurrentCatalog,
-  navRef,
-}) {
+export default function TableMenuNav() {
+  const { menu, catalog, setCurrentCatalog, navRef } = useContext(MenuContext);
   const { setNewOrder } = useContext(TableContext);
 
   function updateNewOrder(product) {

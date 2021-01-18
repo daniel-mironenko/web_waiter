@@ -1,41 +1,37 @@
-import React, { Fragment, useContext, useRef, useState } from "react";
-import style from "./table-menu.module.css";
-import { useSelector } from "react-redux";
-import { getMenu } from "../../redux-store/menu/selector";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import MenuProvider from "../../contexts/menu-provider";
+import { useLoadStatus } from "../../hooks";
+import { Operation as menuOperation } from "../../redux-store/menu/menu-reducer";
+import LoaderMenu from "../loader-menu/loader-menu";
+import MenuNotAvailable from "../menu-not-available/menu-not-available";
+import TableMenuContainer from "../table-menu-container/table-menu-container";
 import TableMenuHeader from "../table-menu-header/table-menu-header";
 import TableMenuNav from "../table-menu-nav/table-menu-nav";
-import { TableContext } from "../../contexts/table-provider";
-import { orderTabs } from "../../enums";
-import { getRootId } from "../../utils/menu-helper";
 
 export default function TableMenu() {
-  const menu = useSelector(getMenu);
-  const { activeOrderTab } = useContext(TableContext);
-  const rootCatalogID = getRootId(menu);
-  const [currentCatalog, setCurrentCatalog] = useState(rootCatalogID);
-  const catalog = menu[currentCatalog];
-  const navRef = useRef();
+  const { isLoaded, setIsLoaded, error, setError } = useLoadStatus();
+  const dispatch = useDispatch();
 
-  return (
-    <Fragment>
-      <TableMenuHeader
-        catalog={catalog}
-        menu={menu}
-        navRef={navRef}
-        setCurrentCatalog={setCurrentCatalog}
-        rootCatalogID={rootCatalogID}
-      />
-      <TableMenuNav
-        menu={menu}
-        catalog={catalog}
-        setCurrentCatalog={setCurrentCatalog}
-        navRef={navRef}
-      />
-      <div
-        className={`${
-          activeOrderTab !== orderTabs.NEW_ORDER && style.notAvailable
-        }`}
-      ></div>
-    </Fragment>
-  );
+  useEffect(() => {
+    dispatch(menuOperation.loadMenu(setIsLoaded, setError));
+  }, []);
+
+  function getChildrenByLoadStatus() {
+    if (error) {
+      return <div>Ошибка: {error.message}</div>;
+    } else if (!isLoaded) {
+      return <LoaderMenu />;
+    } else {
+      return (
+        <MenuProvider>
+          <TableMenuHeader />
+          <TableMenuNav />
+          <MenuNotAvailable />
+        </MenuProvider>
+      );
+    }
+  }
+
+  return <TableMenuContainer>{getChildrenByLoadStatus()}</TableMenuContainer>;
 }
