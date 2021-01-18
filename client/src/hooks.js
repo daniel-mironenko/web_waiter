@@ -1,9 +1,8 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export const useLoadStatus = () => {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-
 
   return {
     isLoaded,
@@ -12,3 +11,13 @@ export const useLoadStatus = () => {
     setError
   }
 };
+
+export function usePrevious(value) {
+  const ref = useRef();
+  
+  useEffect(() => {
+    ref.current = value;
+  }, [value]); 
+
+  return ref.current;
+}
