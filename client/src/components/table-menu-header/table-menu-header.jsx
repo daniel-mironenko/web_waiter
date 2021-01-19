@@ -11,6 +11,7 @@ export default function TableMenuHeader() {
     rootCatalogID,
     isActiveSearch,
     setIsActiveSearch,
+    setSearchValue,
   } = useContext(MenuContext);
 
   return (
@@ -54,10 +55,22 @@ export default function TableMenuHeader() {
       <div className={style.serachContainer}>
         {isActiveSearch ? (
           <Fragment>
-          <input type="text" name="search" className={style.searchInput} />
-          <button className={style.closeSearch} onClick={() => {
-            setIsActiveSearch(false);
-          }} />
+            <input
+              type="text"
+              name="search"
+              className={style.searchInput}
+              placeholder="Введите название продукта"
+              onChange={(evt) => {
+                setSearchValue(evt.target.value);
+              }}
+            />
+            <button
+              className={style.closeSearch}
+              onClick={() => {
+                setIsActiveSearch(false);
+                setSearchValue("");
+              }}
+            />
           </Fragment>
         ) : (
           <button
