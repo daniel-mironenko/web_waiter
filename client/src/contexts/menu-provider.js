@@ -10,6 +10,7 @@ export default function MenuProvider({ children }) {
   const rootCatalogID = getRootId(menu);
   const [currentCatalog, setCurrentCatalog] = useState(rootCatalogID);
   const catalog = menu[currentCatalog];
+  const [isActiveSearch, setIsActiveSearch] = useState(false);
   const navRef = useRef();
 
   return (
@@ -19,7 +20,9 @@ export default function MenuProvider({ children }) {
       currentCatalog,
       setCurrentCatalog,
       catalog,
-      navRef
+      navRef,
+      isActiveSearch,
+      setIsActiveSearch
     }}>
       {children}
     </MenuContext.Provider>
