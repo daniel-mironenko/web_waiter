@@ -6,7 +6,7 @@ function getCatalogs(state) {
   return state[NameSpace.MENU].catalogs;
 }
 
-function getProducts(state) {
+export function getProducts(state) {
   return state[NameSpace.MENU].products;
 }
 

@@ -23,45 +23,4 @@
   gap: 20px;
 }
 
-.menuNavItem {
-  width: calc(100% / 4 - 20px);
-  border-radius: 4px;
-  overflow: hidden;
-  cursor: pointer;
-  position: relative;
-}
 
-.itemImgContainer {
-  height: 120px;
-  background-color: teal;
-}
-
-.itemImgContainer img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-}
-
-.itemInfo {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 14px;
-  background-color: #ffffff;
-  padding: 4px 0;
-}
-
-.itemInfo p {
-  padding: 0 5px;
-  margin: 3px 0;
-}
-
-.ItemInfoPrice {
-  font-size: 12px;
-  color: #B0B0B0;
-}
-
-.notAvailable {
-  opacity: 0.5;
-  cursor: default;
-}

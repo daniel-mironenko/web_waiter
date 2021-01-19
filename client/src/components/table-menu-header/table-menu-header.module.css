@@ -5,6 +5,12 @@
   grid-template-areas: "back title search";
 }
 
+.activeSearch {
+  grid-template-areas: "search search search";
+  padding: 10px 0;
+  position: relative;
+}
+
 .goToContainer {
   grid-area: back;
   display: flex;
@@ -56,4 +62,35 @@
   background: #ffffff url("../../assets/img/search.svg") no-repeat center center;
   background-size: 20px 20px;
   cursor: pointer;
+}
+
+.searchInput {
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid #556275;
+  outline: none;
+  padding-right: 40px;
+  padding-left: 10px;
+  font-size: 16px;
+}
+
+.searchInput:active {
+  outline: none;
+}
+
+.closeSearch {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  right: 5px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: transparent url("../../assets/img/cancel.svg") no-repeat center center;
+  background-size: 10px 10px;
+}
+
+.closeSearch:hover {
+  transform: scale(1.2);
 }
