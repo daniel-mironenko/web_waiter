@@ -19,7 +19,7 @@ export default function OrderOperations({ orderList }) {
 
   function calculateSum(arr) {
     if (arr.length) {
-      return arr.reduce((acc, curr) => acc + curr.price * curr.count, 0);
+      return arr.reduce((acc, curr) => acc + curr.price * curr.count, 0).toFixed(2);
     }
     return 0;
   };

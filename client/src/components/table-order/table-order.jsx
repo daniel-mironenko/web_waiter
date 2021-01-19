@@ -31,7 +31,7 @@ export default function TableOrder() {
   useEffect(() => {
     if (prevNewOrder && newOrder.length > prevNewOrder.length) {
       const elHeight = orderSpreadsheetRef.current.scrollHeight;
-    orderSpreadsheetRef.current.scroll(0, elHeight);
+      orderSpreadsheetRef.current.scroll(0, elHeight);
     }
     
   }, [newOrder]);

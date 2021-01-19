@@ -54,8 +54,8 @@ export default function OrderProducts({ product, index }) {
           ></button>
         )}
       </td>
-      <td>{price}</td>
-      <td>{price * count}</td>
+      <td>{price.toFixed(2)}</td>
+      <td>{(price * count).toFixed(2)}</td>
     </tr>
   );
 }
