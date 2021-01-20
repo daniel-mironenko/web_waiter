@@ -17,7 +17,7 @@ export default function OrderHistory({ historyOrder }) {
             <OrderSpreadsheet orderList={order} />
             <footer className={style.orderFooter}>
               <div className={style.orderAmountTitle}>Сумма заказа</div>
-              <div className={style.orderAmount}>${price}</div>
+              <div className={style.orderAmount}>${price.toFixed(2)}</div>
             </footer>
           </div>
         );
