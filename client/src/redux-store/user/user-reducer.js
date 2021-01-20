@@ -1,7 +1,8 @@
+import Api from "../../api";
 import {userMock} from "../../mock/user-mock";
 
 const initialState = {
-  userData: userMock
+  userData: null
 };
 
 const ActionType = {
@@ -16,6 +17,20 @@ const ActionType = {
     }
   }
 };
+
+export const Operation = {
+  login(data, onSuccess, onError) {
+    return async (dispatch) => {
+      try {
+        const userInfo = await Api.loginUser(data);
+        dispatch(ActionCreator.loadUserData(userInfo));
+        onSuccess();
+      } catch (e) {
+        onError();
+      }
+    }
+  }
+}
 
 export function reducer(state = initialState, action) {
   switch (action.type) {

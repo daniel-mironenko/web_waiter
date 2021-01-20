@@ -1,8 +1,4 @@
 export default class CatalogsDAO {
-  constructor() {
-    this.collection = null;
-  }
-
   static async injectDB(conn) {
     if (this.collection) {
       return;

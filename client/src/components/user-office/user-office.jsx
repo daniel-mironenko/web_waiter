@@ -7,14 +7,14 @@ export default function UserOffice({
   setActiveSection,
   activeSection,
 }) {
-  const { name, surname, avatar, status } = userData;
+  const { name, surname, photo } = userData;
   const fullName = `${name} ${surname}`;
 
   return (
     <section className={style.userOffice}>
       <header className={style.userInfo}>
         <div className={style.userInfoAvatar}>
-          <img src={avatar} alt="avatar" width={62} height={62} />
+          <img src={photo} alt="avatar" width={62} height={62} />
         </div>
         <div>
           <span className={style.userInfoName}>{fullName}</span>

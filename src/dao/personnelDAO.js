@@ -1,8 +1,4 @@
 export default class PersonnelDAO {
-  constructor() {
-    this.collection = null;
-  }
-
   static async injectDB(conn) {
     if (this.collection) {
       return;
@@ -16,9 +12,10 @@ export default class PersonnelDAO {
     }
   }
 
-  static async getEmployerByPass(pass) {
+  static async getEmployerByPass(user) {
+    const {pass, position} = user;
     try {
-      return await this.collection.findOne({pass: pass});
+      return await this.collection.findOne({pass: Number(pass), position: position}, {projection : {pass: 0}});
     } catch (e) {
       console.error(`Something went wrong in getEmployerByPass: ${e}`);
       throw e;
