@@ -13,8 +13,8 @@ export default function UserOffice({
   return (
     <section className={style.userOffice}>
       <header className={style.userInfo}>
-        <div className={style.userInfoAvatar}>
-          <img src={photo} alt="avatar" width={62} height={62} />
+        <div className={`${style.userInfoAvatar} ${style.noPhoto}`}>
+          {photo && <img src={photo} alt="avatar" width={62} height={62} />}
         </div>
         <div>
           <span className={style.userInfoName}>{fullName}</span>

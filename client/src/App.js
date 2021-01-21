@@ -8,6 +8,8 @@ import { rootReducer } from "./redux-store/root-reducer";
 import { Provider } from "react-redux";
 import thunk from 'redux-thunk';
 import Login from "./pages/login/login";
+import ErrorPage from "./pages/error-page/error-page";
+import PrivateRoute from "./components/private-route/private-route";
 
 const store = createStore(rootReducer, composeWithDevTools(
   applyMiddleware(thunk)
@@ -18,9 +20,12 @@ function App() {
     <Provider store={store}>
       <BrowserRouter>
         <Switch>
+          <PrivateRoute exact path={appRoute.PRIVAT_OFFICE} component={PrivatOffice} />
           <Route exact path={`${appRoute.LOGIN}`} component={Login} />
-          <Route exact path={appRoute.PRIVAT_OFFICE} component={PrivatOffice} />
-          <Route exact path={`${appRoute.TABLE}/:number`} component={Table} />
+          <PrivateRoute exact path={`${appRoute.TABLE}/:number`} component={Table} />
+          <Route>
+            <ErrorPage message={"Страница не найдена"} />
+          </Route>
         </Switch>
       </BrowserRouter>
     </Provider>

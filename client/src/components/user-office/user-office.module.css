@@ -21,6 +21,11 @@
   border: 2px solid #fff;
 }
 
+.noPhoto {
+  background: #ffffff url("../../assets/img/user.svg") no-repeat center center;
+  background-size: 45px 45px;
+}
+
 .userInfoAvatar img {
   object-fit: cover;
   width: 100%;

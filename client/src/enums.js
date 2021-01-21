@@ -1,6 +1,6 @@
 export const appRoute = {
-  LOGIN: "/",
-  PRIVAT_OFFICE: "/PRIVAT_OFFICE",
+  LOGIN: "/login",
+  PRIVAT_OFFICE: "/",
   TABLE: "/table",
 };
 
@@ -24,4 +24,9 @@ export const orderTabs = {
   NEW_ORDER: "Новый заказ",
   HISTORY: "История",
   ORDER: "Заказ"
+};
+
+export const AuthorizationStatus = {
+  NO_AUTH: `NO_AUTH`,
+  AUTH: `AUTH`
 };
