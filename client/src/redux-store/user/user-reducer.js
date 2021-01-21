@@ -7,23 +7,16 @@ const initialState = {
 };
 
 const ActionType = {
-  LOAD_USER_DATA: "LOAD_USER_DATA",
-  CHANGE_AUTH_STATUS: "CHANGE_AUTH_STATUS"
+  LOGIN_SUCCESS: "LOGIN_SUCCESS",
 };
 
 const ActionCreator = {
-  loadUserData(userData) {
+  loginSuccess(userData) {
     return {
-      type: ActionType.LOAD_USER_DATA,
+      type: ActionType.LOGIN_SUCCESS,
       payload: userData
     }
   },
-  changeAuthStatus(authStatus) {
-    return {
-      type: ActionType.CHANGE_AUTH_STATUS,
-      payload: authStatus
-    }
-  }
 };
 
 export const Operation = {
@@ -31,8 +24,7 @@ export const Operation = {
     return async (dispatch) => {
       try {
         const userInfo = await Api.loginUser(data);
-        dispatch(ActionCreator.loadUserData(userInfo));
-        dispatch(ActionCreator.changeAuthStatus(AuthorizationStatus.AUTH));
+        dispatch(ActionCreator.loginSuccess(userInfo));
         onSuccess();
       } catch (e) {
         onError();
@@ -43,11 +35,8 @@ export const Operation = {
 
 export function reducer(state = initialState, action) {
   switch (action.type) {
-    case ActionType.LOAD_USER_DATA:
-      return { ...state, userData: action.payload };
-
-    case ActionType.CHANGE_AUTH_STATUS:
-      return { ...state, authorizationStatus: action.payload };
+    case ActionType.LOGIN_SUCCESS:
+      return { ...state, userData: action.payload, authorizationStatus: AuthorizationStatus.AUTH };
 
     default:
       return state;
