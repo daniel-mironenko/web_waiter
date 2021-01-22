@@ -16,7 +16,7 @@ export default class OrdersDAO {
 
   static async getOrdersByUserId(id) {
     try {
-      const cursor = await this.collection.find({ waiter_id: ObjectId(id) });
+      const cursor = await this.collection.find({ waiter_id: ObjectId(id) }, {projected: {waiter_id: 0}});
       return await cursor.toArray();
     } catch (error) {
       console.error(`Something went wrong in getOrdersByUserId: ${e}`);

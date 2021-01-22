@@ -1,23 +1,23 @@
 import React, { useContext } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { TableContext } from "../../contexts/table-provider";
+import { OrderContext } from "../../contexts/order-provider";
 import { appRoute, orderTabs } from "../../enums";
 import { getUserData } from "../../redux-store/user/selector";
 import { getTime } from "../../utils/date-helper";
-import style from "./table-header.module.css";
+import style from "./order-header.module.css";
 
-export default function TableHeader() {
+export default function OrderHeader() {
   const userData = useSelector(getUserData);
   const history = useHistory();
   const { name, surname } = userData;
   const {
     activeOrderTab,
     setActiveOrderTab,
-    table,
+    order,
     setActiveProduct,
-  } = useContext(TableContext);
-  const { numberOfTable, numberOfGuests, startTime } = table;
+  } = useContext(OrderContext);
+  const { tableNumber, guestsCount, dateStart } = order;
 
   return (
     <header className={style.tableHeader}>
@@ -48,13 +48,13 @@ export default function TableHeader() {
         })}
       </div>
       <div className={style.headerInfo}>
-        <p className={style.numberOfTable}>Стол №{numberOfTable}</p>
-        <p className={style.numberOfGuests}>Кол-во гостей {numberOfGuests}</p>
+        <p className={style.numberOfTable}>Стол №{tableNumber}</p>
+        <p className={style.numberOfGuests}>Кол-во гостей {guestsCount}</p>
       </div>
       <ul className={style.additionalInformation}>
-        <li className={style.startTime}>{getTime(startTime)}</li>
+        <li className={style.startTime}>{getTime(dateStart)}</li>
         <li className={style.owner}>{`${name} ${surname}`}</li>
       </ul>
     </header>
   );
-};
+}

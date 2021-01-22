@@ -5,11 +5,11 @@ import { useLoadStatus } from "../../hooks";
 import { Operation as menuOperation } from "../../redux-store/menu/menu-reducer";
 import LoaderMenu from "../loader-menu/loader-menu";
 import MenuNotAvailable from "../menu-not-available/menu-not-available";
-import TableMenuContainer from "../table-menu-container/table-menu-container";
-import TableMenuHeader from "../table-menu-header/table-menu-header";
-import TableMenuNav from "../table-menu-nav/table-menu-nav";
+import OrderMenuContainer from "../order-menu-container/order-menu-container";
+import OrderMenuHeader from "../order-menu-header/order-menu-header";
+import OrderMenuNav from "../order-menu-nav/order-menu-nav";
 
-export default function TableMenu() {
+export default function OrderMenu() {
   const { isLoaded, setIsLoaded, error, setError } = useLoadStatus();
   const dispatch = useDispatch();
 
@@ -25,13 +25,13 @@ export default function TableMenu() {
     } else {
       return (
         <MenuProvider>
-          <TableMenuHeader />
-          <TableMenuNav />
+          <OrderMenuHeader />
+          <OrderMenuNav />
           <MenuNotAvailable />
         </MenuProvider>
       );
     }
   }
 
-  return <TableMenuContainer>{getChildrenByLoadStatus()}</TableMenuContainer>;
+  return <OrderMenuContainer>{getChildrenByLoadStatus()}</OrderMenuContainer>;
 }

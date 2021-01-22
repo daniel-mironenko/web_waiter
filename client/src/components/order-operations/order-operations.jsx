@@ -2,20 +2,20 @@ import React, { useContext, useMemo } from "react";
 import { useDispatch } from "react-redux";
 import { orderTabs } from "../../enums";
 import style from "./order-operations.module.css";
-import { ActionCreator } from "../../redux-store/tables/tables-reducer";
-import { TableContext } from "../../contexts/table-provider";
+import { ActionCreator } from "../../redux-store/orders/orders-reducer";
+import { OrderContext } from "../../contexts/order-provider";
 
 export default function OrderOperations({ orderList }) {
   const dispatch = useDispatch();
   const {
     setNewOrder,
-    table,
+    order,
     activeOrderTab,
     activeProduct,
     setActiveProduct,
     deleteBtnRef,
-  } = useContext(TableContext);
-  const { id } = table;
+  } = useContext(OrderContext);
+  const { id } = order;
 
   function calculateSum(arr) {
     if (arr.length) {

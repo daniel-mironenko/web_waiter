@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { TableContext } from "../../contexts/table-provider";
+import { OrderContext } from "../../contexts/order-provider";
 import { orderTabs } from "../../enums";
 import style from "./order-products.module.css";
 
@@ -10,7 +10,7 @@ export default function OrderProducts({ product, index }) {
     setNewOrder,
     activeProduct,
     setActiveProduct,
-  } = useContext(TableContext);
+  } = useContext(OrderContext);
 
   function changeCounter(bool, name) {
     setNewOrder((prev) => {

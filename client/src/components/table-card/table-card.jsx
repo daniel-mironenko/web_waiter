@@ -3,8 +3,8 @@ import { cardStatus } from "../../enums";
 import { getTime } from "../../utils/date-helper";
 import style from "./table-card.module.css";
 
-export default function TableCard({ table, status }) {
-  const { numberOfTable, numberOfGuests, startTime, endTime } = table;
+export default function TableCard({ order, status }) {
+  const { tableNumber, guestsCount, dateStart, dateEnd } = order;
   
   return (
     <article
@@ -15,16 +15,16 @@ export default function TableCard({ table, status }) {
       }`}
     >
       <ul>
-        <li className={style.tableItemNumber}>{numberOfTable}</li>
+        <li className={style.tableItemNumber}>{tableNumber}</li>
         <li className={style.tableItemInfo}>
-          Количество гостей: <strong>{numberOfGuests}</strong>
+          Количество гостей: <strong>{guestsCount}</strong>
         </li>
         <li className={style.tableItemInfo}>
-          Время начала: <strong>{getTime(startTime)}</strong>
+          Время начала: <strong>{getTime(dateStart)}</strong>
         </li>
         {status === cardStatus.CLOSED && (
           <li className={style.tableItemInfo}>
-            Время закрития: <strong>{getTime(endTime)}</strong>
+            Время закрития: <strong>{getTime(dateEnd)}</strong>
           </li>
         )}
       </ul>

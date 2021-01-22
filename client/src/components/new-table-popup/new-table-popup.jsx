@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getTables } from "../../redux-store/tables/selector";
-import { ActionCreator as tableActionCreator } from "../../redux-store/tables/tables-reducer";
+import { getActiveOrders } from "../../redux-store/orders/selector";
+import { ActionCreator as tableActionCreator } from "../../redux-store/orders/orders-reducer";
 import style from "./new-table-popup.module.css";
 
 export default function NewTablePopup({ setIsOpenNewTablePopup }) {
   const [isShowAlertTable, setIsShowAlertTable] = useState(false);
   const dispatch = useDispatch();
-  const tables = useSelector(getTables);
+  const tables = useSelector(getActiveOrders);
   const [form, setForm] = useState({
     table: "",
     guests: "",

@@ -1,6 +1,6 @@
-export const loadState = () => {
+export function loadState(key) {
   try {
-    const serializedState = sessionStorage.getItem("state")
+    const serializedState = sessionStorage.getItem(key)
     if (serializedState === null) {
       return undefined
     }
@@ -10,10 +10,10 @@ export const loadState = () => {
   }
 }
 
-export const saveState = state => {
+export function saveState(key, state) {
   try {
     const serializedState = JSON.stringify(state)
-    sessionStorage.setItem("state", serializedState)
+    sessionStorage.setItem(key, serializedState)
   } catch (err) {
   }
 }

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef } from "react";
-import { TableContext } from "../../contexts/table-provider";
+import { OrderContext } from "../../contexts/order-provider";
 import { orderTabs } from "../../enums";
 import OrderProducts from "../order-products/order-products";
 import style from "./order-spreadsheet.module.css";
@@ -7,7 +7,7 @@ import style from "./order-spreadsheet.module.css";
 export default function OrderSpreadsheet({ orderList }) {
   const spreadsheetRef = useRef();
   const { activeOrderTab, setActiveProduct, deleteBtnRef } = useContext(
-    TableContext
+    OrderContext
   );
 
   useEffect(() => {

@@ -1,5 +1,5 @@
 export const NameSpace = {
   USER: "USER",
-  TABLES: "TABLES",
+  ORDERS: "ORDERS",
   MENU: "MENU"
 };

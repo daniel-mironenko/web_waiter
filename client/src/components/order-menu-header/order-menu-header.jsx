@@ -1,8 +1,8 @@
 import React, { Fragment, useContext } from "react";
-import style from "./table-menu-header.module.css";
+import style from "./order-menu-header.module.css";
 import { MenuContext } from "../../contexts/menu-provider";
 
-export default function TableMenuHeader() {
+export default function OrderMenuHeader() {
   const {
     catalog,
     menu,

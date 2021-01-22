@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { cardStatus } from "../../enums";
-import { getClosedTables, getDaysClosedTables } from "../../redux-store/tables/selector";
+import { getClosedTables, getDaysClosedTables } from "../../redux-store/orders/selector";
 import ClosedTablePopup from "../closed-table-popup/closed-table-popup";
 import TableCard from "../table-card/table-card";
 import style from "./closed-tables.module.css";

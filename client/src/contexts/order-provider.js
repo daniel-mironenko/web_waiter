@@ -1,24 +1,24 @@
 import React, { useRef, useState } from "react";
 import { orderTabs } from "../enums";
 
-export const TableContext = React.createContext();
+export const OrderContext = React.createContext();
 
-export default function TableProvider({ children, table }) {
+export default function OrderProvider({ children, order }) {
   const deleteBtnRef = useRef();
   const [activeOrderTab, setActiveOrderTab] = useState(orderTabs.NEW_ORDER);
   const [newOrder, setNewOrder] = useState([]);
   const [activeProduct, setActiveProduct] = useState(null);
 
   return (
-    <TableContext.Provider value={{
+    <OrderContext.Provider value={{
       activeOrderTab,
       setActiveOrderTab,
       newOrder, setNewOrder,
-      table, activeProduct,
+      order, activeProduct,
       setActiveProduct,
       deleteBtnRef,
     }}>
       {children}
-    </TableContext.Provider>
+    </OrderContext.Provider>
   );
 };

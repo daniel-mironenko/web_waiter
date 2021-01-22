@@ -3,12 +3,12 @@ import { orderTabs } from "../../enums";
 import OrderOperations from "../order-operations/order-operations";
 import OrderSpreadsheet from "../order-spreadsheet/order-spreadsheet";
 import OrderHistory from "../order-history/order-history";
-import style from "./table-order.module.css";
-import { TableContext } from "../../contexts/table-provider";
+import style from "./order-tab.module.css";
+import { OrderContext } from "../../contexts/order-provider";
 import { usePrevious } from "../../hooks";
 
-export default function TableOrder() {
-  const { activeOrderTab, newOrder, table } = useContext(TableContext);
+export default function OrderTab() {
+  const { activeOrderTab, newOrder, order } = useContext(OrderContext);
   const prevNewOrder = usePrevious(newOrder);
   const orderSpreadsheetRef = useRef();
 
@@ -18,10 +18,10 @@ export default function TableOrder() {
         return newOrder;
 
       case orderTabs.HISTORY:
-        return table.historyOrder;
+        return order.historyOrder;
 
       case orderTabs.ORDER:
-        return table.order;
+        return order.orderList;
 
       default:
         return [];

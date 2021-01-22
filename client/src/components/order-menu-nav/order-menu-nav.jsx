@@ -4,9 +4,9 @@ import { MenuContext } from "../../contexts/menu-provider";
 import MenuCard from "../menu-card/menu-card";
 import { getProducts } from "../../redux-store/menu/selector";
 import Fuse from "fuse.js";
-import style from "./table-menu-nav.module.css";
+import style from "./order-menu-nav.module.css";
 
-export default function TableMenuNav() {
+export default function OrderMenuNav() {
   const { menu, catalog, navRef, isActiveSearch, searchValue } = useContext(
     MenuContext
   );

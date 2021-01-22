@@ -1,7 +1,7 @@
 export const appRoute = {
   LOGIN: "/login",
   PRIVAT_OFFICE: "/",
-  TABLE: "/table",
+  TABLE: "/order",
 };
 
 export const privatOficeNavigation = {

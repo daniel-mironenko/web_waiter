@@ -29,7 +29,7 @@ export default function NumberPanel() {
       dispatch(
         Operation.login(
           {
-            pass: pass.join(""),
+            pass: Number(pass.join("")),
             position: "waiter",
           },
           onSuccess,
@@ -44,16 +44,16 @@ export default function NumberPanel() {
   };
 
   const onError = () => {
-    shake();
+    shake(numberPanelRef.current);
   };
 
-  function shake() {
-    numberPanelRef.current.style.animation = `${style.shake} ${
+  function shake(element) {
+    element.style.animation = `${style.shake} ${
       SHAKE_ANIMATION_TIMEOUT / 1000
     }s`;
 
     setTimeout(() => {
-      numberPanelRef.current.style.animation = ``;
+      element.style.animation = ``;
       setPass([]);
     }, SHAKE_ANIMATION_TIMEOUT);
   }

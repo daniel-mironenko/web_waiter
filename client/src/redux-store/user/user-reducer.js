@@ -1,6 +1,8 @@
 import Api from "../../api";
 import { AuthorizationStatus } from "../../enums";
 import { loadState, saveState } from "../../session-storage";
+import Adapter from "../../adapter";
+import { ActionCreator as OrdersActionCreator } from "../orders/orders-reducer";
 
 const initialState = {
   userData: null,
@@ -9,7 +11,7 @@ const initialState = {
 
 let localState
 try {
-  localState = { ...initialState, ...loadState() }
+  localState = { ...initialState, ...loadState("userState") }
 } catch (e) {
   localState = initialState
 }
@@ -31,9 +33,14 @@ export const Operation = {
   login(data, onSuccess, onError) {
     return async (dispatch, getState) => {
       try {
-        const userInfo = await Api.loginUser(data);
+        const response = await Api.loginUser(data);
+        const userInfo = Adapter.getLoginUser(response);
+        const orders = Adapter.getOrders(userInfo.orders);
+        delete userInfo.orders;
         dispatch(ActionCreator.loginSuccess(userInfo));
-        saveState(getState().USER);
+        dispatch(OrdersActionCreator.loadActiveOrdersSuccess(orders))
+        saveState("userState", getState().USER);
+        saveState("ordersState", getState().ORDERS);
         onSuccess();
       } catch (e) {
         onError();
