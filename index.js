@@ -4,9 +4,11 @@ import PersonnelDAO from "./src/dao/personnelDAO.js";
 import CatalogsDAO from "./src/dao/catalogsDAO.js";
 import dotenv from "dotenv";
 import ProductsDAO from "./src/dao/productsDAO.js";
+import OrdersDAO from "./src/dao/ordersDAO.js";
 
 dotenv.config();
 const { MongoClient } = mongodb;
+export const { ObjectId } = mongodb;
 const PORT = process.env.PORT || 5000;
 
 async function startServer() {
@@ -21,6 +23,7 @@ async function startServer() {
   await PersonnelDAO.injectDB(client);
   await CatalogsDAO.injectDB(client);
   await ProductsDAO.injectDB(client);
+  await OrdersDAO.injectDB(client);
 
   app.listen(PORT, () => {
     console.log(`Server has been started on port ${PORT}...`);

@@ -48,4 +48,12 @@ export default class Api {
       throw error
     }
   }
+
+  static async fetchOrdersById(id) {
+    try {
+      return await this._apiGET(`/api/orders/orders/${id}`);
+    } catch (error) {
+      throw error
+    }
+  }
 }
