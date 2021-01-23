@@ -16,13 +16,11 @@ export default function OrderOperations({ currentOrderList }) {
     deleteBtnRef,
     newOrder,
   } = useContext(OrderContext);
-  const { id, orderList } = order;
+  const { id, orderList, historyOrder } = order;
 
   function calculateSum(arr) {
     if (arr.length) {
-      return arr
-        .reduce((acc, curr) => acc + curr.price * curr.count, 0)
-        .toFixed(2);
+      return arr.reduce((acc, curr) => acc + curr.price * curr.count, 0);
     }
     return 0;
   }
@@ -46,6 +44,22 @@ export default function OrderOperations({ currentOrderList }) {
     return cloneOrderList;
   };
 
+  const updateHistoryOrder = () => {
+    return [
+      ...historyOrder,
+      {
+        timeOrder: new Date(),
+        order: newOrder,
+        price: memoizedPrice,
+        count: 1,
+      },
+    ];
+  };
+
+  function onSuccessSendOrder() {
+    setNewOrder([]);
+  }
+
   return (
     <div className={style.operationContainer}>
       {activeOrderTab === orderTabs.NEW_ORDER && currentOrderList.length !== 0 && (
@@ -56,9 +70,9 @@ export default function OrderOperations({ currentOrderList }) {
               const updateData = {
                 id,
                 orderList: updateOrderList(orderList, newOrder),
+                historyOrder: updateHistoryOrder(),
               };
-              dispatch(OrderOperation.updateAtiveOrder(updateData));
-              setNewOrder([]);
+              dispatch(OrderOperation.updateAtiveOrder(updateData, onSuccessSendOrder));
               setActiveProduct(null);
             }}
           >
@@ -86,7 +100,7 @@ export default function OrderOperations({ currentOrderList }) {
       )}
       <div className={style.totalPriceContainer}>
         <b>Итого</b>
-        <strong>${memoizedPrice}</strong>
+        <strong>${memoizedPrice.toFixed(2)}</strong>
       </div>
       {activeOrderTab === orderTabs.ORDER && (
         <footer className={style.footerOperationContainer}>

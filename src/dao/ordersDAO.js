@@ -33,9 +33,9 @@ export default class OrdersDAO {
     }
   }
 
-  static async updateOrderById(id, orderList) {
+  static async updateOrderById(id, orderList, historyOrder) {
     try {
-      return await this.collection.updateOne({ _id: ObjectId(id)}, {"$set": {"order_list": orderList} })
+      return await this.collection.updateOne({ _id: ObjectId(id)}, {"$set": {"order_list": orderList, "history_order": historyOrder} })
     } catch (error) {
       console.error(`Unable to update order: ${e}`)
       return { error: e }

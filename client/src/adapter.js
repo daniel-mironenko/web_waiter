@@ -55,7 +55,8 @@ export default class Adapter {
       dateStart: order.date_start,
       dateClose: order.date_close,
       orderName: order.order_name,
-      orderList: order.order_list
+      orderList: order.order_list,
+      historyOrder: order.history_order
     }
   }
 }

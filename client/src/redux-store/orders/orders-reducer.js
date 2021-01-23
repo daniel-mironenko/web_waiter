@@ -60,12 +60,13 @@ export const Operation = {
       }
     }
   },
-  updateAtiveOrder(payload) {
+  updateAtiveOrder(payload, onSuccessSendOrder) {
     return async (dispatch) => {
       try {
         const response = await Api.updateActiveOrder(payload);
         const updatedOrder = Adapter.getOrder(response);
-        dispatch(ActionCreator.updateAtiveOrder(updatedOrder))
+        dispatch(ActionCreator.updateAtiveOrder(updatedOrder));
+        onSuccessSendOrder();
       } catch (error) {
         
       }
