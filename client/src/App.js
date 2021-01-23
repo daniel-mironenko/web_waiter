@@ -21,6 +21,8 @@ export default function App() {
     }
   }, [])
 
+  // Добавить Лоудер
+
   return (
     <BrowserRouter>
       <Switch>

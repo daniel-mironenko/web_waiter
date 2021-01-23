@@ -45,7 +45,7 @@ export default function OrderTab() {
           <OrderHistory historyOrder={orderListByActiveTab} />
         )}
       </div>
-      <OrderOperations orderList={orderListByActiveTab} />
+      <OrderOperations currentOrderList={orderListByActiveTab} />
     </section>
   );
 };

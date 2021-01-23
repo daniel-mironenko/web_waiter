@@ -33,6 +33,22 @@ export default class Api {
     }
   }
 
+  static async _apiPUT(url, payload) {
+    try {
+      const response = await fetch(`${this._endPoint}${url}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      return this._checkStatus(response);
+    } catch (error) {
+      
+    }
+  }
+
   static async fetchMenu() {
     try {
       return await this._apiGET(`/api/menu/menu`);
@@ -52,6 +68,14 @@ export default class Api {
   static async fetchOrdersById(id) {
     try {
       return await this._apiGET(`/api/orders/orders/${id}`);
+    } catch (error) {
+      throw error
+    }
+  }
+
+  static async updateActiveOrder(payload) {
+    try {
+      return await this._apiPUT(`/api/orders/order`, payload)
     } catch (error) {
       throw error
     }

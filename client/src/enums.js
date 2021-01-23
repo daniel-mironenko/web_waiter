@@ -5,9 +5,9 @@ export const appRoute = {
 };
 
 export const privatOficeNavigation = {
-  MY_TABLES: "Мои столы",
+  MY_TABLES: "Мои заказы",
   STOP_LIST: "Стоп лист",
-  CLOSED_TABLES: "Посмотреть закрытые столы",
+  CLOSED_TABLES: "Посмотреть закрытые заказы",
 };
 
 export const cardStatus = {
@@ -24,9 +24,4 @@ export const orderTabs = {
   NEW_ORDER: "Новый заказ",
   HISTORY: "История",
   ORDER: "Заказ"
-};
-
-export const AuthorizationStatus = {
-  NO_AUTH: `NO_AUTH`,
-  AUTH: `AUTH`
 };

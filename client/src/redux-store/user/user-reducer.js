@@ -34,7 +34,7 @@ export const Operation = {
       try {
         const response = await Api.loginUser(data);
         const userInfo = Adapter.getLoginUser(response);
-        const orders = Adapter.getOrders(userInfo.orders);
+        const orders = userInfo.orders.map(order => Adapter.getOrder(order));
         delete userInfo.orders;
         dispatch(ActionCreator.loginSuccess(userInfo));
         dispatch(OrdersActionCreator.loadActiveOrdersSuccess(orders))

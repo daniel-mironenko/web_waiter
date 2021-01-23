@@ -21,7 +21,7 @@ export default function MenuCard({ item }) {
             name: product.name,
             count: 1,
             price: product.price,
-            comment: null,
+            productId: product.id,
           },
         ];
       }

@@ -34,7 +34,7 @@ const updateOrder = (order, newOrder) => {
   return cloneOrder;
 };
 
-export const updateOrderInOpenTables = (openTables, action) => {
+export const updateActiveOrderHelper = (openTables, action) => {
   const { id, orderList } = action;
   return openTables.map(it => {
     if (it.id === id) {

@@ -14,13 +14,31 @@ export default class OrdersDAO {
     }
   }
 
-  static async getOrdersByUserId(id) {
+  static async getActiveOrdersByUserId(id) {
     try {
-      const cursor = await this.collection.find({ waiter_id: ObjectId(id) }, {projected: {waiter_id: 0}});
+      const cursor = await this.collection.find({ waiter_id: ObjectId(id), date_close: {"$eq": null} }, { projected: { waiter_id: 0 } });
       return await cursor.toArray();
     } catch (error) {
       console.error(`Something went wrong in getOrdersByUserId: ${e}`);
       throw e;
+    }
+  }
+
+  static async getOrderById(id) {
+    try {
+      return await this.collection.findOne({_id: ObjectId(id)});
+    } catch (error) {
+      console.error(`Something went wrong in getOrderById: ${e}`);
+      throw e;
+    }
+  }
+
+  static async updateOrderById(id, orderList) {
+    try {
+      return await this.collection.updateOne({ _id: ObjectId(id)}, {"$set": {"order_list": orderList} })
+    } catch (error) {
+      console.error(`Unable to update order: ${e}`)
+      return { error: e }
     }
   }
 }

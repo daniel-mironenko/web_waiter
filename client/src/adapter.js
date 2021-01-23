@@ -47,15 +47,15 @@ export default class Adapter {
     }
   }
 
-  static getOrders(odresr) {
-    return odresr.map(it => ({
-      id: it._id,
-      tableNumber: it.table_number,
-      guestsCount: it.guests_count,
-      dateStart: it.date_start,
-      dateClose: it.date_close,
-      orderName: it.order_name,
-      orderList: it.order_list
-    }))
+  static getOrder(order) {
+    return {
+      id: order._id,
+      tableNumber: order.table_number,
+      guestsCount: order.guests_count,
+      dateStart: order.date_start,
+      dateClose: order.date_close,
+      orderName: order.order_name,
+      orderList: order.order_list
+    }
   }
 }
