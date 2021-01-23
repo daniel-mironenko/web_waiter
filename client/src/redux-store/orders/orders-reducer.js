@@ -1,16 +1,9 @@
-import { loadState } from "../../session-storage";
-import { addToClosedTable, updateOrderInOpenTables } from "../../utils/reducer-helper";
+import Adapter from "../../adapter";
+import Api from "../../api";
 
 const initialState = {
   activeOrders: [],
 };
-
-let localState
-try {
-  localState = { ...initialState, ...loadState("ordersState") }
-} catch (e) {
-  localState = initialState
-}
 
 const ActionType = {
   LOAD_ACTIVE_ORDERS_SUCCESS: "LOAD_ACTIVE_ORDERS_SUCCESS",
@@ -54,7 +47,21 @@ export const ActionCreator = {
   // }
 };
 
-export function reducer(state = localState, action) {
+export const Operation = {
+  loadActiveOrders(id) {
+    return async (dispatch) => {
+      try {
+        const response = await Api.fetchOrdersById(id)
+        const activeOrders = Adapter.getOrders(response);
+        dispatch(ActionCreator.loadActiveOrdersSuccess(activeOrders))
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
+}
+
+export function reducer(state = initialState, action) {
   switch (action.type) {
     case ActionType.LOAD_ACTIVE_ORDERS_SUCCESS:
       return { ...state, activeOrders: action.payload }

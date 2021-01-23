@@ -4,6 +4,6 @@ export function getUserData(state) {
   return state[NameSpace.USER].userData;
 } 
 
-export function getAuthorizationStatus(state) {
+export function getAuthStatus(state) {
   return state[NameSpace.USER].authorizationStatus;
 }

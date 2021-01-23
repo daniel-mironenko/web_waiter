@@ -5,8 +5,22 @@ import LoginPage from "./pages/login-page/login-page";
 import ErrorPage from "./pages/error-page/error-page";
 import PrivateRoute from "./components/private-route/private-route";
 import OrderPage from "./pages/order-page/order-page";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getAuthStatus, getUserData } from "./redux-store/user/selector";
+import { Operation as OrdersOperation } from "./redux-store/orders/orders-reducer";
 
 export default function App() {
+  const authStatus =  useSelector(getAuthStatus);
+  const user = useSelector(getUserData);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (authStatus) {
+      dispatch(OrdersOperation.loadActiveOrders(user.id));
+    }
+  }, [])
+
   return (
     <BrowserRouter>
       <Switch>

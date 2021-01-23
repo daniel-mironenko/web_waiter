@@ -1,12 +1,11 @@
 import Api from "../../api";
-import { AuthorizationStatus } from "../../enums";
 import { loadState, saveState } from "../../session-storage";
 import Adapter from "../../adapter";
 import { ActionCreator as OrdersActionCreator } from "../orders/orders-reducer";
 
 const initialState = {
   userData: null,
-  authorizationStatus: AuthorizationStatus.NO_AUTH
+  authStatus: false
 };
 
 let localState
@@ -40,7 +39,6 @@ export const Operation = {
         dispatch(ActionCreator.loginSuccess(userInfo));
         dispatch(OrdersActionCreator.loadActiveOrdersSuccess(orders))
         saveState("userState", getState().USER);
-        saveState("ordersState", getState().ORDERS);
         onSuccess();
       } catch (e) {
         onError();
@@ -52,7 +50,7 @@ export const Operation = {
 export function reducer(state = localState, action) {
   switch (action.type) {
     case ActionType.LOGIN_SUCCESS:
-      return { ...state, userData: action.payload, authorizationStatus: AuthorizationStatus.AUTH };
+      return { ...state, userData: action.payload, authorizationStatus: true };
 
     default:
       return state;
