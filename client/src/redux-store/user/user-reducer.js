@@ -1,6 +1,6 @@
 import Api from "../../api";
 import { loadState, saveState } from "../../session-storage";
-import Adapter from "../../adapter";
+import { Adapter } from "../../adapter";
 import { ActionCreator as OrdersActionCreator } from "../orders/orders-reducer";
 
 const initialState = {

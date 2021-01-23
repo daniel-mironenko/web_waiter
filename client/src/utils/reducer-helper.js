@@ -20,35 +20,3 @@ export const addToClosedTable = (state, action) => {
     openTables: deleteFromOpenTeble()
   }
 };
-
-const updateOrder = (order, newOrder) => {
-  const cloneOrder = [...order];
-  newOrder.forEach(it => {
-    const indexInOrder = cloneOrder.findIndex(el => el.name === it.name);
-    if (indexInOrder !== - 1) {
-      cloneOrder[indexInOrder].count = cloneOrder[indexInOrder].count + it.count;
-    } else {
-      cloneOrder.push(it);
-    }
-  });
-  return cloneOrder;
-};
-
-export const updateActiveOrderHelper = (openTables, action) => {
-  const { id, orderList } = action;
-  return openTables.map(it => {
-    if (it.id === id) {
-      return {
-        ...it,
-        order: updateOrder(it.order, orderList),
-        historyOrder: [...it.historyOrder, {
-          timeOrder: new Date(),
-          order: orderList,
-          price: orderList.reduce((acc, curr) => acc + curr.price * curr.count, 0),
-          count: 1
-        }]
-      }
-    }
-    return { ...it };
-  })
-};

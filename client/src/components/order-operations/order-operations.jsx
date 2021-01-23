@@ -20,7 +20,7 @@ export default function OrderOperations({ currentOrderList }) {
 
   function calculateSum(arr) {
     if (arr.length) {
-      return arr.reduce((acc, curr) => acc + curr.price * curr.count, 0);
+      return arr.reduce((acc, curr) => acc + curr.price * curr.count || 1, 0);
     }
     return 0;
   }
@@ -51,7 +51,6 @@ export default function OrderOperations({ currentOrderList }) {
         timeOrder: new Date(),
         order: newOrder,
         price: memoizedPrice,
-        count: 1,
       },
     ];
   };

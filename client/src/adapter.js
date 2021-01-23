@@ -1,4 +1,4 @@
-export default class Adapter {
+export class Adapter {
   static getCatalogs(catalogs) {
     return catalogs.map(it => ({
       id: it._id,

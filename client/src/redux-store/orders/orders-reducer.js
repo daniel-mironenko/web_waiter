@@ -1,4 +1,4 @@
-import Adapter from "../../adapter";
+import { Adapter } from "../../adapter";
 import Api from "../../api";
 import { updateActiveOrderHelper } from "../../utils/reducer-helper";
 
@@ -68,7 +68,7 @@ export const Operation = {
         dispatch(ActionCreator.updateAtiveOrder(updatedOrder));
         onSuccessSendOrder();
       } catch (error) {
-        
+
       }
     }
   }
@@ -85,12 +85,14 @@ export function reducer(state = initialState, action) {
     //   });
 
     case ActionType.UPDATE_ACTIVE_ORDER:
-      return { ...state, activeOrders: state.activeOrders.map(order => {
-        if (order.id === action.payload.id) {
-          return action.payload;
-        }
-        return order
-      })}
+      return {
+        ...state, activeOrders: state.activeOrders.map(order => {
+          if (order.id === action.payload.id) {
+            return action.payload;
+          }
+          return order
+        })
+      }
 
     // case ActionType.REMOVE_OPEN_TABLE:
     //   return { ...state, openTables: state.openTables.filter(it => it.numberOfTable !== action.payload) }
