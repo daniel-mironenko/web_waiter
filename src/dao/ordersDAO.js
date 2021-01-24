@@ -1,21 +1,8 @@
 import { ObjectId } from "../../index.js";
-import CountersDAO from "./countersDAO.js";
+import SuperDAO from "./superDAO.js";
 
-export default class OrdersDAO {
-  static async injectDB(conn) {
-    if (this.collection) {
-      return;
-    }
-    try {
-      this.collection = await conn.db(process.env.DINNER_IN_THE_SKY_NS).collection("orders");
-    } catch (e) {
-      console.error(
-        `Unable to establish a collection handle in OrdersDAO: ${e}`,
-      );
-    }
-  }
-
-  static async addActiveOrder(orderId, waiterId, tableNumber, guestsCount) {
+class OrdersDAO extends SuperDAO {
+  async addActiveOrder(orderId, waiterId, tableNumber, guestsCount) {
     try {
       return await this.collection.insertOne({
         _id: orderId,
@@ -33,7 +20,7 @@ export default class OrdersDAO {
     }
   }
 
-  static async getActiveOrdersByUserId(id) {
+  async getActiveOrdersByUserId(id) {
     try {
       const cursor = await this.collection.find({ waiter_id: ObjectId(id), date_close: {"$eq": null} }, { projected: { waiter_id: 0 } });
       return await cursor.toArray();
@@ -43,7 +30,7 @@ export default class OrdersDAO {
     }
   }
 
-  static async getOrderById(id) {
+  async getOrderById(id) {
     try {
       return await this.collection.findOne({_id: id});
     } catch (error) {
@@ -52,7 +39,7 @@ export default class OrdersDAO {
     }
   }
 
-  static async updateOrderById(id, orderList, historyOrder) {
+  async updateOrderById(id, orderList, historyOrder) {
     try {
       return await this.collection.updateOne({ _id: id}, {"$set": {"order_list": orderList, "history_order": historyOrder} })
     } catch (error) {
@@ -61,3 +48,6 @@ export default class OrdersDAO {
     }
   }
 }
+
+const ordersDAO = new OrdersDAO();
+export default ordersDAO;

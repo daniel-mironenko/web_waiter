@@ -1,18 +1,7 @@
-export default class CountersDAO {
-  static async injectDB(conn) {
-    if (this.collection) {
-      return;
-    }
-    try {
-      this.collection = await conn.db(process.env.DINNER_IN_THE_SKY_NS).collection("counters");
-    } catch (e) {
-      console.error(
-        `Unable to establish a collection handle in CountersDAO: ${e}`,
-      );
-    }
-  }
+import SuperDAO from "./superDAO.js";
 
-  static async getSequenceValue(sequenceName) {
+class CountersDAO extends SuperDAO {
+  async getSequenceValue(sequenceName) {
     try {
       const cursor = await this.collection.findOne({_id: sequenceName});
       return cursor.sequence_value;
@@ -21,10 +10,13 @@ export default class CountersDAO {
     }
   }
 
-  static async incSequenceValue(sequenceName) {
+  async incSequenceValue(sequenceName) {
     return await this.collection.updateOne(
       { _id: sequenceName }, 
       { "$inc": { sequence_value: 1 } 
     });
   };
 }
+
+const countersDAO = new CountersDAO();
+export default countersDAO;

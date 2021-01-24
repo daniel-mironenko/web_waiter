@@ -21,11 +21,11 @@ async function startServer() {
     console.error(e);
   }
 
-  await PersonnelDAO.injectDB(client);
-  await CatalogsDAO.injectDB(client);
-  await ProductsDAO.injectDB(client);
-  await OrdersDAO.injectDB(client);
-  await CountersDAO.injectDB(client);
+  await PersonnelDAO.injectDB(client, "personnel");
+  await CatalogsDAO.injectDB(client, "catalogs");
+  await ProductsDAO.injectDB(client, "products");
+  await OrdersDAO.injectDB(client, "orders");
+  await CountersDAO.injectDB(client, "counters");
 
   app.listen(PORT, () => {
     console.log(`Server has been started on port ${PORT}...`);

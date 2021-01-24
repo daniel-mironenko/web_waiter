@@ -1,20 +1,8 @@
 import { response } from "express";
+import SuperDAO from "./superDAO.js";
 
-export default class PersonnelDAO {
-  static async injectDB(conn) {
-    if (this.collection) {
-      return;
-    }
-    try {
-      this.collection = await conn.db(process.env.DINNER_IN_THE_SKY_NS).collection("personnel");
-    } catch (e) {
-      console.error(
-        `Unable to establish a collection handle in PersonnelDAO: ${e}`,
-      );
-    }
-  }
-
-  static async getEmployerByPass(user) {
+class PersonnelDAO extends SuperDAO {
+  async getEmployerByPass(user) {
     const { pass, position } = user;
     try {
       return await this.collection.findOne({ pass: pass, position: position }, { projection: { pass: 0 } });
@@ -24,7 +12,7 @@ export default class PersonnelDAO {
     }
   }
 
-  static async getEmployerByPassWithOrders(user) {
+  async getEmployerByPassWithOrders(user) {
     const { pass, position } = user;
 
     try {
@@ -53,3 +41,7 @@ export default class PersonnelDAO {
     }
   }
 }
+
+const personnelDAO = new PersonnelDAO();
+
+export default personnelDAO;
