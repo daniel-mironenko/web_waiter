@@ -1,31 +1,38 @@
-import { createStore, applyMiddleware } from "redux";
-import { composeWithDevTools } from 'redux-devtools-extension';
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 import { appRoute } from "./enums";
-import PrivatOffice from './pages/privat-office/privat-office';
-import Table from './pages/table/table';
-import { rootReducer } from "./redux-store/root-reducer";
-import { Provider } from "react-redux";
-import thunk from 'redux-thunk';
-import Login from "./pages/login/login";
+import PrivatOfficePage from './pages/privat-office-page/privat-office-page';
+import LoginPage from "./pages/login-page/login-page";
+import ErrorPage from "./pages/error-page/error-page";
+import PrivateRoute from "./components/private-route/private-route";
+import OrderPage from "./pages/order-page/order-page";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getAuthStatus, getUserData } from "./redux-store/user/selector";
+import { Operation as OrdersOperation } from "./redux-store/orders/orders-reducer";
 
-const store = createStore(rootReducer, composeWithDevTools(
-  applyMiddleware(thunk)
-));
+export default function App() {
+  const authStatus =  useSelector(getAuthStatus);
+  const user = useSelector(getUserData);
+  const dispatch = useDispatch();
 
-function App() {
+  useEffect(() => {
+    if (authStatus) {
+      dispatch(OrdersOperation.loadActiveOrders(user.id));
+    }
+  }, [])
+
+  // Добавить Лоудер
+
   return (
-    <Provider store={store}>
-      <BrowserRouter>
-        <Switch>
-          <Route exact path={`${appRoute.LOGIN}`} component={Login} />
-          <Route exact path={appRoute.PRIVAT_OFFICE} component={PrivatOffice} />
-          <Route exact path={`${appRoute.TABLE}/:number`} component={Table} />
-        </Switch>
-      </BrowserRouter>
-    </Provider>
-
+    <BrowserRouter>
+      <Switch>
+        <PrivateRoute exact path={appRoute.PRIVAT_OFFICE} component={PrivatOfficePage} />
+        <Route exact path={`${appRoute.LOGIN}`} component={LoginPage} />
+        <PrivateRoute exact path={`${appRoute.ORDER}/:id`} component={OrderPage} />
+        <Route>
+          <ErrorPage message={"Страница не найдена"} />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 };
-
-export default App;

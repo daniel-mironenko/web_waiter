@@ -1,23 +1,19 @@
 export const appRoute = {
+  LOGIN: "/login",
   PRIVAT_OFFICE: "/",
-  TABLE: "/table",
-  LOGIN: "/login"
+  ORDER: "/order",
 };
 
 export const privatOficeNavigation = {
-  MY_TABLES: "Мои столы",
+  MY_ORDERS: "Мои заказы",
   STOP_LIST: "Стоп лист",
-  CLOSED_TABLES: "Посмотреть закрытые столы",
+  CLOSED_ODERS: "Посмотреть закрытые заказы",
+  EXIT: "Выйти из личного кабинета"
 };
 
 export const cardStatus = {
   OPEN: "open",
   CLOSED: "closed"
-};
-
-export const menuNavigationMode = {
-  MAIN: "main",
-  ADDITIVE:"additive"
 };
 
 export const orderTabs = {

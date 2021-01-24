@@ -1,20 +1,7 @@
-export default class CatalogsDAO {
-  constructor() {
-    this.collection = null;
-  }
+import SuperDAO from "./superDAO.js";
 
-  static async injectDB(conn) {
-    if (this.collection) {
-      return;
-    }
-    try {
-      this.collection = conn.db(process.env.DINNER_IN_THE_SKY_NS).collection("catalogs");
-    } catch (e) {
-      `Unable to establish a collection handle in CatalogsDAO: ${e}`
-    }
-  }
-
-  static async getCatalogs() {
+class CatalogsDAO extends SuperDAO {
+  async getCatalogs() {
     try {
       return await this.collection.find({}).toArray();
     } catch (e) {
@@ -22,3 +9,6 @@ export default class CatalogsDAO {
     }
   }
 }
+
+const catalogsDAO = new CatalogsDAO();
+export default catalogsDAO;

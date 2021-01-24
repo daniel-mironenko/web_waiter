@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { getNotAvailableProducts } from "../../redux-store/menu/selector";
 import style from "./stop-list.module.css";
 
 export default function StopList() {
   const [currentFilter, setCurrentFilter] = useState("Все");
-  const products = useSelector(getNotAvailableProducts);
+  const products = []
   const localisations = [
     "Все",
     ...new Set(products.map((it) => it.localisation)),

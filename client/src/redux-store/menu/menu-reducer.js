@@ -1,4 +1,4 @@
-import Adapter from "../../adapter";
+import { Adapter } from "../../adapter";
 import Api from "../../api";
 
 const initialState = {

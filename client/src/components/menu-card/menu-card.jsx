@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { MenuContext } from "../../contexts/menu-provider";
-import { TableContext } from "../../contexts/table-provider";
+import { OrderContext } from "../../contexts/order-provider";
 import style from "./menu-card.module.css";
 
 export default function MenuCard({ item }) {
-  const { setNewOrder } = useContext(TableContext);
+  const { setNewOrder } = useContext(OrderContext);
   const { setCurrentCatalog, navRef } = useContext(MenuContext);
 
   function updateNewOrder(product) {
@@ -21,7 +21,7 @@ export default function MenuCard({ item }) {
             name: product.name,
             count: 1,
             price: product.price,
-            comment: null,
+            productId: product.id,
           },
         ];
       }

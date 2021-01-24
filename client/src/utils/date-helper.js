@@ -1,14 +1,15 @@
 export function getTime(date) {
-  const hour = date.getHours();
-  const minutes = date.getMinutes();
+  const dateObj = new Date(date);
+  const hour = dateObj.getHours();
+  const minutes = dateObj.getMinutes();
 
   return `${hour > 9 ? hour : `0${hour}`}:${minutes > 9 ? minutes : `0${minutes}`}`
 }
 
 export function getCustomDate(date) {
-  const day = date.getDate();
-  const month = date.getMonth();
-  const year = date.getFullYear();
-
+  const dateObj = new Date(date);
+  const day = dateObj.getDate();
+  const month = dateObj.getMonth();
+  const year = dateObj.getFullYear();
   return `${day}.${month}.${year}`;
 }

@@ -1,8 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { useHistory } from "react-router-dom";
 import style from "./number-panel.module.css";
+import { useDispatch } from "react-redux";
+import { appRoute } from "../../enums";
+import { Operation } from "../../redux-store/user/user-reducer";
 
 export default function NumberPanel() {
   const [pass, setPass] = useState([]);
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const numberPanelRef = useRef();
+  const SHAKE_ANIMATION_TIMEOUT = 600;
 
   function panelOnClick(evt) {
     const target = evt.target.dataset.panel;
@@ -11,19 +19,47 @@ export default function NumberPanel() {
       if (pass.length < 4) setPass((prev) => [...prev, Number(target)]);
     } else if (target === "clear") {
       if (pass.length) setPass([]);
-    } else if (target === "delete")  {
+    } else if (target === "delete") {
       if (pass.length) setPass((prev) => prev.slice(0, -1));
     }
   }
 
   useEffect(() => {
     if (pass.length === 4) {
-      console.log("ok");
+      dispatch(
+        Operation.login(
+          {
+            pass: Number(pass.join("")),
+            position: "waiter",
+          },
+          onSuccess,
+          onError
+        )
+      );
     }
   }, [pass]);
 
+  const onSuccess = () => {
+    history.push(appRoute.PRIVAT_OFFICE);
+  };
+
+  const onError = () => {
+    shake(numberPanelRef.current);
+  };
+
+  function shake(element) {
+    element.style.animation = `${style.shake} ${
+      SHAKE_ANIMATION_TIMEOUT / 1000
+    }s`;
+
+    setTimeout(() => {
+      element.style.animation = ``;
+      setPass([]);
+    }, SHAKE_ANIMATION_TIMEOUT);
+  }
+
   return (
-    <div className={style.numberPanelContainer}>
+    <div ref={numberPanelRef} className={style.numberPanelContainer}>
       <ul className={style.passProgressContainer}>
         {new Array(4).fill("").map((_, index) => (
           <li

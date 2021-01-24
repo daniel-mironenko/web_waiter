@@ -1,8 +1,8 @@
 import React from "react";
 import style from "./add-button.module.css";
 
-export default function AddButton({setIsOpenNewTablePopup}) {
+export default function AddButton({setIsOpenNewOrderPopup}) {
   return <div onClick={() => {
-    setIsOpenNewTablePopup(true);
+    setIsOpenNewOrderPopup(true);
   }} className={style.addNewTableBtn}>+</div>;
 }

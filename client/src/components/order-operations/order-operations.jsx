@@ -2,39 +2,76 @@ import React, { useContext, useMemo } from "react";
 import { useDispatch } from "react-redux";
 import { orderTabs } from "../../enums";
 import style from "./order-operations.module.css";
-import { ActionCreator } from "../../redux-store/tables/tables-reducer";
-import { TableContext } from "../../contexts/table-provider";
+import { Operation as OrderOperation } from "../../redux-store/orders/orders-reducer";
+import { OrderContext } from "../../contexts/order-provider";
 
-export default function OrderOperations({ orderList }) {
+export default function OrderOperations({ currentOrderList }) {
   const dispatch = useDispatch();
   const {
     setNewOrder,
-    table,
+    order,
     activeOrderTab,
     activeProduct,
     setActiveProduct,
     deleteBtnRef,
-  } = useContext(TableContext);
-  const { id } = table;
+    newOrder,
+  } = useContext(OrderContext);
+  const { id, orderList, historyOrder } = order;
 
   function calculateSum(arr) {
     if (arr.length) {
-      return arr.reduce((acc, curr) => acc + curr.price * curr.count, 0).toFixed(2);
+      return arr.reduce((acc, curr) => acc + curr.price * curr.count || 1, 0);
     }
     return 0;
+  }
+
+  const memoizedPrice = useMemo(() => calculateSum(currentOrderList), [
+    currentOrderList,
+  ]);
+
+  const updateOrderList = (orderList, newOrder) => {
+    const cloneOrderList = [...orderList];
+    newOrder.forEach((it) => {
+      const indexInOrder = cloneOrderList.findIndex(
+        (el) => el.productId === it.productId
+      );
+      if (indexInOrder !== -1) {
+        cloneOrderList[indexInOrder].count += it.count;
+      } else {
+        cloneOrderList.push(it);
+      }
+    });
+    return cloneOrderList;
   };
 
-  const memoizedPrice = useMemo(() => calculateSum(orderList), [orderList]);
+  const updateHistoryOrder = () => {
+    return [
+      ...historyOrder,
+      {
+        timeOrder: new Date(),
+        order: newOrder,
+        price: memoizedPrice,
+      },
+    ];
+  };
+
+  function onSuccessSendOrder() {
+    setNewOrder([]);
+  }
 
   return (
     <div className={style.operationContainer}>
-      {activeOrderTab === orderTabs.NEW_ORDER && orderList.length !== 0 && (
+      {activeOrderTab === orderTabs.NEW_ORDER && currentOrderList.length !== 0 && (
         <div className={style.sendOrderContainer}>
           <button
             className={`${style.operationBtn} ${style.sendOrderBtn}`}
             onClick={() => {
-              dispatch(ActionCreator.updateOpenTable({ id, orderList }));
-              setNewOrder([]);
+              const updateData = {
+                id,
+                orderList: updateOrderList(orderList, newOrder),
+                historyOrder: updateHistoryOrder(),
+              };
+              dispatch(OrderOperation.updateAtiveOrder(updateData, onSuccessSendOrder));
               setActiveProduct(null);
             }}
           >
@@ -62,7 +99,7 @@ export default function OrderOperations({ orderList }) {
       )}
       <div className={style.totalPriceContainer}>
         <b>Итого</b>
-        <strong>${memoizedPrice}</strong>
+        <strong>${memoizedPrice.toFixed(2)}</strong>
       </div>
       {activeOrderTab === orderTabs.ORDER && (
         <footer className={style.footerOperationContainer}>
@@ -83,4 +120,4 @@ export default function OrderOperations({ orderList }) {
       )}
     </div>
   );
-};
+}
