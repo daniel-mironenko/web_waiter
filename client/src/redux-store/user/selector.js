@@ -5,5 +5,5 @@ export function getUserData(state) {
 } 
 
 export function getAuthStatus(state) {
-  return state[NameSpace.USER].authorizationStatus;
+  return state[NameSpace.USER].authStatus;
 }

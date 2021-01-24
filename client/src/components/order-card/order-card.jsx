@@ -1,10 +1,10 @@
 import React from "react";
 import { cardStatus } from "../../enums";
 import { getTime } from "../../utils/date-helper";
-import style from "./table-card.module.css";
+import style from "./order-card.module.css";
 
-export default function TableCard({ order, status }) {
-  const { tableNumber, guestsCount, dateStart, dateEnd } = order;
+export default function OrderCard({ order, status }) {
+  const { id, tableNumber, guestsCount, dateStart, dateEnd } = order;
   
   return (
     <article
@@ -27,6 +27,9 @@ export default function TableCard({ order, status }) {
             Время закрития: <strong>{getTime(dateEnd)}</strong>
           </li>
         )}
+        <li className={style.tableItemInfo}>
+          Номер заказа: <strong>{id}</strong>
+        </li>
       </ul>
     </article>
   );

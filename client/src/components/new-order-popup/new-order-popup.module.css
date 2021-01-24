@@ -1,4 +1,4 @@
-.newTablePopup {
+.NewOrderPopup {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -28,11 +28,6 @@
   gap: 20px;
 }
 
-.newTableAlert {
-  color: red;
-  font-size: 12px;
-}
-
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none; 
@@ -45,7 +40,7 @@ input[type="number"]:focus {
     -moz-appearance: textfield;
 }
 
-.bottonContainer {
+.buttonContainer {
   display: flex;
   justify-content: space-around;
 }

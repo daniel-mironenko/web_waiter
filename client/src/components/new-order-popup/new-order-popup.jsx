@@ -1,28 +1,23 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getActiveOrders } from "../../redux-store/orders/selector";
-import { ActionCreator as tableActionCreator } from "../../redux-store/orders/orders-reducer";
-import style from "./new-table-popup.module.css";
+import { Operation as OrderOperation} from "../../redux-store/orders/orders-reducer";
+import { getUserData } from "../../redux-store/user/selector";
+import style from "./new-order-popup.module.css";
 
-export default function NewTablePopup({ setIsOpenNewTablePopup }) {
-  const [isShowAlertTable, setIsShowAlertTable] = useState(false);
+export default function NewOrderPopup({ setIsOpenNewOrderPopup }) {
+  const { id } = useSelector(getUserData);
   const dispatch = useDispatch();
-  const tables = useSelector(getActiveOrders);
   const [form, setForm] = useState({
     table: "",
     guests: "",
   });
-
-  function checkExistNumberOfTable() {
-    return tables.find((it) => it.numberOfTable === form.table);
-  }
 
   function changeForm(evt) {
     setForm({ ...form, [evt.target.name]: Number(evt.target.value) });
   }
 
   return (
-    <div className={style.newTablePopup}>
+    <div className={style.NewOrderPopup}>
       <div className={style.newTableContainer}>
         <h3>Добавьте новый стол</h3>
         <form className={style.newTableForm}>
@@ -33,14 +28,10 @@ export default function NewTablePopup({ setIsOpenNewTablePopup }) {
               type="number"
               name="table"
               onChange={(evt) => {
-                setIsShowAlertTable(false);
                 changeForm(evt);
               }}
             />
           </label>
-          {isShowAlertTable && (
-            <p className={style.newTableAlert}>Такой стол уже существует</p>
-          )}
           <label>
             Количество гостей
             <input
@@ -50,39 +41,29 @@ export default function NewTablePopup({ setIsOpenNewTablePopup }) {
               onChange={changeForm}
             />
           </label>
-          <div className={style.bottonContainer}>
+          <div className={style.buttonContainer}>
             <button
               className={`${style.newTableBtn} ${style.createNewTable}`}
               type="submit"
               disabled={form.table < 0 || form.guests < 1}
               onClick={(evt) => {
                 evt.preventDefault();
-
-                if (checkExistNumberOfTable()) {
-                  setIsShowAlertTable(true);
-                  return;
-                }
-
-                const newTable = {
-                  id: new Date(),
-                  numberOfTable: form.table,
-                  numberOfGuests: form.guests,
-                  startTime: new Date(),
-                  endTime: null,
-                  order: [],
+                const newOrder = {
+                  tableNumber: form.table,
+                  guestsCount: form.guests,
+                  waiterId: id,
                 };
-
-                dispatch(tableActionCreator.addNewOpenTable(newTable));
-                setIsOpenNewTablePopup(false);
+                dispatch(OrderOperation.addNewActiveOrder(newOrder));
+                setIsOpenNewOrderPopup(false);
               }}
             >
-              Создать стол
+              Создать заказ
             </button>
             <button
               className={`${style.newTableBtn} ${style.cancelNewTable}`}
               onClick={(evt) => {
                 evt.preventDefault();
-                setIsOpenNewTablePopup(false);
+                setIsOpenNewOrderPopup(false);
               }}
             >
               Отмена

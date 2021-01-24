@@ -5,6 +5,7 @@ import CatalogsDAO from "./src/dao/catalogsDAO.js";
 import dotenv from "dotenv";
 import ProductsDAO from "./src/dao/productsDAO.js";
 import OrdersDAO from "./src/dao/ordersDAO.js";
+import CountersDAO from "./src/dao/countersDAO.js";
 
 dotenv.config();
 const { MongoClient } = mongodb;
@@ -24,6 +25,7 @@ async function startServer() {
   await CatalogsDAO.injectDB(client);
   await ProductsDAO.injectDB(client);
   await OrdersDAO.injectDB(client);
+  await CountersDAO.injectDB(client);
 
   app.listen(PORT, () => {
     console.log(`Server has been started on port ${PORT}...`);

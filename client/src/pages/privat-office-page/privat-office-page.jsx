@@ -8,7 +8,7 @@ import style from "./private-office-page.module.css";
 
 export default function PrivatOfficePage() {
   const userData = useSelector(getUserData);
-  const [activeSection, setActiveSection] = useState(privatOficeNavigation.MY_TABLES);
+  const [activeSection, setActiveSection] = useState(privatOficeNavigation.MY_ORDERS);
 
   return (
     <div className={style.container}>

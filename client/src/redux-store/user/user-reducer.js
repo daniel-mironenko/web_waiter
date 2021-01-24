@@ -50,7 +50,7 @@ export const Operation = {
 export function reducer(state = localState, action) {
   switch (action.type) {
     case ActionType.LOGIN_SUCCESS:
-      return { ...state, userData: action.payload, authorizationStatus: true };
+      return { ...state, userData: action.payload, authStatus: true };
 
     default:
       return state;

@@ -28,7 +28,7 @@ export default function App() {
       <Switch>
         <PrivateRoute exact path={appRoute.PRIVAT_OFFICE} component={PrivatOfficePage} />
         <Route exact path={`${appRoute.LOGIN}`} component={LoginPage} />
-        <PrivateRoute exact path={`${appRoute.TABLE}/:number`} component={OrderPage} />
+        <PrivateRoute exact path={`${appRoute.ORDER}/:id`} component={OrderPage} />
         <Route>
           <ErrorPage message={"Страница не найдена"} />
         </Route>

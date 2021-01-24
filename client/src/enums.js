@@ -1,13 +1,13 @@
 export const appRoute = {
   LOGIN: "/login",
   PRIVAT_OFFICE: "/",
-  TABLE: "/order",
+  ORDER: "/order",
 };
 
 export const privatOficeNavigation = {
-  MY_TABLES: "Мои заказы",
+  MY_ORDERS: "Мои заказы",
   STOP_LIST: "Стоп лист",
-  CLOSED_TABLES: "Посмотреть закрытые заказы",
+  CLOSED_ODERS: "Посмотреть закрытые заказы",
 };
 
 export const cardStatus = {

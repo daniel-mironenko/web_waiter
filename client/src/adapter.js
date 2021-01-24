@@ -54,7 +54,6 @@ export class Adapter {
       guestsCount: order.guests_count,
       dateStart: order.date_start,
       dateClose: order.date_close,
-      orderName: order.order_name,
       orderList: order.order_list,
       historyOrder: order.history_order
     }

@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useRouteMatch } from "react-router-dom";
-import OrderHeader from "../../components/table-header/order-header";
+import OrderHeader from "../../components/order-header/order-header";
 import OrderProvider from "../../contexts/order-provider.js";
 import { getActiveOrders } from "../../redux-store/orders/selector";
 import ErrorPage from "../error-page/error-page";
@@ -13,7 +13,7 @@ export default function OrderPage() {
   const orders = useSelector(getActiveOrders);
   const match = useRouteMatch();
   const order = orders.find(
-    (it) => it.orderName === Number(match.params.number)
+    (it) => it.id === Number(match.params.id)
   );
 
   if (!order) {

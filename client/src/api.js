@@ -80,4 +80,12 @@ export default class Api {
       throw error
     }
   }
+
+  static async addNewActiveOrder(payload) {
+    try {
+      return await this._apiPOST("/api/orders/order", payload)
+    } catch (error) {
+      throw error
+    }
+  }
 }

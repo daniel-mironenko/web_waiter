@@ -17,7 +17,7 @@ export default function OrderHeader() {
     order,
     setActiveProduct,
   } = useContext(OrderContext);
-  const { tableNumber, guestsCount, dateStart } = order;
+  const { id: orderId, tableNumber, guestsCount, dateStart } = order;
 
   return (
     <header className={style.tableHeader}>
@@ -52,6 +52,7 @@ export default function OrderHeader() {
         <p className={style.numberOfGuests}>Кол-во гостей {guestsCount}</p>
       </div>
       <ul className={style.additionalInformation}>
+        <li className={style.startTime}>Заказ: №{orderId}</li>
         <li className={style.startTime}>{getTime(dateStart)}</li>
         <li className={style.owner}>{`${name} ${surname}`}</li>
       </ul>

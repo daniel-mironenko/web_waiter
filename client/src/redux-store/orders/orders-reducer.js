@@ -1,6 +1,5 @@
 import { Adapter } from "../../adapter";
 import Api from "../../api";
-import { updateActiveOrderHelper } from "../../utils/reducer-helper";
 
 const initialState = {
   activeOrders: [],
@@ -8,11 +7,8 @@ const initialState = {
 
 const ActionType = {
   LOAD_ACTIVE_ORDERS_SUCCESS: "LOAD_ACTIVE_ORDERS_SUCCESS",
-
-  // ADD_NEW_OPEN_TABLE: "ADD_NEW_OPEN_TABLE",
+  ADD_NEW_ACTIVE_ORDER: "ADD_NEW_ACTIVE_ORDER",
   UPDATE_ACTIVE_ORDER: "UPDATE_ACTIVE_ORDER",
-  // REMOVE_OPEN_TABLE: "REMOVE_OPEN_TABLE",
-  // CLOSE_TABLE: "CLOSE_TABLE",
 };
 
 export const ActionCreator = {
@@ -22,30 +18,18 @@ export const ActionCreator = {
       payload: orders
     }
   },
-  // addNewOpenTable(newTable) {
-  //   return {
-  //     type: ActionType.ADD_NEW_OPEN_TABLE,
-  //     payload: newTable
-  //   }
-  // },
+  addNewActiveOrder(newOrder) {
+    return {
+      type: ActionType.ADD_NEW_ACTIVE_ORDER,
+      payload: newOrder
+    }
+  },
   updateAtiveOrder(updatedData) {
     return {
       type: ActionType.UPDATE_ACTIVE_ORDER,
       payload: updatedData
     }
   },
-  // removeOpenTable(numberOfTable) {
-  //   return {
-  //     type: ActionType.REMOVE_OPEN_TABLE,
-  //     payload: numberOfTable
-  //   }
-  // },
-  // closeTable(table) {
-  //   return {
-  //     type: ActionType.CLOSE_TABLE,
-  //     payload: table
-  //   }
-  // }
 };
 
 export const Operation = {
@@ -71,6 +55,17 @@ export const Operation = {
 
       }
     }
+  },
+  addNewActiveOrder(payload) {
+    return async (dispatch) => {
+      try {
+        const response = await Api.addNewActiveOrder(payload);
+        const newOrder = Adapter.getOrder(response);
+        dispatch(ActionCreator.addNewActiveOrder(newOrder))
+      } catch (error) {
+        
+      }
+    }
   }
 }
 
@@ -79,10 +74,8 @@ export function reducer(state = initialState, action) {
     case ActionType.LOAD_ACTIVE_ORDERS_SUCCESS:
       return { ...state, activeOrders: action.payload }
 
-    // case ActionType.ADD_NEW_OPEN_TABLE:
-    //   return Object.assign(state, {
-    //     openTables: {...state, openTables: action.payload}
-    //   });
+    case ActionType.ADD_NEW_ACTIVE_ORDER:
+      return {...state, activeOrders: [...state.activeOrders, action.payload]}
 
     case ActionType.UPDATE_ACTIVE_ORDER:
       return {
@@ -93,12 +86,6 @@ export function reducer(state = initialState, action) {
           return order
         })
       }
-
-    // case ActionType.REMOVE_OPEN_TABLE:
-    //   return { ...state, openTables: state.openTables.filter(it => it.numberOfTable !== action.payload) }
-
-    // case ActionType.CLOSE_TABLE:
-    //   return addToClosedTable(state, action);
 
     default:
       return state;

@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 import { appRoute, cardStatus } from "../../enums";
 import { getActiveOrders } from "../../redux-store/orders/selector";
 import AddButton from "../buttons/add-button/add-button";
-import NewTablePopup from "../new-table-popup/new-table-popup";
-import TableCard from "../table-card/table-card";
+import NewOrderPopup from "../new-order-popup/new-order-popup";
+import TableCard from "../order-card/order-card";
 import style from "./my-orders.module.css";
 
 export default function MyOrders() {
   const orders = useSelector(getActiveOrders);
-  const [isOpenNewTablePopup, setIsOpenNewTablePopup] = useState(false);
+  const [isOpenNewOrderPopup, setIsOpenNewOrderPopup] = useState(false);
 
   return (
     <section className={style.myTablesContainer}>
@@ -22,18 +22,18 @@ export default function MyOrders() {
       <div className={style.myTableBoard}>
         <section className={style.tablesList}>
           {orders.map((it) => (
-            <Link key={it.id} to={`${appRoute.TABLE}/${it.orderName}`}>
+            <Link key={it.id} to={`${appRoute.ORDER}/${it.id}`}>
               <TableCard  order={it} status={cardStatus.OPEN}/>
             </Link>
           ))}
         </section>
       </div>
 
-      {isOpenNewTablePopup && (
-        <NewTablePopup setIsOpenNewTablePopup={setIsOpenNewTablePopup} />
+      {isOpenNewOrderPopup && (
+        <NewOrderPopup setIsOpenNewOrderPopup={setIsOpenNewOrderPopup} />
       )}
 
-      <AddButton setIsOpenNewTablePopup={setIsOpenNewTablePopup} />
+      <AddButton setIsOpenNewOrderPopup={setIsOpenNewOrderPopup} />
     </section>
   );
 }
