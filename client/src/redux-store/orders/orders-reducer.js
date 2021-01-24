@@ -9,6 +9,7 @@ const ActionType = {
   LOAD_ACTIVE_ORDERS_SUCCESS: "LOAD_ACTIVE_ORDERS_SUCCESS",
   ADD_NEW_ACTIVE_ORDER: "ADD_NEW_ACTIVE_ORDER",
   UPDATE_ACTIVE_ORDER: "UPDATE_ACTIVE_ORDER",
+  CLEAR_ACTIVE_ORDERS: "CLEAR_ACTIVE_ORDERS"
 };
 
 export const ActionCreator = {
@@ -30,6 +31,12 @@ export const ActionCreator = {
       payload: updatedData
     }
   },
+  clearActiveOrders() {
+    return {
+      type: ActionType.CLEAR_ACTIVE_ORDERS,
+      payload: null
+    }
+  }
 };
 
 export const Operation = {
@@ -86,6 +93,9 @@ export function reducer(state = initialState, action) {
           return order
         })
       }
+
+    case ActionType.CLEAR_ACTIVE_ORDERS:
+      return {...state, activeOrders: []}
 
     default:
       return state;

@@ -1,6 +1,8 @@
 import React from "react";
 import { privatOficeNavigation } from "../../enums";
+import { useDispatch } from "react-redux";
 import style from "./user-office.module.css";
+import { Operation as userOperation } from "../../redux-store/user/user-reducer";
 
 export default function UserOffice({
   userData,
@@ -9,6 +11,7 @@ export default function UserOffice({
 }) {
   const { name, surname, photo } = userData;
   const fullName = `${name} ${surname}`;
+  const dispatch = useDispatch();
 
   return (
     <section className={style.userOffice}>
@@ -33,6 +36,9 @@ export default function UserOffice({
                     : ``
                 }`}
                 onClick={() => {
+                  if (it === privatOficeNavigation.EXIT) {
+                    dispatch(userOperation.logout());
+                  }
                   setActiveSection(it);
                 }}
               >

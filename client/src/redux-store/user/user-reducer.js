@@ -1,5 +1,5 @@
 import Api from "../../api";
-import { loadState, saveState } from "../../session-storage";
+import { loadState, removeState, saveState } from "../../session-storage";
 import { Adapter } from "../../adapter";
 import { ActionCreator as OrdersActionCreator } from "../orders/orders-reducer";
 
@@ -17,15 +17,22 @@ try {
 
 const ActionType = {
   LOGIN_SUCCESS: "LOGIN_SUCCESS",
+  LOGOUT: "LOGOUT"
 };
 
-const ActionCreator = {
+export const ActionCreator = {
   loginSuccess(userData) {
     return {
       type: ActionType.LOGIN_SUCCESS,
       payload: userData
     }
   },
+  logout() {
+    return {
+      type: ActionType.LOGOUT,
+      payload: null
+    }
+  }
 };
 
 export const Operation = {
@@ -44,6 +51,13 @@ export const Operation = {
         onError();
       }
     }
+  },
+  logout() {
+    return (dispatch) => {
+     removeState("userState");
+      dispatch(ActionCreator.logout());
+      dispatch(OrdersActionCreator.clearActiveOrders());
+    }
   }
 }
 
@@ -51,6 +65,9 @@ export function reducer(state = localState, action) {
   switch (action.type) {
     case ActionType.LOGIN_SUCCESS:
       return { ...state, userData: action.payload, authStatus: true };
+
+    case ActionType.LOGOUT:
+      return {...state, userData: null, authStatus: false}
 
     default:
       return state;

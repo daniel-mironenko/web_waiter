@@ -8,6 +8,7 @@ export const privatOficeNavigation = {
   MY_ORDERS: "Мои заказы",
   STOP_LIST: "Стоп лист",
   CLOSED_ODERS: "Посмотреть закрытые заказы",
+  EXIT: "Выйти из личного кабинета"
 };
 
 export const cardStatus = {

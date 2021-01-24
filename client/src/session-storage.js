@@ -5,7 +5,7 @@ export function loadState(key) {
       return undefined
     }
     return JSON.parse(serializedState)
-  } catch (err) {
+  } catch (error) {
     return undefined
   }
 }
@@ -14,6 +14,15 @@ export function saveState(key, state) {
   try {
     const serializedState = JSON.stringify(state)
     sessionStorage.setItem(key, serializedState)
-  } catch (err) {
+  } catch (error) {
+    throw error;
+  }
+}
+
+export function removeState(key) {
+  try {
+    sessionStorage.removeItem(key);
+  } catch (error) {
+    throw error;
   }
 }
