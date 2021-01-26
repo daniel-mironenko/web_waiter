@@ -1,0 +1,40 @@
+.moreOptionsContainer {
+  position: absolute;
+  left: 10px;
+  bottom: 90px;
+  z-index: 90000;
+  box-shadow: 0px 0px 71px 25px rgba(34, 60, 80, 0.25);
+}
+
+.moreOptionsList {
+  width: 300px;
+  background-color:#ffffff;
+  overflow: hidden;
+}
+
+.moreOptionsContainer::after {
+  display: block;
+  position: absolute;
+  content: "";
+  width: 20px;
+  height: 20px;
+  background-color: #ffffff;
+  left: 40px;
+  bottom: -10px;
+  transform: rotate(45deg);
+  z-index: -1;
+}
+
+.moreOptionsList li {
+  padding: 15px;
+  border-bottom: 1px solid #dfdbdb;
+  cursor: pointer;
+}
+
+.moreOptionsList li:hover {
+  background-color: #ebe8e8;
+}
+
+.moreOptionsList li:last-child {
+  border: none;
+}

@@ -15,6 +15,7 @@ export default function OrderOperations({ currentOrderList }) {
     setActiveProduct,
     deleteBtnRef,
     newOrder,
+    setIsVisibleMoreOption
   } = useContext(OrderContext);
   const { id, orderList, historyOrder } = order;
 
@@ -105,6 +106,9 @@ export default function OrderOperations({ currentOrderList }) {
         <footer className={style.footerOperationContainer}>
           <button
             className={`${style.footerOperationBtn} ${style.additionalOptionsBtn}`}
+            onClick={() => {
+              setIsVisibleMoreOption(true);
+            }}
           ></button>
           <button
             className={`${style.footerOperationBtn} ${style.printBtn}`}
