@@ -21,3 +21,8 @@ export const orderTabs = {
   HISTORY: "История",
   ORDER: "Заказ"
 };
+
+export const orderMoreOptions = {
+  CHANGE_GUESTS_COUNT: "Изменить количество гостей",
+  CHANGE_TABLE_NUMBER: "Изменить номер стола"
+}

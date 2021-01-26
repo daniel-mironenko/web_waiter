@@ -7,11 +7,24 @@ import style from "./order-tab.module.css";
 import { OrderContext } from "../../contexts/order-provider";
 import { usePrevious } from "../../hooks";
 import OrderMoreOptions from "../order-more-options/order-more-options";
+import MoreOptionsPopup from "../more-options-popup/more-options-popup";
 
 export default function OrderTab() {
-  const { activeOrderTab, newOrder, order, isVisibleMoreOption, setIsVisibleMoreOption, orderMoreOptionsRef } = useContext(OrderContext);
+  const {
+    activeOrderTab,
+    newOrder,
+    order,
+    isVisibleMoreOption,
+    setIsVisibleMoreOption,
+    isVisibleMoreOptionsPopup,
+    setIsVisibleMoreOptionsPopup,
+    currentOrderOption,
+    setCurrentOrderOption,
+  } = useContext(OrderContext);
+
   const prevNewOrder = usePrevious(newOrder);
   const orderSpreadsheetRef = useRef();
+  const orderMoreOptionsRef = useRef();
 
   const orderListByActiveTab = (function getOrderListByActiveTab() {
     switch (activeOrderTab) {
@@ -40,6 +53,7 @@ export default function OrderTab() {
     function handleClickOutside(event) {
       if (isVisibleMoreOption) {
         if (
+          orderMoreOptionsRef.current &&
           !orderMoreOptionsRef.current.contains(event.target)
         ) {
           setIsVisibleMoreOption(false);
@@ -51,7 +65,7 @@ export default function OrderTab() {
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
-  })
+  });
 
   return (
     <section className={style.tableOrderContainer}>
@@ -63,7 +77,17 @@ export default function OrderTab() {
         )}
       </div>
       <OrderOperations currentOrderList={orderListByActiveTab} />
-      {isVisibleMoreOption && <OrderMoreOptions ref={orderMoreOptionsRef} />}
+      {isVisibleMoreOption && (
+        <OrderMoreOptions
+          setCurrentOrderOption={setCurrentOrderOption}
+          setIsVisibleMoreOptionsPopup={setIsVisibleMoreOptionsPopup}
+          setIsVisibleMoreOption={setIsVisibleMoreOption}
+          ref={orderMoreOptionsRef}
+        />
+      )}
+      {isVisibleMoreOptionsPopup && (
+        <MoreOptionsPopup orderOption={currentOrderOption}></MoreOptionsPopup>
+      )}
     </section>
   );
 }

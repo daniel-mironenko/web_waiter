@@ -1,16 +1,29 @@
-import React, { useContext } from "react";
-import { OrderContext } from "../../contexts/order-provider";
+import React from "react";
+import { orderMoreOptions } from "../../enums";
 import style from "./order-more-options.module.css";
 
-export default function OrderMoreOptions() {
-  const {orderMoreOptionsRef} = useContext(OrderContext);
-
+const OrderMoreOptions = React.forwardRef((props, ref) => {
+  const { setIsVisibleMoreOptionsPopup, setCurrentOrderOption, setIsVisibleMoreOption } = props;
   return (
-    <div ref={orderMoreOptionsRef} className={style.moreOptionsContainer}>
+    <div ref={ref} className={style.moreOptionsContainer}>
       <ul className={style.moreOptionsList}>
-        <li>Изменить количество гостей</li>
-        <li>Изменить номер стола</li>
+        {Object.values(orderMoreOptions).map((it) => {
+          return (
+            <li
+              key={it}
+              onClick={() => {
+                setIsVisibleMoreOption(false)
+                setIsVisibleMoreOptionsPopup(true);
+                setCurrentOrderOption(it);
+              }}
+            >
+              {it}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
-}
+});
+
+export default OrderMoreOptions;

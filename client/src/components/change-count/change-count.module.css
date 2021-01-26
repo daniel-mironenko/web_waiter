@@ -1,0 +1,59 @@
+.changeCountContainer {
+  padding: 35px 15px;
+  background-color: #ffffff;
+}
+
+.changeCountInput {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 18px;
+  outline: none;
+  border: 2px solid #4085d4;
+}
+
+.changeCountInput:active,
+.changeCountInput:focus {
+  outline: none;
+  border: 2px solid #1671d8;
+}
+
+.changeCountFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  background-color: #ffffff;
+  border-top: 1px solid #cccaca;
+  padding: 15px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.cancelBtn {
+  border: 1px solid #75a8e2;
+  outline: none;
+  padding: 5px 10px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+.cancelBtn:hover {
+  background-color: #eeeeee;
+}
+
+.admitBtn {
+  outline: none;
+  border: none;
+  padding: 5px 20px;
+  height: 40px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #32b851;
+  color: #ffffff;
+}
+
+.admitBtn:hover {
+  background-color: #45d667;
+}

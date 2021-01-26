@@ -5,11 +5,14 @@ export const OrderContext = React.createContext();
 
 export default function OrderProvider({ children, order }) {
   const deleteBtnRef = useRef();
-  const orderMoreOptionsRef = useRef();
   const [activeOrderTab, setActiveOrderTab] = useState(orderTabs.NEW_ORDER);
   const [newOrder, setNewOrder] = useState([]);
   const [activeProduct, setActiveProduct] = useState(null);
   const [isVisibleMoreOption, setIsVisibleMoreOption] = useState(false);
+  const [isVisibleMoreOptionsPopup, setIsVisibleMoreOptionsPopup] = useState(
+    false
+  );
+  const [currentOrderOption, setCurrentOrderOption] = useState(null);
 
   return (
     <OrderContext.Provider value={{
@@ -21,7 +24,10 @@ export default function OrderProvider({ children, order }) {
       deleteBtnRef,
       isVisibleMoreOption,
       setIsVisibleMoreOption,
-      orderMoreOptionsRef
+      isVisibleMoreOptionsPopup,
+      setIsVisibleMoreOptionsPopup,
+      setCurrentOrderOption,
+      currentOrderOption,
     }}>
       {children}
     </OrderContext.Provider>
