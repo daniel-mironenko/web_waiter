@@ -75,7 +75,7 @@ export default class Api {
 
   static async updateActiveOrder(payload) {
     try {
-      return await this._apiPUT(`/api/orders/order`, payload)
+      return await this._apiPUT(`/api/orders/order`, payload);
     } catch (error) {
       throw error
     }
@@ -83,7 +83,7 @@ export default class Api {
 
   static async addNewActiveOrder(payload) {
     try {
-      return await this._apiPOST("/api/orders/order", payload)
+      return await this._apiPOST("/api/orders/order", payload);
     } catch (error) {
       throw error
     }

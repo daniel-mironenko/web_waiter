@@ -22,7 +22,7 @@ class OrdersDAO extends SuperDAO {
 
   async getActiveOrdersByUserId(id) {
     try {
-      const cursor = await this.collection.find({ waiter_id: ObjectId(id), date_close: {"$eq": null} }, { projected: { waiter_id: 0 } });
+      const cursor = await this.collection.find({ waiter_id: ObjectId(id), date_close: {"$eq": null} });
       return await cursor.toArray();
     } catch (error) {
       console.error(`Something went wrong in getOrdersByUserId: ${e}`);
@@ -39,14 +39,23 @@ class OrdersDAO extends SuperDAO {
     }
   }
 
-  async updateOrderById(id, orderList, historyOrder) {
+  async updateOrder(payload) {
     try {
-      return await this.collection.updateOne({ _id: id}, {"$set": {"order_list": orderList, "history_order": historyOrder} })
+      return await this.collection.updateOne({_id: payload._id}, {"$set": payload})
     } catch (error) {
       console.error(`Unable to update order: ${e}`)
       return { error: e }
     }
   }
+
+  // async updateActiveOrderById(payload) {
+  //   try {
+  //     return await this.collection.updateOne({_id: payload._id}, {"$set": payload});
+  //   } catch (error) {
+  //     console.error(`Unable to update order: ${e}`)
+  //     return { error: e }
+  //   }
+  // }
 }
 
 const ordersDAO = new OrdersDAO();

@@ -51,11 +51,27 @@ export class Adapter {
     return {
       id: order._id,
       tableNumber: order.table_number,
+      waiterId: order.waiter_id,
       guestsCount: order.guests_count,
       dateStart: order.date_start,
       dateClose: order.date_close,
       orderList: order.order_list,
       historyOrder: order.history_order
+    }
+  }
+}
+
+export class ToRAW {
+  static getOrder(order) {
+    return {
+      _id: order.id,
+      waiter_id: order.waiterId,
+      table_number: order.tableNumber,
+      guests_count: order.guestsCount,
+      date_start: order.dateStart,
+      date_close: order.dateClose,
+      order_list: order.orderList,
+      history_order: order.historyOrder
     }
   }
 }

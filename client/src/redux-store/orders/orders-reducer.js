@@ -1,4 +1,4 @@
-import { Adapter } from "../../adapter";
+import { Adapter, ToRAW } from "../../adapter";
 import Api from "../../api";
 
 const initialState = {
@@ -9,7 +9,7 @@ const ActionType = {
   LOAD_ACTIVE_ORDERS_SUCCESS: "LOAD_ACTIVE_ORDERS_SUCCESS",
   ADD_NEW_ACTIVE_ORDER: "ADD_NEW_ACTIVE_ORDER",
   UPDATE_ACTIVE_ORDER: "UPDATE_ACTIVE_ORDER",
-  CLEAR_ACTIVE_ORDERS: "CLEAR_ACTIVE_ORDERS"
+  CLEAR_ACTIVE_ORDERS: "CLEAR_ACTIVE_ORDERS",
 };
 
 export const ActionCreator = {
@@ -36,7 +36,7 @@ export const ActionCreator = {
       type: ActionType.CLEAR_ACTIVE_ORDERS,
       payload: null
     }
-  }
+  },
 };
 
 export const Operation = {
@@ -51,13 +51,13 @@ export const Operation = {
       }
     }
   },
-  updateAtiveOrder(payload, onSuccessSendOrder) {
+  updateAtiveOrder(payload, onSuccess) {
     return async (dispatch) => {
       try {
-        const response = await Api.updateActiveOrder(payload);
+        const response = await Api.updateActiveOrder(ToRAW.getOrder(payload));
         const updatedOrder = Adapter.getOrder(response);
         dispatch(ActionCreator.updateAtiveOrder(updatedOrder));
-        onSuccessSendOrder();
+        onSuccess();
       } catch (error) {
 
       }
