@@ -8,7 +8,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use("/api/personnel", personnel);
+app.use("/api", personnel);
 app.use("/api", catalogs);
 app.use("/api", menu);
 app.use("/api", orders)

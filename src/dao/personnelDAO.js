@@ -40,6 +40,15 @@ class PersonnelDAO extends SuperDAO {
       throw e;
     }
   }
+
+  async getEmployersByPosition(position) {
+    try {
+      return await this.collection.find({position}, { projection: { pass: 0 } }).toArray();
+    } catch (error) {
+      console.error(`Something went wrong in getEmployersByPosition: ${e}`);
+      throw e;
+    }
+  }
 }
 
 const personnelDAO = new PersonnelDAO();

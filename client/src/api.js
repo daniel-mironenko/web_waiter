@@ -88,4 +88,12 @@ export default class Api {
       throw error
     }
   }
+
+  static async getUsersByPosition(position) {
+    try {
+      return await this._apiGET(`/api/personnel/${position}`);
+    } catch (error) {
+      throw error
+    }
+  }
 }
