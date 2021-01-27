@@ -47,15 +47,6 @@ class OrdersDAO extends SuperDAO {
       return { error: e }
     }
   }
-
-  // async updateActiveOrderById(payload) {
-  //   try {
-  //     return await this.collection.updateOne({_id: payload._id}, {"$set": payload});
-  //   } catch (error) {
-  //     console.error(`Unable to update order: ${e}`)
-  //     return { error: e }
-  //   }
-  // }
 }
 
 const ordersDAO = new OrdersDAO();

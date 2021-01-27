@@ -51,7 +51,7 @@ export default class Api {
 
   static async fetchMenu() {
     try {
-      return await this._apiGET(`/api/menu/menu`);
+      return await this._apiGET(`/api/menu`);
     } catch (error) {
       throw error;
     }
@@ -67,7 +67,7 @@ export default class Api {
 
   static async fetchOrdersById(id) {
     try {
-      return await this._apiGET(`/api/orders/orders/${id}`);
+      return await this._apiGET(`/api/orders/${id}`);
     } catch (error) {
       throw error
     }
@@ -75,7 +75,7 @@ export default class Api {
 
   static async updateActiveOrder(payload) {
     try {
-      return await this._apiPUT(`/api/orders/order`, payload);
+      return await this._apiPUT(`/api/orders`, payload);
     } catch (error) {
       throw error
     }
@@ -83,7 +83,7 @@ export default class Api {
 
   static async addNewActiveOrder(payload) {
     try {
-      return await this._apiPOST("/api/orders/order", payload);
+      return await this._apiPOST("/api/orders", payload);
     } catch (error) {
       throw error
     }
