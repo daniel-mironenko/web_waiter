@@ -1,8 +1,13 @@
 import React from "react";
 import style from "./add-button.module.css";
 
-export default function AddButton({setIsOpenNewOrderPopup}) {
-  return <div onClick={() => {
-    setIsOpenNewOrderPopup(true);
-  }} className={style.addNewTableBtn}>+</div>;
-}
+const AddButton = React.forwardRef((props, ref) => {
+  const { handler } = props;
+  return (
+    <div ref={ref} onClick={handler} className={style.addNewTableBtn}>
+      +
+    </div>
+  );
+});
+
+export default AddButton;

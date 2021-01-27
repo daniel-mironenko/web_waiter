@@ -51,7 +51,7 @@ export const Operation = {
       }
     }
   },
-  updateAtiveOrder(payload, onSuccess) {
+  updateAtiveOrder(payload, onSuccess, onError) {
     return async (dispatch) => {
       try {
         const response = await Api.updateActiveOrder(ToRAW.getOrder(payload));
@@ -59,7 +59,7 @@ export const Operation = {
         dispatch(ActionCreator.updateAtiveOrder(updatedOrder));
         onSuccess();
       } catch (error) {
-
+        onError();
       }
     }
   },

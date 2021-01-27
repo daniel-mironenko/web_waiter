@@ -1,14 +1,17 @@
-import React, { Fragment, useContext, useState } from "react";
+import React, { Fragment, useContext, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { OrderContext } from "../../contexts/order-provider";
 import { orderMoreOptions } from "../../enums";
 import { Operation } from "../../redux-store/orders/orders-reducer";
+import OptionsPopupFooter from "../options-popup-footer/options-popup-footer";
 import style from "./change-count.module.css";
 
-export default function ChangeCount({ orderOption }) {
+export default function ChangeCount({ orderOption, errorHandler }) {
   const dispatch = useDispatch();
   const { order, setIsVisibleMoreOptionsPopup } = useContext(OrderContext);
   const [newValue, setNewValue] = useState(null);
+  const admitBtnRef = useRef();
+  const cancelBtnRef = useRef();
 
   let property = "";
   let placeholder = "";
@@ -31,6 +34,22 @@ export default function ChangeCount({ orderOption }) {
     setIsVisibleMoreOptionsPopup(false);
   }
 
+  function onError() {
+    errorHandler();
+    admitBtnRef.current.disabled = false;
+    cancelBtnRef.current.disabled = false;
+  }
+
+  function admitHandler() {
+    cancelBtnRef.current.disabled = true;
+    admitBtnRef.current.disabled = true;
+    dispatch(Operation.updateAtiveOrder(getUpdatedOrder(), onSuccess, onError));
+  }
+
+  function cancelHandler() {
+    setIsVisibleMoreOptionsPopup(false);
+  }
+
   return (
     <Fragment>
       <form className={style.changeCountContainer}>
@@ -44,24 +63,12 @@ export default function ChangeCount({ orderOption }) {
           }}
         />
       </form>
-      <footer className={style.changeCountFooter}>
-        <button
-          className={style.cancelBtn}
-          onClick={() => {
-            setIsVisibleMoreOptionsPopup(false);
-          }}
-        >
-          Отменить
-        </button>
-        <button
-          className={style.admitBtn}
-          onClick={() => {
-            dispatch(Operation.updateAtiveOrder(getUpdatedOrder(), onSuccess));
-          }}
-        >
-          Принять
-        </button>
-      </footer>
+      <OptionsPopupFooter
+        cancelBtnRef={cancelBtnRef}
+        admitBtnRef={admitBtnRef}
+        admitHandler={admitHandler}
+        cancelHandler={cancelHandler}
+      />
     </Fragment>
   );
 }
