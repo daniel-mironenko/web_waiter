@@ -10,6 +10,7 @@ const ActionType = {
   ADD_NEW_ACTIVE_ORDER: "ADD_NEW_ACTIVE_ORDER",
   UPDATE_ACTIVE_ORDER: "UPDATE_ACTIVE_ORDER",
   CLEAR_ACTIVE_ORDERS: "CLEAR_ACTIVE_ORDERS",
+  CHANGE_WAITER_SUCCESS: "CHANGE_WAITER_SUCCESS"
 };
 
 export const ActionCreator = {
@@ -37,6 +38,12 @@ export const ActionCreator = {
       payload: null
     }
   },
+  changeWaiterSuccess(id) {
+    return {
+      type: ActionType.CHANGE_WAITER_SUCCESS,
+      payload: id
+    }
+  }
 };
 
 export const Operation = {
@@ -52,10 +59,15 @@ export const Operation = {
     }
   },
   updateAtiveOrder(payload, onSuccess, onError) {
-    return async (dispatch) => {
+    return async (dispatch, getState) => {
       try {
         const response = await Api.updateActiveOrder(ToRAW.getOrder(payload));
         const updatedOrder = Adapter.getOrder(response);
+        if (updatedOrder.waiterId !== getState().USER.userData.id) {
+          dispatch(ActionCreator.changeWaiterSuccess(updatedOrder.id));
+          onSuccess();
+          return;
+        }
         dispatch(ActionCreator.updateAtiveOrder(updatedOrder));
         onSuccess();
       } catch (error) {
@@ -93,6 +105,9 @@ export function reducer(state = initialState, action) {
           return order
         })
       }
+
+    case ActionType.CHANGE_WAITER_SUCCESS:
+      return {...state, activeOrders: state.activeOrders.filter(it => it.id !== action.payload)}
 
     case ActionType.CLEAR_ACTIVE_ORDERS:
       return {...state, activeOrders: []}

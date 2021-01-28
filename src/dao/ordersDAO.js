@@ -41,7 +41,17 @@ class OrdersDAO extends SuperDAO {
 
   async updateOrder(payload) {
     try {
-      return await this.collection.updateOne({_id: payload._id}, {"$set": payload})
+      const update = {};
+
+      for (let prop in payload) {
+        if (prop === "waiter_id") {
+          update[prop] = ObjectId(payload[prop])
+          continue;
+        } 
+        update[prop] = payload[prop];
+      }
+      
+      return await this.collection.updateOne({_id: payload._id}, {"$set": update})
     } catch (error) {
       console.error(`Unable to update order: ${e}`)
       return { error: e }

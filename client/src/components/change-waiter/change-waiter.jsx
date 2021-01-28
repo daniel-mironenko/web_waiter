@@ -5,20 +5,27 @@ import React, {
   useRef,
   useState,
 } from "react";
+import { useDispatch } from "react-redux";
 import { Adapter } from "../../adapter";
 import Api from "../../api";
 import { OrderContext } from "../../contexts/order-provider";
 import { useLoadStatus } from "../../hooks";
+import { Operation } from "../../redux-store/orders/orders-reducer";
 import OptionsPopupFooter from "../options-popup-footer/options-popup-footer";
+import { useHistory } from "react-router-dom";
 import style from "./change-waiter.module.css";
+import { appRoute } from "../../enums";
 
-export default function ChangeWaiter() {
-  const { order } = useContext(OrderContext);
+export default function ChangeWaiter({ errorHandler }) {
+  const { order, setIsVisibleMoreOptionsPopup } = useContext(OrderContext);
+  const dispatch = useDispatch();
   const [users, setUsers] = useState([]);
   const [activeUser, setActiveUser] = useState(null);
   const { isLoaded, setIsLoaded, error, setError } = useLoadStatus();
   const admitBtnRef = useRef();
   const cancelBtnRef = useRef();
+  const { id, waiterId: currentWaiterId } = order;
+  const history = useHistory();
 
   async function fetchUsers() {
     try {
@@ -41,29 +48,60 @@ export default function ChangeWaiter() {
     fetchUsers();
   }, []);
 
+  function getUpdate() {
+    return {
+      id,
+      waiterId: activeUser,
+    };
+  }
+
+  function admitHandler() {
+    cancelBtnRef.current.disabled = true;
+    admitBtnRef.current.disabled = true;
+    dispatch(Operation.updateAtiveOrder(getUpdate(), onSuccess, onError));
+  }
+
+  function onError() {
+    errorHandler();
+    admitBtnRef.current.disabled = false;
+    cancelBtnRef.current.disabled = false;
+  }
+
+  function onSuccess() {
+    history.push(appRoute.PRIVAT_OFFICE);
+  }
+
   function getChangeWaiterSectionByloadStatus() {
     if (error) {
-      return  <section className={style.changeWaiterLoadStatus}>Ошибка: {error.messege}</section>;
+      return (
+        <section className={style.changeWaiterLoadStatus}>
+          Ошибка: {error.messege}
+        </section>
+      );
     } else if (!isLoaded) {
-      return <section className={style.changeWaiterLoadStatus}>Loading...</section>;
+      return (
+        <section className={style.changeWaiterLoadStatus}>Loading...</section>
+      );
     } else {
       return (
         <section className={style.changeWaiterContainer}>
           <ul className={style.changeWaiterList}>
-            {users.map((user) => {
-              const { id, name, surname } = user;
-              return (
-                <li
-                  key={id}
-                  className={`${style.changeWaiterItem} ${
-                    activeUser === id && `${style.changeWaiterItemActive}`
-                  }`}
-                  onClick={() => {
-                    setActiveUser(id);
-                  }}
-                >{`${name} ${surname}`}</li>
-              );
-            })}
+            {users
+              .filter((it) => it.id !== currentWaiterId)
+              .map((user) => {
+                const { id: userId, name, surname } = user;
+                return (
+                  <li
+                    key={userId}
+                    className={`${style.changeWaiterItem} ${
+                      activeUser === userId && `${style.changeWaiterItemActive}`
+                    }`}
+                    onClick={() => {
+                      setActiveUser(userId);
+                    }}
+                  >{`${name} ${surname}`}</li>
+                );
+              })}
           </ul>
         </section>
       );
@@ -76,6 +114,7 @@ export default function ChangeWaiter() {
       <OptionsPopupFooter
         admitBtnRef={admitBtnRef}
         cancelBtnRef={cancelBtnRef}
+        admitHandler={admitHandler}
       />
     </Fragment>
   );
