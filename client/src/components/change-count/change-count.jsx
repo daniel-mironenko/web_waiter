@@ -46,10 +46,6 @@ export default function ChangeCount({ orderOption, errorHandler }) {
     dispatch(Operation.updateAtiveOrder(getUpdatedOrder(), onSuccess, onError));
   }
 
-  function cancelHandler() {
-    setIsVisibleMoreOptionsPopup(false);
-  }
-
   return (
     <Fragment>
       <form className={style.changeCountContainer}>
@@ -67,7 +63,6 @@ export default function ChangeCount({ orderOption, errorHandler }) {
         cancelBtnRef={cancelBtnRef}
         admitBtnRef={admitBtnRef}
         admitHandler={admitHandler}
-        cancelHandler={cancelHandler}
       />
     </Fragment>
   );

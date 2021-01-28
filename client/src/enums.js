@@ -24,5 +24,6 @@ export const orderTabs = {
 
 export const orderMoreOptions = {
   CHANGE_GUESTS_COUNT: "Изменить количество гостей",
-  CHANGE_TABLE_NUMBER: "Изменить номер стола"
+  CHANGE_TABLE_NUMBER: "Изменить номер стола",
+  CHANGE_WAITER: "Передать заказ другому официанту"
 }
