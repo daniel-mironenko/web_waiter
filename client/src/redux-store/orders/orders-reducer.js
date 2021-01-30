@@ -47,14 +47,15 @@ export const ActionCreator = {
 };
 
 export const Operation = {
-  loadActiveOrders(id) {
+  loadActiveOrders(id, onSuccess, onError) {
     return async (dispatch) => {
       try {
         const response = await Api.fetchOrdersById(id)
         const activeOrders = response.map(order => Adapter.getOrder(order));
-        dispatch(ActionCreator.loadActiveOrdersSuccess(activeOrders))
+        dispatch(ActionCreator.loadActiveOrdersSuccess(activeOrders));
+        onSuccess();
       } catch (error) {
-        console.log(error)
+        onError(error)
       }
     }
   },

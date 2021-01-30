@@ -43,6 +43,11 @@
   background-color: rgb(250, 112, 115);
 }
 
+.sendOrderBtn:disabled,
+.clenOrderBtn:disabled {
+  opacity: .5;
+}
+
 .totalPriceContainer {
   display: flex;
   justify-content: space-between;

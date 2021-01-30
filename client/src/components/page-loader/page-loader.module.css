@@ -1,0 +1,12 @@
+.pageLoaderContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #D8DBE6;
+  width: 100vw;
+  min-height: 100vh;
+}
+
+.loader {
+  font-size: 26px;
+}

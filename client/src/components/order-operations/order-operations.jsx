@@ -16,7 +16,7 @@ export default function OrderOperations({ currentOrderList }) {
     setActiveProduct,
     deleteBtnRef,
     newOrder,
-    setIsVisibleMoreOption
+    setIsVisibleMoreOption,
   } = useContext(OrderContext);
   const { id, orderList, historyOrder } = order;
   const sendBtnRef = useRef();
@@ -33,7 +33,7 @@ export default function OrderOperations({ currentOrderList }) {
   ]);
 
   const updateOrderList = (orderList, newOrder) => {
-    const cloneOrderList = [...orderList.map(it => ({...it}))];    
+    const cloneOrderList = [...orderList.map((it) => ({ ...it }))];
     newOrder.forEach((it) => {
       const indexInOrder = cloneOrderList.findIndex(
         (el) => el.productId === it.productId
@@ -63,9 +63,11 @@ export default function OrderOperations({ currentOrderList }) {
   }
 
   function onErrorSendOrder() {
-    shake(sendBtnRef.current)
+    shake(sendBtnRef.current);
+    deleteBtnRef.current.disabled = false;
+    sendBtnRef.current.disabled = false;
+    sendBtnRef.current.textContent = "Отправить заказ"
   }
-
 
   return (
     <div className={style.operationContainer}>
@@ -75,13 +77,22 @@ export default function OrderOperations({ currentOrderList }) {
             ref={sendBtnRef}
             className={`${style.operationBtn} ${style.sendOrderBtn}`}
             onClick={() => {
+              deleteBtnRef.current.disabled = true;
+              sendBtnRef.current.disabled = true;
+              sendBtnRef.current.textContent = "Отправка заказа..."
               const updateData = {
                 id,
                 orderList: updateOrderList(orderList, newOrder),
                 historyOrder: updateHistoryOrder(),
               };
 
-              dispatch(OrderOperation.updateAtiveOrder(updateData, onSuccessSendOrder, onErrorSendOrder));
+              dispatch(
+                OrderOperation.updateAtiveOrder(
+                  updateData,
+                  onSuccessSendOrder,
+                  onErrorSendOrder
+                )
+              );
               setActiveProduct(null);
             }}
           >
