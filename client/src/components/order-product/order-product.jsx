@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { OrderContext } from "../../contexts/order-provider";
 import { orderTabs } from "../../enums";
-import style from "./order-products.module.css";
+import style from "./order-product.module.css";
 
-export default function OrderProducts({ product, index }) {
+export default function OrderProduct({ product, index }) {
   const { name, count, price } = product;
   const {
     activeOrderTab,
@@ -14,7 +14,7 @@ export default function OrderProducts({ product, index }) {
 
   function changeCounter(bool, name) {
     setNewOrder((prev) => {
-      const clonePrev = [...prev];
+      const clonePrev = [...prev.map(it => ({...it}))];
       const element = clonePrev.find((it) => it.name === name);
       element.count = bool ? element.count + 1 : element.count - 1;
       return clonePrev;

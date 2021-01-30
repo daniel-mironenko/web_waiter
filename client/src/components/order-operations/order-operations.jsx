@@ -1,9 +1,10 @@
-import React, { useContext, useMemo } from "react";
+import React, { useContext, useMemo, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { orderTabs } from "../../enums";
 import style from "./order-operations.module.css";
 import { Operation as OrderOperation } from "../../redux-store/orders/orders-reducer";
 import { OrderContext } from "../../contexts/order-provider";
+import { shake } from "../../animations/animations";
 
 export default function OrderOperations({ currentOrderList }) {
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ export default function OrderOperations({ currentOrderList }) {
     setIsVisibleMoreOption
   } = useContext(OrderContext);
   const { id, orderList, historyOrder } = order;
+  const sendBtnRef = useRef();
 
   function calculateSum(arr) {
     if (arr.length) {
@@ -31,7 +33,7 @@ export default function OrderOperations({ currentOrderList }) {
   ]);
 
   const updateOrderList = (orderList, newOrder) => {
-    const cloneOrderList = [...orderList];
+    const cloneOrderList = [...orderList.map(it => ({...it}))];    
     newOrder.forEach((it) => {
       const indexInOrder = cloneOrderList.findIndex(
         (el) => el.productId === it.productId
@@ -60,11 +62,17 @@ export default function OrderOperations({ currentOrderList }) {
     setNewOrder([]);
   }
 
+  function onErrorSendOrder() {
+    shake(sendBtnRef.current)
+  }
+
+
   return (
     <div className={style.operationContainer}>
       {activeOrderTab === orderTabs.NEW_ORDER && currentOrderList.length !== 0 && (
         <div className={style.sendOrderContainer}>
           <button
+            ref={sendBtnRef}
             className={`${style.operationBtn} ${style.sendOrderBtn}`}
             onClick={() => {
               const updateData = {
@@ -72,7 +80,8 @@ export default function OrderOperations({ currentOrderList }) {
                 orderList: updateOrderList(orderList, newOrder),
                 historyOrder: updateHistoryOrder(),
               };
-              dispatch(OrderOperation.updateAtiveOrder(updateData, onSuccessSendOrder));
+
+              dispatch(OrderOperation.updateAtiveOrder(updateData, onSuccessSendOrder, onErrorSendOrder));
               setActiveProduct(null);
             }}
           >
