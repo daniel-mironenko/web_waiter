@@ -1,12 +1,12 @@
 import React, { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { getMenu } from "../redux-store/menu/selector";
-import { getRootId } from "../utils/menu-helper";
+import { convertToHashTable, getRootId } from "../utils/menu-helper";
 
 export const MenuContext = React.createContext();
 
-export default function MenuProvider({ children }) {
-  const menu = useSelector(getMenu);
+export default function MenuProvider({ children, products, catalogs }) {
+  const menu = convertToHashTable([...catalogs, ...products]);
   const rootCatalogID = getRootId(menu);
   const [currentCatalog, setCurrentCatalog] = useState(rootCatalogID);
   const catalog = menu[currentCatalog];

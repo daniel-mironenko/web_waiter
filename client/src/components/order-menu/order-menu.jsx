@@ -1,8 +1,9 @@
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { Adapter } from "../../adapter";
+import Api from "../../api";
 import MenuProvider from "../../contexts/menu-provider";
 import { useLoadStatus } from "../../hooks";
-import { Operation as menuOperation } from "../../redux-store/menu/menu-reducer";
+// import { Operation as menuOperation } from "../../redux-store/menu/menu-reducer";
 import LoaderMenu from "../loader-menu/loader-menu";
 import MenuNotAvailable from "../menu-not-available/menu-not-available";
 import OrderMenuContainer from "../order-menu-container/order-menu-container";
@@ -11,10 +12,24 @@ import OrderMenuNav from "../order-menu-nav/order-menu-nav";
 
 export default function OrderMenu() {
   const { isLoaded, setIsLoaded, error, setError } = useLoadStatus();
-  const dispatch = useDispatch();
+  const [products, setProducts] = useState([]);
+  const [catalogs, setCatalogs] = useState([]);
+
+  async function fetchMenu() {
+    try {
+      const menu = await Api.fetchMenu();
+      const adaptedCatalogs = Adapter.getCatalogs(menu.catalogs);
+      const adaptedProducts = Adapter.getProducts(menu.products);
+      setCatalogs(adaptedCatalogs);
+      setProducts(adaptedProducts);
+      setIsLoaded(true);
+    } catch (error) {
+      setError(error);
+    }
+  }
 
   useEffect(() => {
-    dispatch(menuOperation.loadMenu(setIsLoaded, setError));
+    fetchMenu();
   }, []);
 
   function getChildrenByLoadStatus() {
@@ -24,7 +39,7 @@ export default function OrderMenu() {
       return <LoaderMenu />;
     } else {
       return (
-        <MenuProvider>
+        <MenuProvider products={products} catalogs={catalogs}>
           <OrderMenuHeader />
           <OrderMenuNav />
           <MenuNotAvailable />
