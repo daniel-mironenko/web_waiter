@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef } from "react";
 import { OrderContext } from "../../contexts/order-provider";
 import { orderTabs } from "../../enums";
-import OrderProducts from "../order-products/order-products";
+import OrderProduct from "../order-product/order-product";
 import style from "./order-spreadsheet.module.css";
 
 export default function OrderSpreadsheet({ orderList }) {
@@ -42,7 +42,7 @@ export default function OrderSpreadsheet({ orderList }) {
           </tr>
           {orderList.map((product, index) => {
             return (
-              <OrderProducts
+              <OrderProduct
                 key={product.name}
                 product={product}
                 index={index}

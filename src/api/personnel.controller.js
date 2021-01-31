@@ -26,4 +26,21 @@ export default class PersonnelController {
       res.status(500).json({ error });
     }
   }
+
+  static async apiGetEmployersByPosition(req, res, next) {
+
+    try {
+      const position = req.params.position;
+      const employers = await PersonnelDAO.getEmployersByPosition(position);
+
+      if (!employers) {
+        res.status(404).json({ error:  "Make sure your position is correct." });
+        return;
+      }
+
+      res.status(200).json(employers);
+    } catch (error) {
+      res.status(500).json({ error });
+    }
+  }
 }

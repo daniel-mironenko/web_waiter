@@ -9,7 +9,7 @@ export default function MenuCard({ item }) {
 
   function updateNewOrder(product) {
     setNewOrder((prev) => {
-      const clonePrev = [...prev];
+      const clonePrev = [...prev.map(it => ({...it}))];
       const index = clonePrev.findIndex((it) => it.name === product.name);
       if (index !== -1) {
         clonePrev[index].count = clonePrev[index].count + 1;

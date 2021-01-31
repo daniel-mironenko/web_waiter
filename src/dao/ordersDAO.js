@@ -6,8 +6,8 @@ class OrdersDAO extends SuperDAO {
     try {
       return await this.collection.insertOne({
         _id: orderId,
-        table_number: tableNumber, 
-        guests_count: guestsCount, 
+        table_number: tableNumber,
+        guests_count: guestsCount,
         waiter_id: ObjectId(waiterId),
         date_start: new Date(),
         date_close: null,
@@ -22,7 +22,7 @@ class OrdersDAO extends SuperDAO {
 
   async getActiveOrdersByUserId(id) {
     try {
-      const cursor = await this.collection.find({ waiter_id: ObjectId(id), date_close: {"$eq": null} }, { projected: { waiter_id: 0 } });
+      const cursor = await this.collection.find({ waiter_id: ObjectId(id), date_close: { "$eq": null } });
       return await cursor.toArray();
     } catch (error) {
       console.error(`Something went wrong in getOrdersByUserId: ${e}`);
@@ -32,16 +32,31 @@ class OrdersDAO extends SuperDAO {
 
   async getOrderById(id) {
     try {
-      return await this.collection.findOne({_id: id});
+      return await this.collection.findOne({ _id: id });
     } catch (error) {
       console.error(`Something went wrong in getOrderById: ${e}`);
       throw e;
     }
   }
 
-  async updateOrderById(id, orderList, historyOrder) {
+  async updateOrder(payload) {
     try {
-      return await this.collection.updateOne({ _id: id}, {"$set": {"order_list": orderList, "history_order": historyOrder} })
+      const update = {};
+
+      for (let prop in payload) {
+        if (prop === "waiter_id") {
+          update[prop] = ObjectId(payload[prop])
+          continue;
+        }
+
+        if (prop === "date_close") {
+          update[prop] = new Date(payload[prop]);
+          continue;
+        }
+        update[prop] = payload[prop];
+      }
+
+      return await this.collection.updateOne({ _id: payload._id }, { "$set": update })
     } catch (error) {
       console.error(`Unable to update order: ${e}`)
       return { error: e }

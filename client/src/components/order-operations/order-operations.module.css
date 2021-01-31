@@ -43,6 +43,11 @@
   background-color: rgb(250, 112, 115);
 }
 
+.sendOrderBtn:disabled,
+.clenOrderBtn:disabled {
+  opacity: 0.5;
+}
+
 .totalPriceContainer {
   display: flex;
   justify-content: space-between;
@@ -102,4 +107,12 @@
 
 .closeTableBtn:hover {
   background-color: #45d667;
+}
+
+.closeTableBtn:disabled:hover {
+  background-color: #32b851;
+}
+
+.closeTableBtn:disabled {
+  opacity: 0.5;
 }

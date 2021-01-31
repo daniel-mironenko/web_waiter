@@ -17,7 +17,7 @@ try {
 
 const ActionType = {
   LOGIN_SUCCESS: "LOGIN_SUCCESS",
-  LOGOUT: "LOGOUT"
+  LOGOUT: "LOGOUT",
 };
 
 export const ActionCreator = {
@@ -32,7 +32,7 @@ export const ActionCreator = {
       type: ActionType.LOGOUT,
       payload: null
     }
-  }
+  },
 };
 
 export const Operation = {
@@ -58,7 +58,7 @@ export const Operation = {
       dispatch(ActionCreator.logout());
       dispatch(OrdersActionCreator.clearActiveOrders());
     }
-  }
+  },
 }
 
 export function reducer(state = localState, action) {

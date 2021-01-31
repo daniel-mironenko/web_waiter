@@ -1,0 +1,17 @@
+.cancelBtn {
+  border: 1px solid #75a8e2;
+  outline: none;
+  padding: 5px 10px;
+  height: 40px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+.cancelBtn:hover {
+  background-color: #eeeeee;
+}
+
+.cancelBtn:disabled {
+  opacity: 0.5;
+}

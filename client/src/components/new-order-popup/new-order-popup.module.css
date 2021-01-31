@@ -28,18 +28,6 @@
   gap: 20px;
 }
 
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none; 
-}
-
-input[type='number'],
-input[type="number"]:hover,
-input[type="number"]:focus {
-    appearance: none;
-    -moz-appearance: textfield;
-}
-
 .buttonContainer {
   display: flex;
   justify-content: space-around;
@@ -71,9 +59,13 @@ input[type="number"]:focus {
 }
 
 .createNewTable:disabled {
-  opacity: 0.5;
+  opacity: .5;
 }
 
 .cancelNewTable {
   background-color: #F94144;
+}
+
+.cancelNewTable:disabled {
+  opacity: .5;
 }

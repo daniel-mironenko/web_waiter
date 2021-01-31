@@ -4,13 +4,13 @@ import style from "./number-panel.module.css";
 import { useDispatch } from "react-redux";
 import { appRoute } from "../../enums";
 import { Operation } from "../../redux-store/user/user-reducer";
+import { shake } from "../../animations/animations";
 
 export default function NumberPanel() {
   const [pass, setPass] = useState([]);
   const dispatch = useDispatch();
   const history = useHistory();
   const numberPanelRef = useRef();
-  const SHAKE_ANIMATION_TIMEOUT = 600;
 
   function panelOnClick(evt) {
     const target = evt.target.dataset.panel;
@@ -43,20 +43,13 @@ export default function NumberPanel() {
     history.push(appRoute.PRIVAT_OFFICE);
   };
 
-  const onError = () => {
-    shake(numberPanelRef.current);
-  };
-
-  function shake(element) {
-    element.style.animation = `${style.shake} ${
-      SHAKE_ANIMATION_TIMEOUT / 1000
-    }s`;
-
-    setTimeout(() => {
-      element.style.animation = ``;
-      setPass([]);
-    }, SHAKE_ANIMATION_TIMEOUT);
+  function animationHandler() {
+    setPass([]);
   }
+
+  const onError = () => {
+    shake(numberPanelRef.current, animationHandler);
+  };
 
   return (
     <div ref={numberPanelRef} className={style.numberPanelContainer}>

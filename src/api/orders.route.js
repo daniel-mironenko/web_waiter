@@ -4,7 +4,7 @@ import OrdersController from "./orders.controller.js";
 const router = new Router();
 
 router.route("/orders/:id").get(OrdersController.apiGetActiveOrdersByWaiterId);
-router.route("/order")
+router.route("/orders")
   .post(OrdersController.apiAddActiveOrder)
   .put(OrdersController.apiUpdateOrder);
 

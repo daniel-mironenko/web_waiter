@@ -28,7 +28,7 @@ export default function OrderHeader() {
             history.push(appRoute.PRIVAT_OFFICE);
           }}
         >
-          Мои столы
+          Мои заказы
         </button>
         {Object.values(orderTabs).map((it) => {
           return (

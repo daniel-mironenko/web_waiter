@@ -1,0 +1,60 @@
+.changeWaiterLoadStatus {
+  padding: 35px 15px;
+  background-color: #ffffff;
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.changeWaiterContainer {
+  padding: 35px 15px;
+  background-color: #ffffff;
+}
+
+.changeWaiterList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  height: 250px;
+  overflow: auto;
+}
+
+.changeWaiterItem {
+  text-align: center;
+  width:  calc(100% / 4 - 10px);
+  height: 120px;
+  border-radius: 5px;
+  background-color: #D8DBE6;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.changeWaiterItem:hover {
+  background-color: #c8cad1;
+}
+
+.changeWaiterList::-webkit-scrollbar {
+  width: 5px;
+}
+
+.changeWaiterList::-webkit-scrollbar-track {
+  background: #ffffff;
+  border-radius: 5px;
+}
+
+.changeWaiterList::-webkit-scrollbar-thumb {
+  background: #8e96a1 ;
+  border-radius: 5px;
+}
+
+.changeWaiterItemActive {
+  color: #ffffff;
+  background-color: #4085d4;
+}
+
+.changeWaiterItemActive:hover {
+  background-color: #4085d4;
+}

@@ -1,14 +1,19 @@
 .menuNavItem {
-  width: calc(100% / 4 - 20px);
+  width: calc((100% - 80px)/ 5);
   border-radius: 4px;
-  overflow: hidden;
   cursor: pointer;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 160px;
+  max-height: 160px;
+  overflow: hidden;
 }
 
 .itemImgContainer {
-  height: 120px;
   background-color: teal;
+  flex-grow: 5;
+  overflow: hidden;
 }
 
 .itemImgContainer img {
@@ -39,4 +44,12 @@
 .notAvailable {
   opacity: 0.5;
   cursor: default;
+}
+
+@media (max-width: 1500px) {
+  .menuNavItem {
+    width: calc((100% - 60px)/ 4);
+    min-height: 140px;
+    max-height: 140px;
+  }
 }

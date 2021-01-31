@@ -12,6 +12,10 @@ export default function MyOrders() {
   const orders = useSelector(getActiveOrders);
   const [isOpenNewOrderPopup, setIsOpenNewOrderPopup] = useState(false);
 
+  function addNewOrderHandler() {
+    setIsOpenNewOrderPopup(true)
+  }
+
   return (
     <section className={style.myTablesContainer}>
       <header className={style.myTabelsHeader}>
@@ -33,7 +37,7 @@ export default function MyOrders() {
         <NewOrderPopup setIsOpenNewOrderPopup={setIsOpenNewOrderPopup} />
       )}
 
-      <AddButton setIsOpenNewOrderPopup={setIsOpenNewOrderPopup} />
+      <AddButton handler={addNewOrderHandler} />
     </section>
   );
 }

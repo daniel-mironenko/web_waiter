@@ -1,0 +1,21 @@
+.changeCountContainer {
+  padding: 35px 15px;
+  background-color: #ffffff;
+}
+
+.changeCountInput {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 18px;
+  outline: none;
+  border: 2px solid #4085d4;
+}
+
+.changeCountInput:active,
+.changeCountInput:focus {
+  outline: none;
+  border: 2px solid #1671d8;
+}
+
+

@@ -1,4 +1,4 @@
-import { Adapter } from "../../adapter";
+import { Adapter, ToRAW } from "../../adapter";
 import Api from "../../api";
 
 const initialState = {
@@ -9,7 +9,9 @@ const ActionType = {
   LOAD_ACTIVE_ORDERS_SUCCESS: "LOAD_ACTIVE_ORDERS_SUCCESS",
   ADD_NEW_ACTIVE_ORDER: "ADD_NEW_ACTIVE_ORDER",
   UPDATE_ACTIVE_ORDER: "UPDATE_ACTIVE_ORDER",
-  CLEAR_ACTIVE_ORDERS: "CLEAR_ACTIVE_ORDERS"
+  CLEAR_ACTIVE_ORDERS: "CLEAR_ACTIVE_ORDERS",
+  CHANGE_WAITER_SUCCESS: "CHANGE_WAITER_SUCCESS",
+  CLOSE_ORDER_SUCCESS: "CLOSE_ORDER_SUCCESS",
 };
 
 export const ActionCreator = {
@@ -36,41 +38,72 @@ export const ActionCreator = {
       type: ActionType.CLEAR_ACTIVE_ORDERS,
       payload: null
     }
-  }
+  },
+  changeWaiterSuccess(id) {
+    return {
+      type: ActionType.CHANGE_WAITER_SUCCESS,
+      payload: id
+    }
+  },
+  closeOrderSuccess(id) {
+    return {
+      type: ActionType.CLOSE_ORDER_SUCCESS,
+      payload: id
+    }
+  },
 };
 
 export const Operation = {
-  loadActiveOrders(id) {
+  loadActiveOrders(id, onSuccess, onError) {
     return async (dispatch) => {
       try {
         const response = await Api.fetchOrdersById(id)
         const activeOrders = response.map(order => Adapter.getOrder(order));
-        dispatch(ActionCreator.loadActiveOrdersSuccess(activeOrders))
+        dispatch(ActionCreator.loadActiveOrdersSuccess(activeOrders));
+        onSuccess();
       } catch (error) {
-        console.log(error)
+        onError(error)
       }
     }
   },
-  updateAtiveOrder(payload, onSuccessSendOrder) {
-    return async (dispatch) => {
+  updateAtiveOrder(payload, onSuccess, onError) {
+    return async (dispatch, getState) => {
       try {
-        const response = await Api.updateActiveOrder(payload);
+        const response = await Api.updateActiveOrder(ToRAW.getOrder(payload));
         const updatedOrder = Adapter.getOrder(response);
+        if (updatedOrder.waiterId !== getState().USER.userData.id) {
+          dispatch(ActionCreator.changeWaiterSuccess(updatedOrder.id));
+          onSuccess();
+          return;
+        }
         dispatch(ActionCreator.updateAtiveOrder(updatedOrder));
-        onSuccessSendOrder();
+        onSuccess();
       } catch (error) {
-
+        onError();
       }
     }
   },
-  addNewActiveOrder(payload) {
+  addNewActiveOrder(payload, onSuccess, onError) {
     return async (dispatch) => {
       try {
         const response = await Api.addNewActiveOrder(payload);
         const newOrder = Adapter.getOrder(response);
-        dispatch(ActionCreator.addNewActiveOrder(newOrder))
+        dispatch(ActionCreator.addNewActiveOrder(newOrder));
+        onSuccess();
       } catch (error) {
-        
+        onError();
+      }
+    }
+  },
+  closeOrder(payload, onSuccess, onError) {
+    return async (dispatch) => {
+      try {
+        const response = await Api.updateActiveOrder(ToRAW.getOrder(payload));
+        const updatedOrder = Adapter.getOrder(response);
+        dispatch(ActionCreator.closeOrderSuccess(updatedOrder.id));
+        onSuccess();
+      } catch (error) {
+        onError();
       }
     }
   }
@@ -82,7 +115,7 @@ export function reducer(state = initialState, action) {
       return { ...state, activeOrders: action.payload }
 
     case ActionType.ADD_NEW_ACTIVE_ORDER:
-      return {...state, activeOrders: [...state.activeOrders, action.payload]}
+      return { ...state, activeOrders: [...state.activeOrders, action.payload] }
 
     case ActionType.UPDATE_ACTIVE_ORDER:
       return {
@@ -94,8 +127,12 @@ export function reducer(state = initialState, action) {
         })
       }
 
+    case ActionType.CHANGE_WAITER_SUCCESS:
+    case ActionType.CLOSE_ORDER_SUCCESS:
+      return { ...state, activeOrders: state.activeOrders.filter(it => it.id !== action.payload) }
+
     case ActionType.CLEAR_ACTIVE_ORDERS:
-      return {...state, activeOrders: []}
+      return { ...state, activeOrders: [] }
 
     default:
       return state;

@@ -17,9 +17,7 @@ export default class OrdersController {
 
   static async apiUpdateOrder(req, res, next) {
     try {
-      const { id, orderList, historyOrder } = req.body;
-
-      const orderResponse = await OrdersDAO.updateOrderById(id, orderList, historyOrder);
+      const orderResponse = await OrdersDAO.updateOrder(req.body);
 
       if (orderResponse.modifiedCount === 0) {
         throw new Error(
@@ -27,7 +25,7 @@ export default class OrdersController {
         )
       }
 
-      const updatedOrder = await OrdersDAO.getOrderById(id);
+      const updatedOrder = await OrdersDAO.getOrderById(req.body._id);
 
       res.status(200).json(updatedOrder);
     } catch (error) {

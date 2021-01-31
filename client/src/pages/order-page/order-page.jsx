@@ -17,7 +17,7 @@ export default function OrderPage() {
   );
 
   if (!order) {
-    return <ErrorPage message={`Не найдено заказ №${match.params.number}`} />
+    return <ErrorPage message={`Не найдено заказ №${match.params.id}`} />
   }
 
   return (
