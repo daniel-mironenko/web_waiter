@@ -63,6 +63,9 @@ export default function ChangeCount({ orderOption, errorHandler }) {
         cancelBtnRef={cancelBtnRef}
         admitBtnRef={admitBtnRef}
         admitHandler={admitHandler}
+        admitBtnDisabled={
+          newValue === order[property] || !Boolean(newValue) 
+        }
       />
     </Fragment>
   );

@@ -16,3 +16,8 @@
 .admitBtn:disabled {
   opacity: 0.5;
 }
+
+.admitBtn:disabled:hover {
+  opacity: 0.5;
+  background-color: #32b851;
+}

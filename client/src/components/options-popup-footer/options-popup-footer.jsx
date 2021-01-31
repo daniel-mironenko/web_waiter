@@ -8,6 +8,7 @@ export default function OptionsPopupFooter({
   admitBtnRef,
   cancelBtnRef,
   admitHandler,
+  admitBtnDisabled
 }) {
   const { setIsVisibleMoreOptionsPopup } = useContext(OrderContext);
 
@@ -19,7 +20,7 @@ export default function OptionsPopupFooter({
   return (
     <footer className={style.optionsPopupFooter}>
       <CancelBtn ref={cancelBtnRef} handler={cancelHandler} text={"Отменить"} />
-      <AdmitBtn ref={admitBtnRef} handler={admitHandler} text={"Принять"} />
+      <AdmitBtn ref={admitBtnRef} handler={admitHandler} text={"Принять"} disabled={admitBtnDisabled}/>
     </footer>
   );
 }

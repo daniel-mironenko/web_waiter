@@ -17,7 +17,7 @@ import style from "./change-waiter.module.css";
 import { appRoute } from "../../enums";
 
 export default function ChangeWaiter({ errorHandler }) {
-  const { order, setIsVisibleMoreOptionsPopup } = useContext(OrderContext);
+  const { order } = useContext(OrderContext);
   const dispatch = useDispatch();
   const [users, setUsers] = useState([]);
   const [activeUser, setActiveUser] = useState(null);
@@ -29,17 +29,12 @@ export default function ChangeWaiter({ errorHandler }) {
 
   async function fetchUsers() {
     try {
-      admitBtnRef.current.disabled = true;
-      cancelBtnRef.current.disabled = true;
       const response = await Api.getUsersByPosition("waiter");
       const adaptedUsers = response.map((it) => Adapter.getUser(it));
       setIsLoaded(true);
       setUsers(adaptedUsers);
-      admitBtnRef.current.disabled = false;
-      cancelBtnRef.current.disabled = false;
     } catch (error) {
       setError(error);
-      cancelBtnRef.current.disabled = false;
       console.error(error);
     }
   }
@@ -115,6 +110,7 @@ export default function ChangeWaiter({ errorHandler }) {
         admitBtnRef={admitBtnRef}
         cancelBtnRef={cancelBtnRef}
         admitHandler={admitHandler}
+        admitBtnDisabled={Boolean(!activeUser)}
       />
     </Fragment>
   );

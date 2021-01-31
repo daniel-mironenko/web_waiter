@@ -62,3 +62,7 @@
 .userOfficeNavigationItemActive {
   opacity: 0.5;
 }
+
+.userOfficeNavigationItemActive:hover {
+  opacity: 0.5;
+}
