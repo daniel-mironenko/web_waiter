@@ -1,16 +1,13 @@
 import React, { Fragment, useContext } from "react";
-import { useSelector } from "react-redux";
 import { MenuContext } from "../../contexts/menu-provider";
 import MenuCard from "../menu-card/menu-card";
-import { getProducts } from "../../redux-store/menu/selector";
 import Fuse from "fuse.js";
 import style from "./order-menu-nav.module.css";
 
 export default function OrderMenuNav() {
-  const { menu, catalog, navRef, isActiveSearch, searchValue } = useContext(
+  const { menu, catalog, navRef, isActiveSearch, searchValue, products } = useContext(
     MenuContext
   );
-  const products = useSelector(getProducts);
   const fuse = new Fuse(products, {
     keys: ["name"]
   });

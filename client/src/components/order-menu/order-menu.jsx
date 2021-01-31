@@ -3,7 +3,6 @@ import { Adapter } from "../../adapter";
 import Api from "../../api";
 import MenuProvider from "../../contexts/menu-provider";
 import { useLoadStatus } from "../../hooks";
-// import { Operation as menuOperation } from "../../redux-store/menu/menu-reducer";
 import LoaderMenu from "../loader-menu/loader-menu";
 import MenuNotAvailable from "../menu-not-available/menu-not-available";
 import OrderMenuContainer from "../order-menu-container/order-menu-container";

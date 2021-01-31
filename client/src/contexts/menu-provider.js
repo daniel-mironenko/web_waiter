@@ -1,6 +1,4 @@
 import React, { useRef, useState } from "react";
-import { useSelector } from "react-redux";
-import { getMenu } from "../redux-store/menu/selector";
 import { convertToHashTable, getRootId } from "../utils/menu-helper";
 
 export const MenuContext = React.createContext();
@@ -25,7 +23,8 @@ export default function MenuProvider({ children, products, catalogs }) {
       isActiveSearch,
       setIsActiveSearch,
       searchValue,
-      setSearchValue
+      setSearchValue,
+      products
     }}>
       {children}
     </MenuContext.Provider>
