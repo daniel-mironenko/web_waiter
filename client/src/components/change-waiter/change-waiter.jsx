@@ -57,9 +57,10 @@ export default function ChangeWaiter({ errorHandler }) {
   }
 
   function onError() {
-    errorHandler();
-    admitBtnRef.current.disabled = false;
-    cancelBtnRef.current.disabled = false;
+    errorHandler(() => {
+      admitBtnRef.current.disabled = false;
+      cancelBtnRef.current.disabled = false;
+    });
   }
 
   function onSuccess() {

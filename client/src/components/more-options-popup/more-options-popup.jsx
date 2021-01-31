@@ -8,8 +8,8 @@ import style from "./more-options-popup.module.css";
 export default function MoreOptionsPopup({ orderOption }) {
   const popupRef = useRef();
 
-  function errorHandler() {
-    shake(popupRef.current);
+  function errorHandler(callback) {
+    shake(popupRef.current, callback);
   }
 
   function getCurrentOrderOption() {

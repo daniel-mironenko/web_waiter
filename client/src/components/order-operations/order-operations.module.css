@@ -45,7 +45,7 @@
 
 .sendOrderBtn:disabled,
 .clenOrderBtn:disabled {
-  opacity: .5;
+  opacity: 0.5;
 }
 
 .totalPriceContainer {
@@ -107,4 +107,12 @@
 
 .closeTableBtn:hover {
   background-color: #45d667;
+}
+
+.closeTableBtn:disabled:hover {
+  background-color: #32b851;
+}
+
+.closeTableBtn:disabled {
+  opacity: 0.5;
 }

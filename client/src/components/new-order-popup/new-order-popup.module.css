@@ -59,9 +59,13 @@
 }
 
 .createNewTable:disabled {
-  opacity: 0.5;
+  opacity: .5;
 }
 
 .cancelNewTable {
   background-color: #F94144;
+}
+
+.cancelNewTable:disabled {
+  opacity: .5;
 }

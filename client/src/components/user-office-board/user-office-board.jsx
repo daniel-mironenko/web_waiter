@@ -6,7 +6,6 @@ import style from "./user-office-board.module.css"
 export default function UserOfficeBoard ({activeSection}) {
 
   function renderSection() {
-    console.log(activeSection, privatOficeNavigation.CLOSED_ORDERS)
     switch (activeSection) {
       case privatOficeNavigation.MY_ORDERS:
        return <MyOrders/>;

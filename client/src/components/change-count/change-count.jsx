@@ -35,9 +35,10 @@ export default function ChangeCount({ orderOption, errorHandler }) {
   }
 
   function onError() {
-    errorHandler();
-    admitBtnRef.current.disabled = false;
-    cancelBtnRef.current.disabled = false;
+    errorHandler(() => {
+      admitBtnRef.current.disabled = false;
+      cancelBtnRef.current.disabled = false;
+    });
   }
 
   function admitHandler() {
@@ -63,9 +64,7 @@ export default function ChangeCount({ orderOption, errorHandler }) {
         cancelBtnRef={cancelBtnRef}
         admitBtnRef={admitBtnRef}
         admitHandler={admitHandler}
-        admitBtnDisabled={
-          newValue === order[property] || !Boolean(newValue) 
-        }
+        admitBtnDisabled={newValue === order[property] || !Boolean(newValue)}
       />
     </Fragment>
   );

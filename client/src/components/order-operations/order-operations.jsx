@@ -1,6 +1,7 @@
 import React, { useContext, useMemo, useRef } from "react";
 import { useDispatch } from "react-redux";
-import { orderTabs } from "../../enums";
+import { useHistory } from "react-router-dom";
+import { appRoute, orderTabs } from "../../enums";
 import style from "./order-operations.module.css";
 import { Operation as OrderOperation } from "../../redux-store/orders/orders-reducer";
 import { OrderContext } from "../../contexts/order-provider";
@@ -19,7 +20,9 @@ export default function OrderOperations({ currentOrderList }) {
     setIsVisibleMoreOption,
   } = useContext(OrderContext);
   const { id, orderList, historyOrder } = order;
+  const history = useHistory();
   const sendBtnRef = useRef();
+  const closeOrderBtnRef = useRef();
 
   function calculateSum(arr) {
     if (arr.length) {
@@ -66,7 +69,17 @@ export default function OrderOperations({ currentOrderList }) {
     shake(sendBtnRef.current);
     deleteBtnRef.current.disabled = false;
     sendBtnRef.current.disabled = false;
-    sendBtnRef.current.textContent = "Отправить заказ"
+    sendBtnRef.current.textContent = "Отправить заказ";
+  }
+
+  function onSuccessCloseOrder() {
+    history.push(appRoute.PRIVAT_OFFICE);
+  }
+
+  function onErrorCloseOrder() {
+    shake(closeOrderBtnRef.current, () => {
+      closeOrderBtnRef.current.disabled = false;
+    });
   }
 
   return (
@@ -79,7 +92,7 @@ export default function OrderOperations({ currentOrderList }) {
             onClick={() => {
               deleteBtnRef.current.disabled = true;
               sendBtnRef.current.disabled = true;
-              sendBtnRef.current.textContent = "Отправка заказа..."
+              sendBtnRef.current.textContent = "Отправка заказа...";
               const updateData = {
                 id,
                 orderList: updateOrderList(orderList, newOrder),
@@ -136,6 +149,17 @@ export default function OrderOperations({ currentOrderList }) {
             title={"Принтер не подключен"}
           ></button>
           <button
+            ref={closeOrderBtnRef}
+            onClick={(evt) => {
+              evt.target.disabled = true;
+              dispatch(
+                OrderOperation.closeOrder(
+                  { id, dateClose: new Date() },
+                  onSuccessCloseOrder,
+                  onErrorCloseOrder
+                )
+              );
+            }}
             className={`${style.footerOperationBtn} ${style.closeTableBtn}`}
           >
             Закрыть стол
