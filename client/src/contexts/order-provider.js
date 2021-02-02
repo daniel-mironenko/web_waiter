@@ -13,6 +13,7 @@ export default function OrderProvider({ children, order }) {
     false
   );
   const [currentOrderOption, setCurrentOrderOption] = useState(null);
+  const [currentProduct, setCurrentProduct] = useState(null);
 
   return (
     <OrderContext.Provider value={{
@@ -28,6 +29,7 @@ export default function OrderProvider({ children, order }) {
       setIsVisibleMoreOptionsPopup,
       setCurrentOrderOption,
       currentOrderOption,
+      currentProduct, setCurrentProduct
     }}>
       {children}
     </OrderContext.Provider>

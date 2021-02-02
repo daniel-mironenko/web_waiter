@@ -4,7 +4,7 @@ import { OrderContext } from "../../contexts/order-provider";
 import style from "./menu-card.module.css";
 
 export default function MenuCard({ item }) {
-  const { setNewOrder } = useContext(OrderContext);
+  const { setNewOrder, setCurrentProduct } = useContext(OrderContext);
   const { setCurrentCatalog, navRef } = useContext(MenuContext);
 
   function updateNewOrder(product) {
@@ -37,6 +37,7 @@ export default function MenuCard({ item }) {
         if (item.type === "product") {
           if (!item.isAvailable) return;
           updateNewOrder(item);
+          setCurrentProduct(item.id);
           return;
         }
         navRef.current.scroll(0, 0);

@@ -1,28 +1,50 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useRef } from "react";
+import { blink } from "../../animations/animations";
 import { OrderContext } from "../../contexts/order-provider";
 import { orderTabs } from "../../enums";
+import { throttle } from "../../utils/throttle";
 import style from "./order-product.module.css";
 
 export default function OrderProduct({ product, index }) {
-  const { name, count, price } = product;
+  const { name, count, price, productId } = product;
   const {
     activeOrderTab,
     setNewOrder,
     activeProduct,
     setActiveProduct,
+    currentProduct,
+    setCurrentProduct,
   } = useContext(OrderContext);
+  const productRef = useRef();
 
   function changeCounter(bool, name) {
     setNewOrder((prev) => {
-      const clonePrev = [...prev.map(it => ({...it}))];
+      const clonePrev = [...prev.map((it) => ({ ...it }))];
       const element = clonePrev.find((it) => it.name === name);
       element.count = bool ? element.count + 1 : element.count - 1;
       return clonePrev;
     });
   }
 
+  const throttledSave = useRef(
+    throttle(
+      () =>
+        blink(productRef.current, () => {
+          setCurrentProduct(null);
+        }),
+      1000
+    )
+  ).current;
+
+  useEffect(() => {
+    if (currentProduct === productId) {
+      throttledSave();
+    }
+  });
+
   return (
     <tr
+      ref={productRef}
       className={`${activeProduct === index && style.activeProduct}`}
       key={name}
       onClick={() => {
