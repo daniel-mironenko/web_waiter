@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useRef } from "react";
+import { blink } from "../../animations/animations";
 import { OrderContext } from "../../contexts/order-provider";
 import { orderTabs } from "../../enums";
 import style from "./order-product.module.css";
@@ -11,6 +12,7 @@ export default function OrderProduct({ product, index }) {
     activeProduct,
     setActiveProduct,
   } = useContext(OrderContext);
+  const productRef = useRef();
 
   function changeCounter(bool, name) {
     setNewOrder((prev) => {
@@ -21,8 +23,13 @@ export default function OrderProduct({ product, index }) {
     });
   }
 
+  useEffect(() => {
+    blink(productRef.current)
+  }, [])
+
   return (
     <tr
+      ref={productRef}
       className={`${activeProduct === index && style.activeProduct}`}
       key={name}
       onClick={() => {
