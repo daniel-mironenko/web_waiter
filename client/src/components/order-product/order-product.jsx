@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { blink } from "../../animations/animations";
 import { OrderContext } from "../../contexts/order-provider";
 import { orderTabs } from "../../enums";
