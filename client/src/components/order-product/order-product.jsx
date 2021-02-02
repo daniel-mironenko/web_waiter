@@ -5,18 +5,20 @@ import { orderTabs } from "../../enums";
 import style from "./order-product.module.css";
 
 export default function OrderProduct({ product, index }) {
-  const { name, count, price } = product;
+  const { name, count, price, productId } = product;
   const {
     activeOrderTab,
     setNewOrder,
     activeProduct,
     setActiveProduct,
+    currentProduct,
+    setCurrentProduct,
   } = useContext(OrderContext);
   const productRef = useRef();
 
   function changeCounter(bool, name) {
     setNewOrder((prev) => {
-      const clonePrev = [...prev.map(it => ({...it}))];
+      const clonePrev = [...prev.map((it) => ({ ...it }))];
       const element = clonePrev.find((it) => it.name === name);
       element.count = bool ? element.count + 1 : element.count - 1;
       return clonePrev;
@@ -24,8 +26,12 @@ export default function OrderProduct({ product, index }) {
   }
 
   useEffect(() => {
-    blink(productRef.current)
-  }, [])
+    if (currentProduct === productId) {
+      blink(productRef.current, () => {
+        setCurrentProduct(null);
+      });
+    }
+  });
 
   return (
     <tr
