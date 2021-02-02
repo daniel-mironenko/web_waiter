@@ -1,7 +1,8 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useCallback, useContext, useEffect, useRef } from "react";
 import { blink } from "../../animations/animations";
 import { OrderContext } from "../../contexts/order-provider";
 import { orderTabs } from "../../enums";
+import { throttle } from "../../utils/throttle";
 import style from "./order-product.module.css";
 
 export default function OrderProduct({ product, index }) {
@@ -25,11 +26,19 @@ export default function OrderProduct({ product, index }) {
     });
   }
 
+  const throttledSave = useRef(
+    throttle(
+      () =>
+        blink(productRef.current, () => {
+          setCurrentProduct(null);
+        }),
+      1000
+    )
+  ).current;
+
   useEffect(() => {
     if (currentProduct === productId) {
-      blink(productRef.current, () => {
-        setCurrentProduct(null);
-      });
+      throttledSave();
     }
   });
 
