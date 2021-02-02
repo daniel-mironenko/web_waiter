@@ -29,8 +29,28 @@ class PersonnelDAO extends SuperDAO {
         }, {
           '$lookup': {
             'from': 'orders', 
-            'localField': '_id', 
-            'foreignField': 'waiter_id', 
+            'let': {
+              'id': '$_id'
+            }, 
+            'pipeline': [
+              {
+                '$match': {
+                  '$expr': {
+                    '$and': [
+                      {
+                        '$eq': [
+                          '$waiter_id', '$$id'
+                        ]
+                      }, {
+                        '$eq': [
+                          '$date_close', null
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            ], 
             'as': 'orders'
           }
         }
