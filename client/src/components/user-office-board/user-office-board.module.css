@@ -1,6 +1,10 @@
 .board {
-  width: 100%;
-  overflow: auto;
+  position: relative;
+  width: calc(100% - 360px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
 }
 
 .warningContainer {
