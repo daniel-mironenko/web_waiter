@@ -8,26 +8,26 @@ export default function OrderCard({ order, status }) {
   
   return (
     <article
-      className={`${style.tableItem} ${
+      className={`${style.orderItem} ${
         status === cardStatus.OPEN
-          ? `${style.tableItemOpen}`
-          : `${style.tableItemClosed}`
+          ? `${style.orderItemOpen}`
+          : `${style.orderItemClosed}`
       }`}
     >
       <ul>
-        <li className={style.tableItemNumber}>{tableNumber}</li>
-        <li className={style.tableItemInfo}>
+        <li className={style.orderItemTableNumber}>{tableNumber}</li>
+        <li className={style.orderItemInfo}>
           Количество гостей: <strong>{guestsCount}</strong>
         </li>
-        <li className={style.tableItemInfo}>
+        <li className={style.orderItemInfo}>
           Время начала: <strong>{getTime(dateStart)}</strong>
         </li>
         {status === cardStatus.CLOSED && (
-          <li className={style.tableItemInfo}>
+          <li className={style.orderItemInfo}>
             Время закрития: <strong>{getTime(dateEnd)}</strong>
           </li>
         )}
-        <li className={style.tableItemInfo}>
+        <li className={style.orderItemInfo}>
           Номер заказа: <strong>{id}</strong>
         </li>
       </ul>

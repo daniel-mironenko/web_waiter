@@ -1,28 +1,37 @@
-.myTablesContainer {
-  position: relative;
-}
-
-.myTabelsHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.myOrdersHeader {
   padding: 20px 40px;
   margin-bottom: 50px;
 }
 
-.myTableCount strong{
+.myOrdersCount strong{
   margin-left: 10px;
   font-size: 21px;
 }
 
-.myTableBoard {
-  width: 100%;
-  padding-left: 5%;
-  padding-right: 15%;
+.myOrdersBoard {
+  padding-left: 2%;
+  height: 100%;
+  overflow: auto;
 }
 
-.tablesList {
+.myOrdersList {
+  padding: 20px;
   display: flex;
   flex-wrap: wrap;
+  width: 85%;
   gap: 15px;
+}
+
+.myOrdersBoard::-webkit-scrollbar {
+  width: 10px;
+}
+
+.myOrdersBoard::-webkit-scrollbar-track {
+  background: #dddddd;
+  border-radius: 5px;
+}
+
+.myOrdersBoard::-webkit-scrollbar-thumb {
+  background: #264653;
+  border-radius: 5px;
 }
