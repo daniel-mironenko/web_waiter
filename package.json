@@ -9,7 +9,7 @@
     "client": "npm run start --prefix client",
     "start-dev": "concurrently --kill-others \"npm run server\" \"npm run client\"",
     "postinstall": "cd client && npm install",
-    "start": "node server.js",
+    "start": "node index.js",
     "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   },
   "repository": {
