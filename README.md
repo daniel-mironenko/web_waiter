@@ -9,7 +9,8 @@ The application for restaurants and cafes that allows you to manage orders quick
 Frontend: React (hooks), Redux, React Router, Redux Thunk, JavaScript, REST, CSS (modules), JSX
 Backend: NodeJS, Express, MongoDB
 
-
+### Open project  
+Link: https://mysterious-reef-27811.herokuapp.com
 ## Usage
 1. Clone this repository.
 2. Install npm modules.
