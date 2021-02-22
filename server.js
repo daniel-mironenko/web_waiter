@@ -19,6 +19,7 @@ app.use("/api", catalogs);
 app.use("/api", menu);
 app.use("/api", orders);
 
+app.use(express.static(path.join(__dirname, "assets")));
 app.use(express.static(path.join(__dirname, "client", "build")));
 
 app.get ('/*', function (req, res) {

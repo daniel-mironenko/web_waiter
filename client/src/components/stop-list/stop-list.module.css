@@ -42,17 +42,16 @@
   padding: 0.7em 1rem;
 }
 
-.stopListTable tr:not(:first-child):hover {
+.stopListTable tbody tr:hover {
   background-color: rgb(223, 222, 222);
 }
 
-.stopListTable tr td:nth-child(1) {
-  text-align: center;
-}
 
 .stopListTable tr th:nth-child(1),
 .stopListTable tr td:nth-child(1) {
   width: 10%;
+  text-align: left;
+  padding-left: 1rem;
 }
 
 .stopListTable tr th:nth-child(2),
@@ -75,5 +74,5 @@
 }
 
 .stopListTable tbody::-webkit-scrollbar-thumb {
-  background: #8e96a1 ;
+  background: #8e96a1;
 }
