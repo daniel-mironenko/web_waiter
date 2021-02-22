@@ -1,25 +1,14 @@
-.myOrdersHeader {
-  padding: 20px 40px;
-  margin-bottom: 50px;
-}
-
-.myOrdersCount strong{
-  margin-left: 10px;
-  font-size: 21px;
-}
-
 .myOrdersBoard {
-  padding-left: 2%;
   height: 100%;
   overflow: auto;
 }
 
 .myOrdersList {
-  padding: 20px;
+  padding: 1.2em 1.2rem;
   display: flex;
   flex-wrap: wrap;
   width: 85%;
-  gap: 15px;
+  gap: 1em;
 }
 
 .myOrdersBoard::-webkit-scrollbar {

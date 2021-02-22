@@ -1,0 +1,79 @@
+.tableContainer {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.stopListTable {
+  table-layout: fixed;
+  height: 100%;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tableHeader {
+  display: block;
+  background-color: #373d46;
+  color: #fff;
+  overflow: hidden;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.stopListTable tbody {
+  display: block;
+  height: 100%;
+  overflow: auto;
+}
+
+.stopListTable tr {
+  display: flex;
+  width: 100%;
+}
+
+.stopListTable tr th {
+  display: block;
+  padding: 1em 1rem;
+  font-weight: normal;
+  text-align: center;
+}
+
+.stopListTable tr td {
+  padding: 0.7em 1rem;
+}
+
+.stopListTable tr:not(:first-child):hover {
+  background-color: rgb(223, 222, 222);
+}
+
+.stopListTable tr td:nth-child(1) {
+  text-align: center;
+}
+
+.stopListTable tr th:nth-child(1),
+.stopListTable tr td:nth-child(1) {
+  width: 10%;
+}
+
+.stopListTable tr th:nth-child(2),
+.stopListTable tr td:nth-child(2) {
+  width: 60%;
+}
+
+.stopListTable tr th:nth-child(3),
+.stopListTable tr td:nth-child(3) {
+  width: 30%;
+}
+
+.stopListTable tbody::-webkit-scrollbar {
+  width: 5px;
+}
+
+.stopListTable tbody::-webkit-scrollbar-track {
+  background: #ffffff;
+  border-radius: 5px;
+}
+
+.stopListTable tbody::-webkit-scrollbar-thumb {
+  background: #8e96a1 ;
+}
