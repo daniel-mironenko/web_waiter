@@ -1,6 +1,4 @@
 export default class Api {
-  static _endPoint = `http://localhost:5000`;
-
   static _checkStatus = async (response) => {
     if (response.status >= 200 && response.status < 300) {
       return await response.json();
@@ -10,7 +8,7 @@ export default class Api {
 
   static async _apiGET(url) {
     try {
-      const response = await fetch(`${this._endPoint}${url}`);
+      const response = await fetch(url);
       return this._checkStatus(response);
     } catch (error) {
       throw error;
@@ -19,7 +17,7 @@ export default class Api {
 
   static async _apiPOST(url, payload) {
     try {
-      const response = await fetch(`${this._endPoint}${url}`, {
+      const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -35,7 +33,7 @@ export default class Api {
 
   static async _apiPUT(url, payload) {
     try {
-      const response = await fetch(`${this._endPoint}${url}`, {
+      const response = await fetch(url, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'

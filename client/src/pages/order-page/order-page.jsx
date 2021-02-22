@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useRouteMatch } from "react-router-dom";
 import OrderHeader from "../../components/order-header/order-header";
@@ -15,6 +15,10 @@ export default function OrderPage() {
   const order = orders.find(
     (it) => it.id === Number(match.params.id)
   );
+
+  useEffect(() => {
+    document.title = `WebWaiter | Order`
+  }, [])
 
   if (!order) {
     return <ErrorPage message={`Не найдено заказ №${match.params.id}`} />
