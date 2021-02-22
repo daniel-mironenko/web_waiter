@@ -5,3 +5,17 @@
   align-items: center;
   justify-content: center;
 }
+
+.testUsersContainer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.testUsersList {
+  padding: 3em 2rem;
+}
+
+.testUsersList li {
+  margin-bottom: 1.5em;
+}
