@@ -1,14 +1,45 @@
-import React from "react";
+import React, { Fragment } from "react";
 import style from "./filter-by-category.module.css";
 
-export default function FilterByCategory() {
+export default function FilterByCategory({ catalogs, setActiveFilter }) {
   return (
     <form className={style.filterByCategoryForm}>
-      <input className={style.filterRadio} id="category" type="radio" name="category" />
-      <label className={style.filterLable} htmlFor="category">Все категории</label>
+      <input
+        className={style.filterRadio}
+        id="Все категории"
+        type="radio"
+        name="category"
+        defaultChecked={true}
+        onChange={() => {
+          setActiveFilter("Все категории");
+        }}
+      />
+      <label
+        className={style.filterLable}
+        htmlFor="Все категории"
+      >
+        Все категории
+      </label>
 
-      <input className={style.filterRadio} id="category1" type="radio" name="category" />
-      <label className={style.filterLable} htmlFor="category1">Салаты</label>
+      {catalogs.map((it) => (
+        <Fragment key={it}>
+          <input
+            className={style.filterRadio}
+            id={it}
+            type="radio"
+            name="category"
+            onChange={() => {
+              setActiveFilter(it);
+            }}
+          />
+          <label
+            className={style.filterLable}
+            htmlFor={it}
+          >
+            {it}
+          </label>
+        </Fragment>
+      ))}
     </form>
   );
 }

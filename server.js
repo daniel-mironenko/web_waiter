@@ -5,6 +5,7 @@ import personnel from "./src/api/personnel.route.js";
 import catalogs from "./src/api/catalogs.route.js";
 import menu from "./src/api/menu.route.js"
 import orders from "./src/api/orders.route.js";
+import products from "./src/api/products.route.js";
 import cors from "cors";
 const app = express();
 
@@ -18,6 +19,7 @@ app.use("/api", personnel);
 app.use("/api", catalogs);
 app.use("/api", menu);
 app.use("/api", orders);
+app.use("/api", products)
 
 app.use(express.static(path.join(__dirname, "assets")));
 app.use(express.static(path.join(__dirname, "client", "build")));

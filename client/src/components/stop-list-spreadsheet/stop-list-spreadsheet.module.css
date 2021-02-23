@@ -52,6 +52,7 @@
 
 .stopListTable tr td {
   padding: 0.7em 1rem;
+  cursor: pointer;
 }
 
 .stopListTable tbody tr:hover {

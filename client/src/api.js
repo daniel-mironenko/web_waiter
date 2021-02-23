@@ -94,4 +94,12 @@ export default class Api {
       throw error
     }
   }
-}
+
+  static async getNotAvailableProducts() {
+    try {
+      return await this._apiGET(`/api/products/not-available`);
+    } catch (error) {
+      throw error
+    }
+  }
+} 

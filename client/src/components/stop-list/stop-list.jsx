@@ -1,134 +1,67 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
+import { Adapter } from "../../adapter";
+import Api from "../../api";
+import { useLoadStatus } from "../../hooks";
 import FilterByCategory from "../filter-by-category/filter-by-category";
+import LoaderMenu from "../loader-menu/loader-menu";
 import OfficeBoardHeader from "../office-board-header/office-board-header";
-import style from "./stop-list.module.css";
+import StopListSpreadsheet from "../stop-list-spreadsheet/stop-list-spreadsheet";
 
 export default function StopList() {
+  const { isLoaded, setIsLoaded, error, setError } = useLoadStatus();
+  const [products, setProducts] = useState([]);
+  const [catalogs, setCatalogs] = useState([]);
+  const [activeFilter, setActiveFilter] = useState(`Все категории`);
+
+  async function fetchProducts() {
+    try {
+      const payload = await Api.getNotAvailableProducts();
+      setProducts(Adapter.getProducts(payload));
+      setCatalogs([...new Set(payload.map((it) => it.catalog))]);
+      setIsLoaded(true);
+    } catch (error) {
+      setError(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  function getProductsByActiveFilter() {
+    if (activeFilter === `Все категории`) {
+      return products;
+    }
+    return products.filter((it) => it.catalog === activeFilter);
+  }
+
+  function getMarkupByLoadStatus() {
+    if (error) {
+      return <div>Ошибка: {error.message}</div>;
+    } else if (!isLoaded) {
+      return <LoaderMenu />;
+    } else {
+      return (
+        <>
+          {Boolean(products.length) && (
+            <FilterByCategory
+              catalogs={catalogs}
+              setActiveFilter={setActiveFilter}
+            />
+          )}
+          <StopListSpreadsheet
+            products={products}
+            productsByFilter={getProductsByActiveFilter()}
+          />
+        </>
+      );
+    }
+  }
+
   return (
     <Fragment>
       <OfficeBoardHeader>Стоп лист</OfficeBoardHeader>
-      <FilterByCategory />
-      <div className={style.tableContainer}>
-        <table className={style.stopListTable}>
-          <thead className={style.tableHeader}>
-            <tr>
-              <th>№</th>
-              <th>Название продукта</th>
-              <th>Ктегория</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>Министроне</td>
-              <td>Супы</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Цезарь</td>
-              <td>Салаты</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Вишневый сок</td>
-              <td>Соки</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Цезарь</td>
-              <td>Салаты</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Вишневый сок</td>
-              <td>Соки</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Цезарь</td>
-              <td>Салаты</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Вишневый сок</td>
-              <td>Соки</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Цезарь</td>
-              <td>Салаты</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Вишневый сок</td>
-              <td>Соки</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Цезарь</td>
-              <td>Салаты</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Вишневый сок</td>
-              <td>Соки</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Цезарь</td>
-              <td>Салаты</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Вишневый сок</td>
-              <td>Соки</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Цезарь</td>
-              <td>Салаты</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Вишневый сок</td>
-              <td>Соки</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Цезарь</td>
-              <td>Салаты</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Вишневый сок</td>
-              <td>Соки</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Цезарь</td>
-              <td>Салаты</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Вишневый сок</td>
-              <td>Соки</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Цезарь</td>
-              <td>Салаты</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Вишневый сок</td>
-              <td>Соки</td>
-            </tr>
-            {/* <div className={style.emptyStopList}>
-              <h2>Все позиции доступны</h2>
-            </div> */}
-          </tbody>
-        </table>
-      </div>
+      {getMarkupByLoadStatus()}
     </Fragment>
   );
 }

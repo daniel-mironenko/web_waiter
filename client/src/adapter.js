@@ -20,7 +20,8 @@ export class Adapter {
       color: it.color,
       photo: it.photo,
       price: it.price,
-      isAvailable: it.is_available
+      isAvailable: it.is_available,
+      catalog: it.catalog,
     }))
   }
 
