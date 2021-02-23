@@ -9,14 +9,7 @@
   cursor: pointer;
   transition: .2s transform;
   padding: 10px;
-}
-
-.orderItemOpen {
   background-color: #FFFF3F;
-}
-
-.orderItemClosed {
-  background-color: #c4c0c2;
 }
 
 .orderItem:hover {

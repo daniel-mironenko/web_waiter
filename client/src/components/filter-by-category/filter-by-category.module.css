@@ -1,5 +1,5 @@
 .filterByCategoryForm {
-  margin-bottom: 3em;
+  margin-bottom: 2em;
   width: 85%;
   display: flex;
   flex-wrap: wrap;
@@ -8,7 +8,7 @@
 
 .filterLable {
   display: block;
-  padding: .7em .7rem;
+  padding: .5em .5rem;
   background-color: #D8DBE6;
   cursor: pointer;
   border-radius: 5px;

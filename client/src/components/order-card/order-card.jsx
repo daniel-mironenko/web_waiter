@@ -1,19 +1,12 @@
 import React from "react";
-import { cardStatus } from "../../enums";
 import { getTime } from "../../utils/date-helper";
 import style from "./order-card.module.css";
 
-export default function OrderCard({ order, status }) {
-  const { id, tableNumber, guestsCount, dateStart, dateEnd } = order;
-  
+export default function OrderCard({ order }) {
+  const { id, tableNumber, guestsCount, dateStart } = order;
+
   return (
-    <article
-      className={`${style.orderItem} ${
-        status === cardStatus.OPEN
-          ? `${style.orderItemOpen}`
-          : `${style.orderItemClosed}`
-      }`}
-    >
+    <article className={style.orderItem}>
       <ul>
         <li className={style.orderItemTableNumber}>{tableNumber}</li>
         <li className={style.orderItemInfo}>
@@ -22,11 +15,6 @@ export default function OrderCard({ order, status }) {
         <li className={style.orderItemInfo}>
           Время начала: <strong>{getTime(dateStart)}</strong>
         </li>
-        {status === cardStatus.CLOSED && (
-          <li className={style.orderItemInfo}>
-            Время закрития: <strong>{getTime(dateEnd)}</strong>
-          </li>
-        )}
         <li className={style.orderItemInfo}>
           Номер заказа: <strong>{id}</strong>
         </li>

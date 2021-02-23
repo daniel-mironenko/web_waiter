@@ -2,6 +2,15 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
+  position: relative;
+}
+
+.emptyStopList {
+  display: inline-block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .stopListTable {
@@ -9,6 +18,9 @@
   height: 100%;
   width: 100%;
   border-collapse: collapse;
+  background-color: #D8DBE6;
+  border-radius: 5px;
+  overflow: hidden;
 }
 
 .tableHeader {
@@ -33,7 +45,7 @@
 
 .stopListTable tr th {
   display: block;
-  padding: 1em 1rem;
+  padding: .7em 1rem;
   font-weight: normal;
   text-align: center;
 }
@@ -43,7 +55,7 @@
 }
 
 .stopListTable tbody tr:hover {
-  background-color: rgb(223, 222, 222);
+  background-color: rgb(240, 240, 240);
 }
 
 
@@ -62,6 +74,10 @@
 .stopListTable tr th:nth-child(3),
 .stopListTable tr td:nth-child(3) {
   width: 30%;
+}
+
+.stopListTable tbody::-webkit-scrollbar-track-piece {
+  background-color: rgb(240, 240, 240);
 }
 
 .stopListTable tbody::-webkit-scrollbar {

@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { appRoute, cardStatus } from "../../enums";
+import { appRoute } from "../../enums";
 import { getActiveOrders } from "../../redux-store/orders/selector";
 import AddButton from "../buttons/add-button/add-button";
 import NewOrderPopup from "../new-order-popup/new-order-popup";
@@ -27,7 +27,7 @@ export default function MyOrders() {
         <div className={style.myOrdersList}>
           {orders.map((it) => (
             <Link key={it.id} to={`${appRoute.ORDER}/${it.id}`}>
-              <OrderCard order={it} status={cardStatus.OPEN} />
+              <OrderCard order={it} />
             </Link>
           ))}
         </div>

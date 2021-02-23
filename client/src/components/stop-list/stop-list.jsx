@@ -123,6 +123,9 @@ export default function StopList() {
               <td>Вишневый сок</td>
               <td>Соки</td>
             </tr>
+            {/* <div className={style.emptyStopList}>
+              <h2>Все позиции доступны</h2>
+            </div> */}
           </tbody>
         </table>
       </div>
