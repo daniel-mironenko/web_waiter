@@ -1,6 +1,7 @@
 import React from "react";
 import { privatOficeNavigation } from "../../enums";
 import MyOrders from "../my-orders/my-orders";
+import StopList from "../stop-list/stop-list";
 import style from "./user-office-board.module.css"
 
 export default function UserOfficeBoard ({activeSection}) {
@@ -11,7 +12,7 @@ export default function UserOfficeBoard ({activeSection}) {
        return <MyOrders/>;
       
       case privatOficeNavigation.STOP_LIST:
-        return <div className={style.warningContainer}><h1>Данный раздел находится в разроботке</h1></div>;
+        return <StopList />;
       
       case privatOficeNavigation.CLOSED_ORDERS:
         return <div className={style.warningContainer}><h1>Данный раздел находится в разроботке</h1></div>;

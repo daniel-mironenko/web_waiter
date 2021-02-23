@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { documentTitle } from "../../enums";
 import style from "./error-page.module.css";
 
 export default function ErrorPage({ message, isGoBack = true }) {
   const history = useHistory();
 
   useEffect(() => {
-    document.title = `WebWaiter | Error`
+    document.title = documentTitle.ERROR;
   }, [])
 
   return (

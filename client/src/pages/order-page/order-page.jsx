@@ -8,6 +8,7 @@ import ErrorPage from "../error-page/error-page";
 import style from "./order-page.module.css";
 import OrderMenu from "../../components/order-menu/order-menu";
 import OrderTab from "../../components/order-tab/order-tab";
+import { documentTitle } from "../../enums";
 
 export default function OrderPage() {
   const orders = useSelector(getActiveOrders);
@@ -17,7 +18,7 @@ export default function OrderPage() {
   );
 
   useEffect(() => {
-    document.title = `WebWaiter | Order`
+    document.title = documentTitle.ORDER;
   }, [])
 
   if (!order) {

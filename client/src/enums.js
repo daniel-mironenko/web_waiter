@@ -1,3 +1,5 @@
+const defaultDocumentTitle = "WebWaiter";
+
 export const appRoute = {
   LOGIN: "/login",
   PRIVAT_OFFICE: "/",
@@ -11,11 +13,6 @@ export const privatOficeNavigation = {
   EXIT: "Выйти из личного кабинета"
 };
 
-export const cardStatus = {
-  OPEN: "open",
-  CLOSED: "closed"
-};
-
 export const orderTabs = {
   NEW_ORDER: "Новый заказ",
   HISTORY: "История",
@@ -26,4 +23,11 @@ export const orderMoreOptions = {
   CHANGE_GUESTS_COUNT: "Изменить количество гостей",
   CHANGE_TABLE_NUMBER: "Изменить номер стола",
   CHANGE_WAITER: "Передать заказ другому официанту"
+}
+
+export const documentTitle = {
+  OFFICE: `${defaultDocumentTitle} | Office`,
+  LOGIN: `${defaultDocumentTitle} | Login`,
+  ORDER: `${defaultDocumentTitle} | Order`,
+  ERROR: `${defaultDocumentTitle} | Error`,
 }

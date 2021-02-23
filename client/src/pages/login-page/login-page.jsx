@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import NumberPanel from "../../components/number-panel/number-panel";
+import { documentTitle } from "../../enums";
 import style from "./login-page.module.css";
 
 export default function LoginPage() {
 
   useEffect(() => {
-    document.title = `WebWaiter | Login`
+    document.title = documentTitle.LOGIN;
   }, [])
 
   return (
