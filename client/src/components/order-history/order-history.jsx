@@ -11,12 +11,12 @@ export default function OrderHistory({ historyOrder }) {
         return (
           <div key={timeOrder + index} className={style.orderContainer}>
             <header className={style.orderHeader}>
-              <div className={style.orderTitle}>Заказ №{index + 1}</div>
+              <div className={style.orderTitle}>Order №{index + 1}</div>
               <div className={style.timeOrder}>{getTime(timeOrder)}</div>
             </header>
             <OrderSpreadsheet orderList={order} />
             <footer className={style.orderFooter}>
-              <div className={style.orderAmountTitle}>Сумма заказа</div>
+              <div className={style.orderAmountTitle}>Order price</div>
               <div className={style.orderAmount}>${price.toFixed(2)}</div>
             </footer>
           </div>

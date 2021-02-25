@@ -21,7 +21,7 @@ export default function ErrorPage({ message, isGoBack = true }) {
               history.goBack();
             }}
           >
-            Вернутся назад
+            Go Back
           </button>
         )}
       </div>

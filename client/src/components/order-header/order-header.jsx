@@ -28,7 +28,7 @@ export default function OrderHeader() {
             history.push(appRoute.PRIVAT_OFFICE);
           }}
         >
-          Мои заказы
+          My orders
         </button>
         {Object.values(orderTabs).map((it) => {
           return (
@@ -48,11 +48,11 @@ export default function OrderHeader() {
         })}
       </div>
       <div className={style.headerInfo}>
-        <p className={style.numberOfTable}>Стол №{tableNumber}</p>
-        <p className={style.numberOfGuests}>Кол-во гостей {guestsCount}</p>
+        <p className={style.numberOfTable}>Table №{tableNumber}</p>
+        <p className={style.numberOfGuests}>Number of guests {guestsCount}</p>
       </div>
       <ul className={style.additionalInformation}>
-        <li className={style.startTime}>Заказ: №{orderId}</li>
+        <li className={style.startTime}>Order: №{orderId}</li>
         <li className={style.startTime}>{getTime(dateStart)}</li>
         <li className={style.owner}>{`${name} ${surname}`}</li>
       </ul>

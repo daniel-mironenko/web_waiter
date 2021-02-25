@@ -19,8 +19,8 @@ export default function OptionsPopupFooter({
 
   return (
     <footer className={style.optionsPopupFooter}>
-      <CancelBtn ref={cancelBtnRef} handler={cancelHandler} text={"Отменить"} />
-      <AdmitBtn ref={admitBtnRef} handler={admitHandler} text={"Принять"} disabled={admitBtnDisabled}/>
+      <CancelBtn ref={cancelBtnRef} handler={cancelHandler} text={"Cancel"} />
+      <AdmitBtn ref={admitBtnRef} handler={admitHandler} text={"Admit"} disabled={admitBtnDisabled}/>
     </footer>
   );
 }

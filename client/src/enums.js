@@ -7,22 +7,22 @@ export const appRoute = {
 };
 
 export const privatOficeNavigation = {
-  MY_ORDERS: "Мои заказы",
-  STOP_LIST: "Стоп лист",
-  CLOSED_ORDERS: "Посмотреть закрытые заказы",
-  EXIT: "Выйти из личного кабинета"
+  MY_ORDERS: "My orders",
+  STOP_LIST: "Stop list",
+  CLOSED_ORDERS: "Closed orders",
+  EXIT: "Exit from private office"
 };
 
 export const orderTabs = {
-  NEW_ORDER: "Новый заказ",
-  HISTORY: "История",
-  ORDER: "Заказ"
+  NEW_ORDER: "New order",
+  HISTORY: "History",
+  ORDER: "Order"
 };
 
 export const orderMoreOptions = {
-  CHANGE_GUESTS_COUNT: "Изменить количество гостей",
-  CHANGE_TABLE_NUMBER: "Изменить номер стола",
-  CHANGE_WAITER: "Передать заказ другому официанту"
+  CHANGE_GUESTS_COUNT: "Change number of guests",
+  CHANGE_TABLE_NUMBER: "Change table number",
+  CHANGE_WAITER: "Transfer the order to another waiter"
 }
 
 export const documentTitle = {

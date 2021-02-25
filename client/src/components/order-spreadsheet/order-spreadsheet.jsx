@@ -35,10 +35,10 @@ export default function OrderSpreadsheet({ orderList }) {
       <table className={style.spreadsheet}>
         <tbody ref={spreadsheetRef}>
           <tr>
-            <th>Название</th>
-            <th>Кол-во</th>
-            <th>Цена</th>
-            <th>Итого</th>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
           </tr>
           {orderList.map((product, index) => {
             return (

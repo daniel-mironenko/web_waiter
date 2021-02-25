@@ -92,7 +92,7 @@ export default function OrderOperations({ currentOrderList }) {
             onClick={() => {
               deleteBtnRef.current.disabled = true;
               sendBtnRef.current.disabled = true;
-              sendBtnRef.current.textContent = "Отправка заказа...";
+              sendBtnRef.current.textContent = "Sending an order...";
               const updateData = {
                 id,
                 orderList: updateOrderList(orderList, newOrder),
@@ -109,7 +109,7 @@ export default function OrderOperations({ currentOrderList }) {
               setActiveProduct(null);
             }}
           >
-            Отправить заказ
+            Send order
           </button>
           <button
             ref={deleteBtnRef}
@@ -127,12 +127,12 @@ export default function OrderOperations({ currentOrderList }) {
               setNewOrder([]);
             }}
           >
-            {activeProduct !== null ? `Удалить` : `Очистить`}
+            {activeProduct !== null ? `Remove` : `Clear`}
           </button>
         </div>
       )}
       <div className={style.totalPriceContainer}>
-        <b>Итого</b>
+        <b>Total</b>
         <strong>${memoizedPrice.toFixed(2)}</strong>
       </div>
       {activeOrderTab === orderTabs.ORDER && (
@@ -146,7 +146,7 @@ export default function OrderOperations({ currentOrderList }) {
           <button
             className={`${style.footerOperationBtn} ${style.printBtn}`}
             disabled={true}
-            title={"Принтер не подключен"}
+            title={"Printer not connected"}
           ></button>
           <button
             ref={closeOrderBtnRef}
@@ -162,7 +162,7 @@ export default function OrderOperations({ currentOrderList }) {
             }}
             className={`${style.footerOperationBtn} ${style.closeTableBtn}`}
           >
-            Закрыть стол
+            Pay
           </button>
         </footer>
       )}

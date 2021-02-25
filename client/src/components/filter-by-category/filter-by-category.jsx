@@ -6,19 +6,16 @@ export default function FilterByCategory({ catalogs, setActiveFilter }) {
     <form className={style.filterByCategoryForm}>
       <input
         className={style.filterRadio}
-        id="Все категории"
+        id="All categories"
         type="radio"
         name="category"
         defaultChecked={true}
         onChange={() => {
-          setActiveFilter("Все категории");
+          setActiveFilter("All categories");
         }}
       />
-      <label
-        className={style.filterLable}
-        htmlFor="Все категории"
-      >
-        Все категории
+      <label className={style.filterLable} htmlFor="All categories">
+        All categories
       </label>
 
       {catalogs.map((it) => (
@@ -32,10 +29,7 @@ export default function FilterByCategory({ catalogs, setActiveFilter }) {
               setActiveFilter(it);
             }}
           />
-          <label
-            className={style.filterLable}
-            htmlFor={it}
-          >
+          <label className={style.filterLable} htmlFor={it}>
             {it}
           </label>
         </Fragment>

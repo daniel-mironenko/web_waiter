@@ -12,7 +12,8 @@ export class Adapter {
   }
 
   static getProducts(products) {
-    return products.map(it => ({
+    return products.map(it => {
+      const obj = {
       id: it._id,
       name: it.name,
       parentId: it.parent_id,
@@ -21,8 +22,14 @@ export class Adapter {
       photo: it.photo,
       price: it.price,
       isAvailable: it.is_available,
-      catalog: it.catalog,
-    }))
+      }
+
+      if (it.catalog) {
+        obj.catalog = it.catalog
+      }
+
+      return obj;
+    })
   }
 
   static getUser(user) {

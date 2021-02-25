@@ -11,7 +11,7 @@ export default function StopList() {
   const { isLoaded, setIsLoaded, error, setError } = useLoadStatus();
   const [products, setProducts] = useState([]);
   const [catalogs, setCatalogs] = useState([]);
-  const [activeFilter, setActiveFilter] = useState(`Все категории`);
+  const [activeFilter, setActiveFilter] = useState(`All categories`);
 
   async function fetchProducts() {
     try {
@@ -29,7 +29,7 @@ export default function StopList() {
   }, []);
 
   function getProductsByActiveFilter() {
-    if (activeFilter === `Все категории`) {
+    if (activeFilter === `All categories`) {
       return products;
     }
     return products.filter((it) => it.catalog === activeFilter);
@@ -37,7 +37,7 @@ export default function StopList() {
 
   function getMarkupByLoadStatus() {
     if (error) {
-      return <div>Ошибка: {error.message}</div>;
+      return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
       return <LoaderMenu />;
     } else {
@@ -60,7 +60,7 @@ export default function StopList() {
 
   return (
     <Fragment>
-      <OfficeBoardHeader>Стоп лист</OfficeBoardHeader>
+      <OfficeBoardHeader>Stop list</OfficeBoardHeader>
       {getMarkupByLoadStatus()}
     </Fragment>
   );
