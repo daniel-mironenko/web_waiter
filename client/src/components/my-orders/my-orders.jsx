@@ -20,7 +20,7 @@ export default function MyOrders() {
   return (
     <Fragment>
       <OfficeBoardHeader>
-        Мои заказы: <strong style={{marginLeft: ".5em"}}>{orders.length}</strong>
+        My orders: <strong style={{marginLeft: ".5em"}}>{orders.length}</strong>
       </OfficeBoardHeader>
       
       <section className={style.myOrdersBoard}>

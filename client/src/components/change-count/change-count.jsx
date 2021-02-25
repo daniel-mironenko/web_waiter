@@ -16,10 +16,10 @@ export default function ChangeCount({ orderOption, errorHandler }) {
   let property = "";
   let placeholder = "";
   if (orderOption === orderMoreOptions.CHANGE_GUESTS_COUNT) {
-    placeholder = "Впишите новое количестово гостей";
+    placeholder = "Enter the new number of guests";
     property = "guestsCount";
   } else if (orderOption === orderMoreOptions.CHANGE_TABLE_NUMBER) {
-    placeholder = "Впишите новый номер стола";
+    placeholder = "Enter the new table number";
     property = "tableNumber";
   }
 

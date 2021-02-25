@@ -40,7 +40,7 @@ export default function OrderMenuHeader() {
                       setCurrentCatalog(rootCatalogID);
                     }}
                   >
-                    Главное меню
+                    Main menu
                   </button>
                 )}
               </Fragment>
@@ -59,7 +59,7 @@ export default function OrderMenuHeader() {
               type="text"
               name="search"
               className={style.searchInput}
-              placeholder="Введите название продукта"
+              placeholder="Enter product name"
               onChange={(evt) => {
                 setSearchValue(evt.target.value);
               }}

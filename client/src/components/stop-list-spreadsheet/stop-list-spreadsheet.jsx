@@ -1,15 +1,15 @@
 import React from "react";
 import style from "./stop-list-spreadsheet.module.css";
 
-export default function StopListSpreadsheet({products, productsByFilter}) {
+export default function StopListSpreadsheet({ products, productsByFilter }) {
   return (
     <div className={style.tableContainer}>
       <table className={style.stopListTable}>
         <thead className={style.tableHeader}>
           <tr>
             <th>№</th>
-            <th>Название продукта</th>
-            <th>Категория</th>
+            <th>Product's name</th>
+            <th>Category</th>
           </tr>
         </thead>
         <tbody>
@@ -25,7 +25,7 @@ export default function StopListSpreadsheet({products, productsByFilter}) {
             </>
           ) : (
             <div className={style.emptyStopList}>
-              <h2>Все позиции доступны</h2>
+              <h2>All positions are available</h2>
             </div>
           )}
         </tbody>

@@ -48,7 +48,7 @@ export default function MenuCard({ item }) {
         style={{ backgroundColor: item.color }}
         className={style.itemImgContainer}
       >
-        {item.photo && <img src={item.photo} alt={item.name} />}
+        {item.photo && <img src={item.photo} alt={""} />}
       </div>
       <div className={style.itemInfo}>
         <p className={style.ItemInfoTitle}>{item.name}</p>

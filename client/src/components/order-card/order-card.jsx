@@ -10,13 +10,13 @@ export default function OrderCard({ order }) {
       <ul>
         <li className={style.orderItemTableNumber}>{tableNumber}</li>
         <li className={style.orderItemInfo}>
-          Количество гостей: <strong>{guestsCount}</strong>
+          Number of guests: <strong>{guestsCount}</strong>
         </li>
         <li className={style.orderItemInfo}>
-          Время начала: <strong>{getTime(dateStart)}</strong>
+          Start time: <strong>{getTime(dateStart)}</strong>
         </li>
         <li className={style.orderItemInfo}>
-          Номер заказа: <strong>{id}</strong>
+          Order number: <strong>{id}</strong>
         </li>
       </ul>
     </article>

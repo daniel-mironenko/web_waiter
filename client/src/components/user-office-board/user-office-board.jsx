@@ -15,7 +15,7 @@ export default function UserOfficeBoard ({activeSection}) {
         return <StopList />;
       
       case privatOficeNavigation.CLOSED_ORDERS:
-        return <div className={style.warningContainer}><h1>Данный раздел находится в разроботке</h1></div>;
+        return <div className={style.warningContainer}><h1>This section is in development</h1></div>;
     
       default:
         return null;

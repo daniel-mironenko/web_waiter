@@ -14,7 +14,7 @@ export default function App() {
         <Route exact path={`${appRoute.LOGIN}`} component={LoginPage} />
         <PrivateRoute exact path={`${appRoute.ORDER}/:id`} component={OrderPage} />
         <Route>
-          <ErrorPage message={"Страница не найдена"} />
+          <ErrorPage message={"Page not found"} />
         </Route>
       </Switch>
     </BrowserRouter>

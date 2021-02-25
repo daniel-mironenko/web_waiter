@@ -35,10 +35,10 @@ export default function NewOrderPopup({ setIsOpenNewOrderPopup }) {
   return (
     <div className={style.NewOrderPopup}>
       <div ref={newOrderContainerRef} className={style.newTableContainer}>
-        <h3>Добавьте новый стол</h3>
+        <h3>Add a new order</h3>
         <form className={style.newTableForm}>
           <label>
-            Номер стола
+            Table number
             <input
               className={style.newTableInput}
               type="number"
@@ -49,7 +49,7 @@ export default function NewOrderPopup({ setIsOpenNewOrderPopup }) {
             />
           </label>
           <label>
-            Количество гостей
+            Number of guests
             <input
               className={style.newTableInput}
               type="number"
@@ -81,7 +81,7 @@ export default function NewOrderPopup({ setIsOpenNewOrderPopup }) {
                 );
               }}
             >
-              Создать заказ
+              Create order
             </button>
             <button
               ref={cancelBtnRef}
@@ -90,7 +90,7 @@ export default function NewOrderPopup({ setIsOpenNewOrderPopup }) {
                 setIsOpenNewOrderPopup(false);
               }}
             >
-              Отмена
+              Cancel
             </button>
           </div>
         </form>
